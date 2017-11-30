@@ -1,12 +1,4 @@
+.idea
 target
 .DS_Store
-bdsafe.iml
-/bin/
-/.project
-/.classpath
-/tmp
-/.settings
-/eclipse
-/nbproject/
-/lib
-/logs
+qutihuo.iml

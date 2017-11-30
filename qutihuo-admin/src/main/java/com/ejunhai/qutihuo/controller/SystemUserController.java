@@ -67,10 +67,13 @@ public class SystemUserController extends BaseController {
 	public String userList(HttpServletRequest request, SystemUserDto systemUserDto, ModelMap modelMap) {
 		systemUserDto.setMerchantId(SessionManager.get(request).getMerchantId());
 		Integer iCount = systemUserService.querySystemUserCount(systemUserDto);
+		System.out.println(systemUserDto.getMerchantId());
+		System.out.println(iCount);
 		Pagination pagination = new Pagination(systemUserDto.getPageNo(), iCount);
 
 		List<SystemUser> systemUserList = new ArrayList<SystemUser>();
 		if (iCount > 0) {
+			System.out.println("=======------------");
 			systemUserDto.setOffset(pagination.getOffset());
 			systemUserDto.setPageSize(pagination.getPageSize());
 			systemUserList = systemUserService.querySystemUserList(systemUserDto);
@@ -80,6 +83,7 @@ public class SystemUserController extends BaseController {
 			List<SystemRole> systemRoleList = systemRoleService.getSystemRoleListByIds(roleIdList);
 			Map<String, SystemRole> systemRoleMap = SystemRoleUtil.getSystemRoleMap(systemRoleList);
 			modelMap.put("systemRoleMap", systemRoleMap);
+			System.out.println("11111111111111111");
 		}
 
 		modelMap.put("systemUserDto", systemUserDto);

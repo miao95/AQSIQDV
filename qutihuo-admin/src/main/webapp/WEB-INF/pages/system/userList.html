@@ -57,7 +57,7 @@
                                 	<button type="button" class="btn btn-success btn-xs J_editPwd"><i class="fa fa-wrench"></i> 修改密码</button>
                                 	<#if item.state==UserState.normal.value>
                                 		<button type="button" class="btn btn-danger btn-xs J_lockUser" data-param='{"id":${item.id?c}}'><i class="fa fa-lock"></i> 锁定账号</button>
-                                	<#else>
+                                	<#else/>
                                 		<button type="button" class="btn btn-warning btn-xs J_unlockUser" data-param='{"id":${item.id?c}}'><i class="fa fa-unlock"></i> 解锁账号</button>
                                 	</#if>
 								</td>
@@ -69,7 +69,7 @@
                     <div class="footer">
                         <div class="col-xs-4">总记录数：${pagination.totalCount?c} </div>
                         <div class="col-xs-8">
-                            <#include "/common/pagination.html">
+                            <#include "/common/pagination.html"/>
                         </div>
                    </div>
                 </div>

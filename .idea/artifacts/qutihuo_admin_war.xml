@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="qutihuo-admin:war">
+    <output-path>$PROJECT_DIR$/qutihuo-admin/target</output-path>
+    <root id="archive" name="qutihuo-admin.war">
+      <element id="artifact" artifact-name="qutihuo-admin:war exploded" />
+    </root>
+  </artifact>
+</component>

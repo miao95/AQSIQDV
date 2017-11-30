@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="qutihuo-wap:war">
+    <output-path>$PROJECT_DIR$/qutihuo-wap/target</output-path>
+    <root id="archive" name="qutihuo-wap.war">
+      <element id="artifact" artifact-name="qutihuo-wap:war exploded" />
+    </root>
+  </artifact>
+</component>

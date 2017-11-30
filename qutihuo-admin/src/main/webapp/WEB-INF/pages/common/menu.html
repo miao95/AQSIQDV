@@ -8,8 +8,11 @@
     <ul class="nav sidebar-menu">
         <#list rootMenuSystemActionList as item >
             <li  class="<#if menuRouteMap[item.id?string]??>active</#if> <#if menuRouteMap[item.id?string]??&&item.actionType==1>open</#if>">
-                 <#if item.actionType==2>
+                <#if item.actionType==2>
                      <a href="${item.url}">
+                         ${rootMenuSystemActionList}
+                         ${"============"}
+                         ${item.id?string}
                          <i class="menu-icon ${item.iconCss}"></i>
                          <span class="menu-text"> ${item.actionName} </span>    
                      </a>

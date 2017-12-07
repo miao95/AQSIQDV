@@ -37,5 +37,13 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 		return provinceStandardMapper.read();
 	}
 
+	@Override
+	public List<ProvinceStandard> read(Integer year) {
+		return provinceStandardMapper.read(year);
+	}
 
+	@Override
+	public List<Integer> getDistinctYear(){
+		return provinceStandardMapper.getDistinctYear();
+	}
 }

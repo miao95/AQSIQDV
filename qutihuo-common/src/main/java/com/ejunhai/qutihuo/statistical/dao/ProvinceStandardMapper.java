@@ -13,5 +13,26 @@ import java.util.List;
  */
 
 public interface ProvinceStandardMapper {
+
+    /**
+     * 获取全部ProvinceStandard
+     *
+     * @return ProvinceStandard对象数组
+     */
     List<ProvinceStandard> read();
+
+    /**
+     * 获取某一年的ProvinceStandard
+     *
+     * @return ProvinceStandard对象数组
+     */
+    List<ProvinceStandard> read(Integer year);
+
+    /**
+     * 获取所有包含的年份
+     *
+     * @return 年份数组
+     */
+    List<Integer> getDistinctYear();
+
 }

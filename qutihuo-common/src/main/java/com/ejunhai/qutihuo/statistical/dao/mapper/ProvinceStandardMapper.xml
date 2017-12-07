@@ -34,5 +34,18 @@
         <include refid="Base_Column_List" />
         from provincestandardinfo
     </select>
+
+    <select id="read" parameterType="Integer" resultMap="ProvinceStandardMapper" resultType="com.ejunhai.qutihuo.statistical.model.ProvinceStandard">
+         select
+        <include refid="Base_Column_List" />
+        from provincestandardinfo
+        WHERE YEAR=#{year}
+    </select>
+
+    <select id="getDistinctYear" resultType="Integer">
+        SELECT
+        DISTINCT YEAR
+        from provincestandardinfo
+    </select>
     
 </mapper>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50718
 File Encoding         : 65001
 
-Date: 2017-12-05 20:45:34
+Date: 2017-12-07 19:58:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -54,5 +54,5 @@ INSERT INTO `tb_system_action` VALUES ('17', '菜单列表', '2', '14', '/system
 INSERT INTO `tb_system_action` VALUES ('18', '财务流水', '2', '14', '/roleList.jhtml', null, '财务流水', '999999', '2014-12-03 12:20:20');
 INSERT INTO `tb_system_action` VALUES ('19', '菜单详情', '3', '17', '/system/actionDetail.jhtml', '', '菜单详情', '999999', '2014-12-03 12:20:20');
 INSERT INTO `tb_system_action` VALUES ('20', '质量基础', '1', '0', '', '', '质量基础', '999999', '2017-12-01 11:33:19');
-INSERT INTO `tb_system_action` VALUES ('21', '标准化能力', '2', '20', '', '', '标准化能力', '999999', '2017-12-01 11:33:19');
-INSERT INTO `tb_system_action` VALUES ('22', '地方标准制修订情况', '3', '21', '/system/qualityList.jhtml', '', '地方标准制修订情况', '999999', '2017-12-01 11:33:19');
+INSERT INTO `tb_system_action` VALUES ('21', '标准化能力', '1', '0', '', '', '标准化能力', '999999', '2017-12-01 11:33:19');
+INSERT INTO `tb_system_action` VALUES ('22', '地方标准制修订情况', '2', '21', '/statistical/standardRevise.jhtml', '', '地方标准制修订情况', '999999', '2017-12-01 11:33:19');

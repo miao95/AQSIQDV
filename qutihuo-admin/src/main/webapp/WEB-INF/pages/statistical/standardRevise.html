@@ -1,8 +1,8 @@
 <@override name="page-content">  
     <div class="page-breadcrumbs">
         <ul class="breadcrumb">
-            <li><i class="fa fa-home"></i><a href="#">用户管理</a></li>
-            <li>统计数据</li>
+            <li><i class="fa fa-home"></i><a href="#">标准化能力</a></li>
+            <li>标准修订</li>
         </ul>
     </div>
     
@@ -11,7 +11,7 @@
             <div class="col-xs-12 col-md-12">
                 <div class="well with-header with-footer" id="echartShow">
                     <div id="nationproduct_main_1" style="display: block">
-                        <div id="nationproduct_1" style="width: 100%; height: 630px;">
+                        <div id="nationproduct_1" style="width: 100%; height: 730px;">
                         </div>
                         <div id="nationproduct_foot_1">
                         </div>
@@ -58,6 +58,11 @@
 <script type="text/javascript" src="/assets/Scripts/standardization.js"></script>
     <script>
     	$(document).ready(function() {
+            var checkedArray =[];
+            var jsonMap = ${jsonMap};
+            var _2016 = jsonMap.year_2016;
+            console.log(_2016)
+
             var sample_chart = echarts.init(document.getElementById("nationproduct_1"));
             sample_chart.setOption(std_zxd_option);
     		// 修改密码

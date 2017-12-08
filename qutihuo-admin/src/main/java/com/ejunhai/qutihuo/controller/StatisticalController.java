@@ -5,6 +5,7 @@ import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
 import com.ejunhai.qutihuo.system.dto.SystemUserDto;
 import net.sf.json.JSON;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,11 +26,15 @@ public class StatisticalController extends BaseController {
 	@RequestMapping("/standardRevise")
 	public String standardRevise(HttpServletRequest request, ModelMap modelMap) {
 		List<Integer> yearList = provinceStandardService.getDistinctYear();
+		Map<String,List<ProvinceStandard>> jsonMap = new HashMap<>();
 		for(Integer year:yearList){
 			List<ProvinceStandard> provinceStandardsInYear =provinceStandardService.read(year);
-			JSONObject json = JSONObject.fromObject(provinceStandardsInYear);
-			modelMap.put(String.valueOf(year),json);
+//			JSONArray json = JSONArray.fromObject(provinceStandardsInYear);
+//			JSONObject json = JSONObject.fromObject(provinceStandardsInYear);
+			jsonMap.put("year_"+String.valueOf(year),provinceStandardsInYear);
 		}
+		JSONObject json = JSONObject.fromObject(jsonMap);
+		modelMap.put("jsonMap",json);
 		List<ProvinceStandard> provinceStandardList = provinceStandardService.read();
 		System.out.println(provinceStandardList.get(0).getId());
 		return "statistical/standardRevise";

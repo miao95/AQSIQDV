@@ -39,7 +39,7 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 
 	@Override
 	public List<ProvinceStandard> read(Integer year) {
-		return provinceStandardMapper.read(year);
+		return provinceStandardMapper.readByYear(year);
 	}
 
 	@Override

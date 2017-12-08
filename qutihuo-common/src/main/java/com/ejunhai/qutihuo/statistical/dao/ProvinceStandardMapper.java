@@ -26,7 +26,7 @@ public interface ProvinceStandardMapper {
      *
      * @return ProvinceStandard对象数组
      */
-    List<ProvinceStandard> read(Integer year);
+    List<ProvinceStandard> readByYear(Integer year);
 
     /**
      * 获取所有包含的年份

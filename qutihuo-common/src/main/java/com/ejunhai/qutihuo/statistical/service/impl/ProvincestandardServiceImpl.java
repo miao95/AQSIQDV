@@ -25,7 +25,7 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 	@Override
 	public StandardReviseDto acquireStandardRevise(){
 		StandardReviseDto standardReviseDto = new StandardReviseDto();
-		standardReviseDto.setyAxisData(yAxisData());			//step one
+		standardReviseDto.setyAxisData(set2List(yAxisData()));			//step one
 
 		List<Integer> years = provinceStandardMapper.getDistinctYear();		//step two
 		standardReviseDto.setTimeLineData(timeLineData(years));
@@ -38,8 +38,8 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 
 		List<ProvinceStandard> provinceStatistics = provinceStandardMapper.readProvinceStatistics();		//step four
 		Map<Integer,Set<ProvinceStandard>> yearProvinceStatistics = mapping4province(provinceStatistics);
-		Integer[] dataAll_1 = {253,220,215,211,208,205,203,199,185,179,169,140,139,137,131,124,122,121,118,94,94,93,90,90,78,71,67,63,52,50,10};
-		Integer[] dataAll_2 = {253,220,215,444,208,205,203,199,185,421,169,140,139,137,131,124,122,121,118,222,94,93,90,90,78,71,67,63,52,50,44};
+		List<List<Integer>> provinceStatisticsList = mapping4List(yearProvinceStatistics,years);
+		standardReviseDto.setSeriesThreeData(provinceStatisticsList);
 
 		return standardReviseDto;
 	}
@@ -134,10 +134,9 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 
 	Map<Integer,Set<ProvinceStandard>> mapping4province(List<ProvinceStandard> standardList){
 		Map<Integer,Set<ProvinceStandard>> result = new HashMap<Integer,Set<ProvinceStandard>>();
-		List<ProvinceStandard> list = new ArrayList<ProvinceStandard>();
 		for (ProvinceStandard standard:standardList) {
 			Set<ProvinceStandard> V = result.get(standard.getYear());
-			if(null!=V){
+			if(null==V){
 				V = new TreeSet<ProvinceStandard>();
 				V.add(standard);
 				result.put(standard.getYear(),V);
@@ -147,5 +146,32 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 			}
 		}
 		return result;
+	}
+
+	List<List<Integer>> mapping4List(Map<Integer,Set<ProvinceStandard>> yearProvinceMap,List<Integer> years){
+		List<List<Integer>> resultList = new ArrayList<List<Integer>>();
+		for(Integer year:years){
+			List<Integer> list = new ArrayList<Integer>();
+			Set<ProvinceStandard> provinceStandardSet = yearProvinceMap.get(year);
+			Iterator<ProvinceStandard> iterator = provinceStandardSet.iterator();
+			while(iterator.hasNext()){
+				ProvinceStandard standard = iterator.next();
+				int xdNum = standard.getBnd_zxd_xd();
+				int zdNum = standard.getBnd_zxd_zd();
+				list.add(xdNum+zdNum);
+			}
+			resultList.add(list);
+		}
+		return resultList;
+	}
+
+	<T> List<T> set2List(Set<T> set){
+		List<T> resultList = new ArrayList<T>();
+		Iterator<T> iterator = set.iterator();
+		while(iterator.hasNext()){
+			T ele = iterator.next();
+			resultList.add(ele);
+		}
+		return resultList;
 	}
 }

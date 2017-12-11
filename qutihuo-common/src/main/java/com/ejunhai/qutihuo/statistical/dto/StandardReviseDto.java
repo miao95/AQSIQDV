@@ -7,7 +7,7 @@ public class StandardReviseDto {
 
     private List<String> timeLineData;
 
-    private Set<String> yAxisData;
+    private List<String> yAxisData;
 
     private List<List<SumarryObj>> seriesOneData;
 
@@ -23,11 +23,11 @@ public class StandardReviseDto {
         this.timeLineData = timeLineData;
     }
 
-    public Set<String> getyAxisData() {
+    public List<String> getyAxisData() {
         return yAxisData;
     }
 
-    public void setyAxisData(Set<String> yAxisData) {
+    public void setyAxisData(List<String> yAxisData) {
         this.yAxisData = yAxisData;
     }
 

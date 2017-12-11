@@ -3,6 +3,7 @@ package com.ejunhai.qutihuo.controller;
 import com.ejunhai.qutihuo.common.base.BaseController;
 import com.ejunhai.qutihuo.statistical.dto.StandardReviseDto;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
+import net.sf.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,8 @@ public class StatisticalController extends BaseController {
 	public String standardRevise(HttpServletRequest request, ModelMap modelMap) {
 		Map<String,Object> jsonMap = new HashMap<>();
 		StandardReviseDto standardReviseDto = provinceStandardService.acquireStandardRevise();
-		modelMap.put("jsonData",standardReviseDto);
+		JSONObject dto = JSONObject.fromObject(standardReviseDto);
+		modelMap.put("jsonData",dto);
 		return "statistical/standardRevise";
 	}
 

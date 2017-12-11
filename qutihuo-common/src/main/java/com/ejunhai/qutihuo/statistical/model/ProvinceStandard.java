@@ -7,7 +7,7 @@ package com.ejunhai.qutihuo.statistical.model;
  * @date 2017-12-06 21:18:30
  */
 
-public class ProvinceStandard {
+public class ProvinceStandard implements Comparable{
 
     /**
      * ID
@@ -150,5 +150,12 @@ public class ProvinceStandard {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public int compareTo(Object obj){
+        if (!(obj instanceof ProvinceStandard))
+            throw new RuntimeException("no ProvinceStandard");
+        ProvinceStandard ps = (ProvinceStandard)obj;
+        return this.getProvince().compareTo(ps.getProvince());
     }
 }

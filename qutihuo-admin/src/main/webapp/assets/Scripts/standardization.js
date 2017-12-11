@@ -1,14 +1,10 @@
 ﻿// var dataAll = [253,220,215,211,208,205,203,199,185,179,169,140,139,137,131,124,122,121,118,94,94,93,90,90,78,71,67,63,52,50,10];
 // var yAxisData = ['安徽省','四川省','江苏省','山西省','广西壮族自治区','山东省','辽宁省','黑龙江省','吉林省','河南省','广东省','新疆维吾尔自治区','甘肃省','宁夏回族自治区','内蒙古自治区','河北省','天津市','北京市','湖南省','湖北省','贵州省','云南省','福建省','重庆市','海南省','上海市','陕西省','青海省','江西省','浙江省','西藏自治区'];
-var yAxisData = jsonMap.yAxisData;
-var dataList = jsonMap.dataList;
-var dataAll_1 = jsonMap.dataAll_1;
-var dataAll_2 = jsonMap.dataAll_2;
-console.log(yAxisData)
-console.log(dataList)
-console.log(dataList)
-console.log(dataAll_1)
-console.log(dataAll_2)
+var timeLineData = jsonData.timeLineData;
+var yAxisData = jsonData.yAxisData;
+var seriesOne = jsonData.seriesOneData;
+var seriesTwo = jsonData.seriesTwoData;
+var seriesThree = jsonData.seriesThreeData;
 var std_zxd_option = {
     baseOption: {
         timeline: {
@@ -22,9 +18,7 @@ var std_zxd_option = {
             // controlStyle: {
             //     position: 'left'
             // },
-            data: [
-                '2002-01-01','2003-01-01',
-            ],
+            data: timeLineData,
             label: {
                 formatter : function(s) {
                     return (new Date(s)).getFullYear();
@@ -53,7 +47,7 @@ var std_zxd_option = {
         ],
         yAxis: [
             {
-                gridIndex: 0, interval: 0, data: yAxisData.reverse(),
+                gridIndex: 0, interval: 0, data: yAxisData,
                 axisTick: {show: false}, axisLabel: {show: true}, splitLine: {show: false},
                 axisLine: {show: true, lineStyle: {color: "#6173a3"}},
             }
@@ -96,29 +90,19 @@ var std_zxd_option = {
     },
     options: [
         {
-            title: {text: '2002'},
+            title: {text: timeLineData[0]},
             series: [
-                {data: dataList,},
-                {data: [
-                    {value: 3868, name: '推荐'},
-                    {value: 263, name: '强制'},
-                ],},
-                {data: dataAll_2},
+                {data: seriesOne[0],},
+                {data: seriesTwo[0],},
+                {data: seriesThree[0]},
             ]
         },
         {
-            title: {text: '2003'},
+            title: {text: timeLineData[1]},
             series: [
-                {data: [
-                    {value: 1848, name: '制订'},
-
-                    {value: 583, name: '修订'}
-                ],},
-                {data: [
-                    {value: 3868, name: '推荐'},
-                    {value: 1263, name: '强制'},
-                ],},
-                {data: dataAll_1},
+                {data: seriesOne[1],},
+                {data: seriesTwo[1],},
+                {data: seriesThree[1]},
             ]
         }]
 };

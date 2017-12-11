@@ -22,6 +22,19 @@ public interface ProvinceStandardMapper {
     List<ProvinceStandard> read();
 
     /**
+     * 获取全国统计的ProvinceStandard
+     *
+     * @return ProvinceStandard对象数组
+     */
+    List<ProvinceStandard> readNationalStatistics();
+
+    /**
+     * 获取各个省份的ProvinceStandard
+     *
+     * @return ProvinceStandard对象数组
+     */
+    List<ProvinceStandard> readProvinceStatistics();
+    /**
      * 获取某一年的ProvinceStandard
      *
      * @return ProvinceStandard对象数组

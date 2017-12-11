@@ -1,5 +1,6 @@
 package com.ejunhai.qutihuo.statistical.service;
 
+import com.ejunhai.qutihuo.statistical.dto.StandardReviseDto;
 import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
 
 import java.util.List;
@@ -16,24 +17,10 @@ import java.util.List;
 public interface ProvinceStandardService {
 
 	/**
-	 * 获取全部ProvinceStandard
+	 * 计算页面StandardRevise的事物对象
 	 *
-	 * @return ProvinceStandard对象数组
+	 * @return StandardReviseDto
 	 */
-	public List<ProvinceStandard> read();
-
-	/**
-	 * 获取某一年的ProvinceStandard
-	 *
-	 * @return ProvinceStandard对象数组
-	 */
-	public List<ProvinceStandard> read(Integer year);
-
-	/**
-	 * 获取所有包含的年份
-	 *
-	 * @return 年份数组
-	 */
-	public List<Integer> getDistinctYear();
+	public StandardReviseDto acquireStandardRevise();
 
 }

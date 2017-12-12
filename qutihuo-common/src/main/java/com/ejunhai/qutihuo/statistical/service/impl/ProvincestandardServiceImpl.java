@@ -31,13 +31,13 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 		standardReviseDto.setTimeLineData(timeLineData(years));
 
 		List<ProvinceStandard> nationalStatistics = provinceStandardMapper.readNationalStatistics();		//step three
-		Map<Integer,ProvinceStandard> yearNationalStatistics = mapping4year(nationalStatistics);
+		Map<Integer,ProvinceStandard> yearNationalStatistics = mapping4nationYear(nationalStatistics);
 		Map<Integer,List<List<StandardReviseDto.SumarryObj>>> seriesData = seriesData(yearNationalStatistics,years);
 		standardReviseDto.setSeriesOneData(seriesData.get(1));
 		standardReviseDto.setSeriesTwoData(seriesData.get(2));
 
 		List<ProvinceStandard> provinceStatistics = provinceStandardMapper.readProvinceStatistics();		//step four
-		Map<Integer,Set<ProvinceStandard>> yearProvinceStatistics = mapping4province(provinceStatistics);
+		Map<Integer,Set<ProvinceStandard>> yearProvinceStatistics = mapping4provinceYear(provinceStatistics);
 		List<List<Integer>> provinceStatisticsList = mapping4List(yearProvinceStatistics,years);
 		standardReviseDto.setSeriesThreeData(provinceStatisticsList);
 
@@ -122,8 +122,7 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 		return result;
 	}
 
-	//type==0:按年份映射，type==1:按年和省映射
-	Map<Integer,ProvinceStandard> mapping4year(List<ProvinceStandard> standardList) {
+	Map<Integer,ProvinceStandard> mapping4nationYear(List<ProvinceStandard> standardList) {
 		Map<Integer, ProvinceStandard> result = new HashMap<Integer, ProvinceStandard>();
 		for (ProvinceStandard standard : standardList) {
 			result.put(standard.getYear(), standard);
@@ -132,7 +131,7 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 
 	}
 
-	Map<Integer,Set<ProvinceStandard>> mapping4province(List<ProvinceStandard> standardList){
+	Map<Integer,Set<ProvinceStandard>> mapping4provinceYear(List<ProvinceStandard> standardList){
 		Map<Integer,Set<ProvinceStandard>> result = new HashMap<Integer,Set<ProvinceStandard>>();
 		for (ProvinceStandard standard:standardList) {
 			Set<ProvinceStandard> V = result.get(standard.getYear());

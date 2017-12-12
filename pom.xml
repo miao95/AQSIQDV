@@ -2,14 +2,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ejunhai</groupId>
-	<artifactId>qutihuo</artifactId>
+	<artifactId>AQSIQDV</artifactId>
 	<version>1.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>qutihuo-admin</module>
-		<module>qutihuo-common</module>
-		<module>qutihuo-tools</module>
-		<module>qutihuo-wap</module>
+		<module>admin</module>
+		<module>common</module>
+		<module>wap</module>
 	</modules>
 
 	<build>

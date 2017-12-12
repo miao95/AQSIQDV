@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.ejunhai</groupId>
-		<artifactId>qutihuo</artifactId>
+		<artifactId>AQSIQDV</artifactId>
 		<version>1.0.2-SNAPSHOT</version>
 	</parent>
-	<artifactId>qutihuo-wap</artifactId>
+	<artifactId>admin</artifactId>
 	<packaging>war</packaging>
 
 	<properties>
@@ -35,8 +35,24 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.7</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>poi-ooxml-schemas</artifactId>
+					<groupId>org.apache.poi</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
 			<groupId>com.ejunhai</groupId>
-			<artifactId>qutihuo-common</artifactId>
+			<artifactId>common</artifactId>
 			<version>1.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
@@ -44,10 +60,16 @@
 			<artifactId>qiniu-java-sdk</artifactId>
 			<version>[6.1.7, 6.999]</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
 	</dependencies>
 
 	<build>
-		<finalName>qutihuo-wap</finalName>
+		<finalName>admin</finalName>
 		<filters>
 			<filter>src/main/resources/environment/application-${env}.properties</filter>
 		</filters>

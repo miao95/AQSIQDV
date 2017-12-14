@@ -1,6 +1,7 @@
 package com.ejunhai.qutihuo.statistical.dto;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class StandardReviseDto {
@@ -14,6 +15,16 @@ public class StandardReviseDto {
     private List<List<SumarryObj>> seriesTwoData;
 
     private List<List<Integer>> seriesThreeData;
+
+    private Map<String,List<Integer>> proviceYearData;
+
+    public Map<String, List<Integer>> getProviceYearData() {
+        return proviceYearData;
+    }
+
+    public void setProviceYearData(Map<String, List<Integer>> proviceYearData) {
+        this.proviceYearData = proviceYearData;
+    }
 
     public List<String> getTimeLineData() {
         return timeLineData;

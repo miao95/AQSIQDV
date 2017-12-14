@@ -5,6 +5,8 @@ var yAxisData = jsonData.yAxisData;
 var seriesOne = jsonData.seriesOneData;
 var seriesTwo = jsonData.seriesTwoData;
 var seriesThree = jsonData.seriesThreeData;
+var proviceYearData = jsonData.proviceYearData;
+console.log(proviceYearData)
 var std_zxd_option = {
     baseOption: {
         timeline: {

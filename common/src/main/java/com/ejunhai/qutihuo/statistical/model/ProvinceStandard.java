@@ -152,10 +152,12 @@ public class ProvinceStandard implements Comparable{
         this.province = province;
     }
 
+    @Override
     public int compareTo(Object obj){
         if (!(obj instanceof ProvinceStandard))
             throw new RuntimeException("no ProvinceStandard");
         ProvinceStandard ps = (ProvinceStandard)obj;
-        return this.getProvince().compareTo(ps.getProvince());
+        int result = this.getProvince().compareTo(ps.getProvince());
+        return result==0?this.getYear().compareTo(ps.getYear()):result;
     }
 }

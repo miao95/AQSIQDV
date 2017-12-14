@@ -4,6 +4,7 @@ import com.ejunhai.qutihuo.statistical.dao.ProvinceStandardMapper;
 import com.ejunhai.qutihuo.statistical.dto.StandardReviseDto;
 import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
+import com.sun.xml.internal.ws.util.QNameMap;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.*;
@@ -41,6 +42,9 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 		standardReviseDto.setSeriesThreeData(provinceStatisticsList);
 
 		standardReviseDto.setyAxisData(set2List(yAxisData(provinceStatistics)));			//step yAxisData
+
+		standardReviseDto.setProviceYearData(provinceYearData(mapping4provinceYear(provinceStatistics)));			//step ProvinceYearData
+
 
 		return standardReviseDto;
 	}
@@ -126,6 +130,27 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 		return result;
 	}
 
+	Map<String,List<Integer>> provinceYearData(Map<String,List<ProvinceStandard>> provinceYearMap){
+		Map<String,List<Integer>> result = new HashMap<String, List<Integer>>();
+		Set<Map.Entry<String,List<ProvinceStandard>>> entries = provinceYearMap.entrySet();
+		Iterator<Map.Entry<String,List<ProvinceStandard>>> it = entries.iterator();
+		while(it.hasNext()){
+			Map.Entry<String,List<ProvinceStandard>> entry = it.next();
+			result.put(entry.getKey(),mappingPS2Num(entry.getValue()));
+		}
+		return result;
+	}
+
+	List<Integer> mappingPS2Num(List<ProvinceStandard> provinceStandardsList){
+		List<Integer> result = new ArrayList<Integer>();
+		for(ProvinceStandard standard:provinceStandardsList){
+			int xdNum = standard.getBnd_zxd_xd();
+			int zdNum = standard.getBnd_zxd_zd();
+			result.add(xdNum+zdNum);
+		}
+		return result;
+	}
+
 	Map<Integer,ProvinceStandard> mapping4yearNation(List<ProvinceStandard> standardList) {
 		Map<Integer, ProvinceStandard> result = new HashMap<Integer, ProvinceStandard>();
 		for (ProvinceStandard standard : standardList) {
@@ -138,15 +163,40 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 	Map<Integer,Set<ProvinceStandard>> mapping4yearProvince(List<ProvinceStandard> standardList){
 		Map<Integer,Set<ProvinceStandard>> result = new HashMap<Integer,Set<ProvinceStandard>>();
 		for (ProvinceStandard standard:standardList) {
-			Set<ProvinceStandard> V = result.get(standard.getYear());
+			Integer K = standard.getYear();
+			Set<ProvinceStandard> V = result.get(K);
 			if(null==V){
 				V = new TreeSet<ProvinceStandard>();
 				V.add(standard);
-				result.put(standard.getYear(),V);
+				result.put(K,V);
 
 			}else{
-				result.get(standard.getYear()).add(standard);
+				result.get(K).add(standard);
 			}
+		}
+		return result;
+	}
+
+	Map<String,List<ProvinceStandard>> mapping4provinceYear(List<ProvinceStandard> standardList){
+		Map<String,Set<ProvinceStandard>> tmp = new HashMap<String,Set<ProvinceStandard>>();
+		Map<String,List<ProvinceStandard>> result = new HashMap<String,List<ProvinceStandard>>();
+		for (ProvinceStandard standard:standardList) {
+			String K = standard.getProvince();
+			Set<ProvinceStandard> V = tmp.get(K);
+			if(null==V){
+				V = new TreeSet<ProvinceStandard>();
+				V.add(standard);
+				tmp.put(K,V);
+
+			}else{
+				tmp.get(K).add(standard);
+			}
+		}
+		Set<Map.Entry<String,Set<ProvinceStandard>>> entries = tmp.entrySet();
+		Iterator<Map.Entry<String,Set<ProvinceStandard>>> it = entries.iterator();
+		while(it.hasNext()){
+			Map.Entry<String,Set<ProvinceStandard>> entry = it.next();
+			result.put(entry.getKey(),set2List(entry.getValue()));
 		}
 		return result;
 	}

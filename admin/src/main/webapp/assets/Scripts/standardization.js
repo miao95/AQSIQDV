@@ -89,7 +89,7 @@ var std_zxd_option = {
         ],
     },
     options: [
-        {
+        /*{
             title: {text: timeLineData[0]},
             series: [
                 {data: seriesOne[0],},
@@ -104,5 +104,14 @@ var std_zxd_option = {
                 {data: seriesTwo[1],},
                 {data: seriesThree[1]},
             ]
-        }]
+        }*/]
+};
+function init_std(timeLineData,seriesOne,seriesTwo,seriesThree){
+    for(var i=0;i<timeLineData.length;i++){
+        var obj = {
+                title:{text:timeLineData[i]},
+                series:[{data:seriesOne[i]},{data: seriesTwo[i],},{data: seriesThree[i]},]
+                };
+        std_zxd_option.options.push(obj);
+    }
 };

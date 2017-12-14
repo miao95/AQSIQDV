@@ -46,7 +46,7 @@
         SELECT
         <include refid="Base_Column_List" />
         FROM provincestandardinfo
-        WHERE province!='全国总计'
+        WHERE province NOT IN ('全国总计','地方单位合计')
     </select>
 
     <select id="readByYear" parameterType="Integer" resultMap="ProvinceStandardMapper" resultType="com.ejunhai.qutihuo.statistical.model.ProvinceStandard">

@@ -25,27 +25,31 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 	@Override
 	public StandardReviseDto acquireStandardRevise(){
 		StandardReviseDto standardReviseDto = new StandardReviseDto();
-		standardReviseDto.setyAxisData(set2List(yAxisData()));			//step one
 
-		List<Integer> years = provinceStandardMapper.getDistinctYear();		//step two
+		List<Integer> years = provinceStandardMapper.getDistinctYear();		//step timeLineData
 		standardReviseDto.setTimeLineData(timeLineData(years));
 
-		List<ProvinceStandard> nationalStatistics = provinceStandardMapper.readNationalStatistics();		//step three
-		Map<Integer,ProvinceStandard> yearNationalStatistics = mapping4nationYear(nationalStatistics);
+		List<ProvinceStandard> nationalStatistics = provinceStandardMapper.readNationalStatistics();		//step SeriesData 1,2
+		Map<Integer,ProvinceStandard> yearNationalStatistics = mapping4yearNation(nationalStatistics);
 		Map<Integer,List<List<StandardReviseDto.SumarryObj>>> seriesData = seriesData(yearNationalStatistics,years);
 		standardReviseDto.setSeriesOneData(seriesData.get(1));
 		standardReviseDto.setSeriesTwoData(seriesData.get(2));
 
-		List<ProvinceStandard> provinceStatistics = provinceStandardMapper.readProvinceStatistics();		//step four
-		Map<Integer,Set<ProvinceStandard>> yearProvinceStatistics = mapping4provinceYear(provinceStatistics);
+		List<ProvinceStandard> provinceStatistics = provinceStandardMapper.readProvinceStatistics();		//step SeriesData 3
+		Map<Integer,Set<ProvinceStandard>> yearProvinceStatistics = mapping4yearProvince(provinceStatistics);
 		List<List<Integer>> provinceStatisticsList = mapping4List(yearProvinceStatistics,years);
 		standardReviseDto.setSeriesThreeData(provinceStatisticsList);
 
+		standardReviseDto.setyAxisData(set2List(yAxisData(provinceStatistics)));			//step yAxisData
+
 		return standardReviseDto;
 	}
-	private Set<String> yAxisData(){
+	private Set<String> yAxisData(List<ProvinceStandard> provinceStandardList){
 		TreeSet<String> yAxisData = new TreeSet<String>();
-		yAxisData.add("安徽省");
+		for(ProvinceStandard provinceStandard:provinceStandardList){
+			yAxisData.add(provinceStandard.getProvince());
+		}
+/*		yAxisData.add("安徽省");
 		yAxisData.add("四川省");
 		yAxisData.add("江苏省");
 		yAxisData.add("山西省");
@@ -75,7 +79,7 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 		yAxisData.add("青海省");
 		yAxisData.add("江西省");
 		yAxisData.add("浙江省");
-		yAxisData.add("西藏自治区");
+		yAxisData.add("西藏自治区");*/
 		return yAxisData;
 	}
 
@@ -122,7 +126,7 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 		return result;
 	}
 
-	Map<Integer,ProvinceStandard> mapping4nationYear(List<ProvinceStandard> standardList) {
+	Map<Integer,ProvinceStandard> mapping4yearNation(List<ProvinceStandard> standardList) {
 		Map<Integer, ProvinceStandard> result = new HashMap<Integer, ProvinceStandard>();
 		for (ProvinceStandard standard : standardList) {
 			result.put(standard.getYear(), standard);
@@ -131,7 +135,7 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 
 	}
 
-	Map<Integer,Set<ProvinceStandard>> mapping4provinceYear(List<ProvinceStandard> standardList){
+	Map<Integer,Set<ProvinceStandard>> mapping4yearProvince(List<ProvinceStandard> standardList){
 		Map<Integer,Set<ProvinceStandard>> result = new HashMap<Integer,Set<ProvinceStandard>>();
 		for (ProvinceStandard standard:standardList) {
 			Set<ProvinceStandard> V = result.get(standard.getYear());

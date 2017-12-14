@@ -60,6 +60,7 @@
     <script>
     	$(document).ready(function() {
             var sample_chart = echarts.init(document.getElementById("nationproduct_1"));
+            init_std(timeLineData,seriesOne,seriesTwo,seriesThree);
             sample_chart.setOption(std_zxd_option);
     		// 修改密码
 	        $(".J_editPwd").on('click', function () {

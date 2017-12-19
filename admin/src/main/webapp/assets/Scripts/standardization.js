@@ -109,6 +109,31 @@ var std_zxd_option = {
         }*/]
 };
 
+function createPromptOption(params) {
+    var pro_option = {
+        backgroundColor: '#FFFFFF',
+        title:{
+            text: params.name+'标准制修订数',
+            left: 'center',
+            top: 10,
+            textStyle: {
+                color: '#000',
+                fontWeight: 'normal',
+                fontSize: 20
+            }},
+        xAxis: {
+            data: timeLineData,
+        },
+        yAxis: {},
+        series: [{
+            name: params.name,
+            type: 'bar',
+            data: proviceYearData[params.name]
+        }]
+    };
+    return pro_option;
+};
+
 
 
 

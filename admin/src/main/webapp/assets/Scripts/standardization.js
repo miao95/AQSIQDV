@@ -33,7 +33,7 @@ var std_zxd_option = {
             {text: "按性质分", x: '2%', y: '50%', textStyle: {color: "#000", fontSize: "14"}},
         ],
         grid: [
-            {x: '50%', y: '7%', width: '45%', height: '90%'},
+            {x: '50%', y: '7%', width: '45%', height: '85%'},
         ],
         tooltip: {
             formatter: '{b} ({c})'
@@ -108,6 +108,10 @@ var std_zxd_option = {
             ]
         }*/]
 };
+
+
+
+
 function init_std(timeLineData,seriesOne,seriesTwo,seriesThree){
     for(var i=0;i<timeLineData.length;i++){
         var obj = {

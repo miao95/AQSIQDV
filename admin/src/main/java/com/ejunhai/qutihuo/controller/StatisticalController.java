@@ -27,4 +27,13 @@ public class StatisticalController extends BaseController {
 		return "statistical/standardRevise";
 	}
 
+	@RequestMapping("/measurement")
+	public String measurement(HttpServletRequest request, ModelMap modelMap) {
+		Map<String,Object> jsonMap = new HashMap<>();
+	/*	StandardReviseDto standardReviseDto = provinceStandardService.acquireStandardRevise();
+		JSONObject dto = JSONObject.fromObject(standardReviseDto);
+		modelMap.put("jsonData",dto);*/
+		return "statistical/measurement";
+	}
+
 }

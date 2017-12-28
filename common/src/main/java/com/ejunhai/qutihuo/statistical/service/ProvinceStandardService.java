@@ -1,9 +1,7 @@
 package com.ejunhai.qutihuo.statistical.service;
 
+import com.ejunhai.qutihuo.statistical.dto.MeasurementDto;
 import com.ejunhai.qutihuo.statistical.dto.StandardReviseDto;
-import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
-
-import java.util.List;
 
 /**
  * 

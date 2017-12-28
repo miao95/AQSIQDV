@@ -34,6 +34,7 @@ public interface ProvinceStandardMapper {
      * @return ProvinceStandard对象数组
      */
     List<ProvinceStandard> readProvinceStatistics();
+
     /**
      * 获取某一年的ProvinceStandard
      *

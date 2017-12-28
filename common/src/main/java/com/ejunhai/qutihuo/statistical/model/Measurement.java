@@ -6,7 +6,7 @@ package com.ejunhai.qutihuo.statistical.model;
  * @author Leo
  * @date 2017-12-06 21:18:30
  */
-public class Measurement {
+public class Measurement implements Comparable{
 
     /**
      * ID
@@ -175,5 +175,14 @@ public class Measurement {
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    @Override
+    public int compareTo(Object obj){
+        if (!(obj instanceof Measurement))
+            throw new RuntimeException("no Measurement");
+        Measurement measurement = (Measurement)obj;
+        int result = this.getProvince().compareTo(measurement.getProvince());
+        return result==0?this.getYear().compareTo(measurement.getYear()):result;
     }
 }

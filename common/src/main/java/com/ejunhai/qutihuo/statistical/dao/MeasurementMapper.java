@@ -12,4 +12,11 @@ public interface MeasurementMapper {
      * @return ProvinceStandard对象数组
      */
     List<Measurement> readProvinceMeasurements();
+
+    /**
+     * 获取所有包含的年份
+     *
+     * @return 年份数组
+     */
+    List<Integer> getDistinctYear();
 }

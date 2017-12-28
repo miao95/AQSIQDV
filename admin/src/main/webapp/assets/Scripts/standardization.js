@@ -134,9 +134,6 @@ function createPromptOption(params) {
     return pro_option;
 };
 
-
-
-
 function init_std(timeLineData,seriesOne,seriesTwo,seriesThree){
     for(var i=0;i<timeLineData.length;i++){
         var obj = {

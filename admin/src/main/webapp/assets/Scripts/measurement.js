@@ -32,7 +32,7 @@
 {name:'黑龙江',value:[3429,622,320,1157]}
 ];*/
 
-var rawData = jsonData.measureObjList;
+var rawData = jsonData.measureObjYearList[0];
 var geoCoordMap = {
      '安徽省': [117.17, 31.52],
       '北京市': [116.24, 39.55],

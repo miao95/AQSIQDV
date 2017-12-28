@@ -40,5 +40,11 @@
             or PROVINCE LIKE '%市'
             or PROVINCE LIKE '%自治区'
     </select>
-    
+
+    <select id="getDistinctYear" resultType="Integer">
+        SELECT
+        DISTINCT YEAR
+        FROM measurelegalmanagement
+        ORDER BY YEAR ASC
+    </select>
 </mapper>

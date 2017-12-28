@@ -4,10 +4,13 @@ import com.ejunhai.qutihuo.statistical.dao.MeasurementMapper;
 import com.ejunhai.qutihuo.statistical.dto.MeasurementDto;
 import com.ejunhai.qutihuo.statistical.model.Measurement;
 import com.ejunhai.qutihuo.statistical.service.MeasurementService;
+import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service("measurementService")
 public class MeasurementServiceImpl implements MeasurementService{
 
     @Resource

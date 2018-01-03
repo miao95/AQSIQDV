@@ -91,22 +91,7 @@ var std_zxd_option = {
         ],
     },
     options: [
-        /*{
-            title: {text: timeLineData[0]},
-            series: [
-                {data: seriesOne[0],},
-                {data: seriesTwo[0],},
-                {data: seriesThree[0]},
-            ]
-        },
-        {
-            title: {text: timeLineData[1]},
-            series: [
-                {data: seriesOne[1],},
-                {data: seriesTwo[1],},
-                {data: seriesThree[1]},
-            ]
-        }*/]
+       ]
 };
 
 function createPromptOption(params) {

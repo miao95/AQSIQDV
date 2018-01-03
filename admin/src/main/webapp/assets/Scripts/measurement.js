@@ -33,6 +33,7 @@
 ];*/
 
 var rawData = jsonData.measureObjYearList[0];
+console.log(rawData)
 var geoCoordMap = {
      '安徽省': [117.17, 31.52],
       '北京市': [116.24, 39.55],
@@ -74,7 +75,7 @@ var colorarr = [ '#86b8e9', '#8b5cf8', '#67c730', '#f64681'];
 
 
 measure_std_option = {
-        
+
 		top : '-20%',
 		bottom : '-45%',
 		tooltip: {
@@ -84,7 +85,7 @@ measure_std_option = {
 			type : 'map',
 			map : 'china',
             left:'7%',
-            
+
             zoom:1,
 			label : {
 				normal : {
@@ -102,7 +103,7 @@ measure_std_option = {
 			},
 			itemStyle : {
 				normal : {
-					areaColor : "rgba(0,0,0,0)",
+//					areaColor : "rgba(0,0,0,0)",
 					borderColor : "#383c41",
 					borderWidth : 1
 				},
@@ -141,7 +142,7 @@ function renderEachCity(myChart) {
 		var geoCoord = geoCoordMap[dataItem.name];
 		var coord = myChart.convertToPixel('geo', geoCoord);
 		idx += '';
-		
+
 		options.xAxis.push({
 			id : idx,
 			gridId : idx,

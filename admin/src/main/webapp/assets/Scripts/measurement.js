@@ -32,7 +32,8 @@
 {name:'黑龙江',value:[3429,622,320,1157]}
 ];*/
 
-var rawData = jsonData.measureObjYearList[0];
+var standard = jsonData.measurementStandard[0];
+var authorized = jsonData.measurementAuthorized[0];
 var geoCoordMap = {
      '安徽省': [117.17, 31.52],
       '北京市': [116.24, 39.55],
@@ -137,7 +138,7 @@ function renderEachCity(myChart) {
         //bottom:'5%'
     });
 
-	echarts.util.each(rawData, function(dataItem, idx) {
+	echarts.util.each(standard, function(dataItem, idx) {
 		var geoCoord = geoCoordMap[dataItem.name];
 		var coord = myChart.convertToPixel('geo', geoCoord);
 		idx += '';

@@ -7,7 +7,9 @@ public class MeasurementDto {
 
     private List<String> timeLineData;
 
-    private  List<List<MeasureObj>>  measureObjYearList;
+    private  List<List<MeasureObj>>  measurementStandard;
+
+    private  List<List<MeasureObj>>  measurementAuthorized ;
 
     public List<String> getTimeLineData() {
         return timeLineData;
@@ -17,12 +19,20 @@ public class MeasurementDto {
         this.timeLineData = timeLineData;
     }
 
-    public List<List<MeasureObj>> getMeasureObjYearList() {
-        return measureObjYearList;
+    public List<List<MeasureObj>> getMeasurementStandard() {
+        return measurementStandard;
     }
 
-    public void setMeasureObjYearList(List<List<MeasureObj>> measureObjYearList) {
-        this.measureObjYearList = measureObjYearList;
+    public void setMeasurementStandard(List<List<MeasureObj>> measurementStandard) {
+        this.measurementStandard = measurementStandard;
+    }
+
+    public List<List<MeasureObj>> getMeasurementAuthorized() {
+        return measurementAuthorized;
+    }
+
+    public void setMeasurementAuthorized(List<List<MeasureObj>> measurementAuthorized) {
+        this.measurementAuthorized = measurementAuthorized;
     }
 
     public class MeasureObj {

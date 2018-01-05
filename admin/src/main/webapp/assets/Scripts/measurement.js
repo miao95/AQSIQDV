@@ -1,4 +1,4 @@
-﻿    ?/*var rawData1 = [
+﻿/*var rawData1 = [
 {name:'上海',value:[268,1,448,713]},
 {name:'云南',value:[645,283,617,1896]},
 {name:'内蒙古',value:[3244,1115,72,958]},
@@ -210,13 +210,14 @@
     }
 
     function renderEachCity2(myChart){
+        var timelineData= ['2012','2013','2014','2015','2016']
         var option = {
             baseoption: {
                 timeline: {
                     axisType: 'category',
                     autoPlay: true,
                     playInterval: 1000,
-                    data: ['2012','2013','2014','2015','2016'],
+                    data: timelineData,
                     label: {
                         formatter : function(s) {
                             return (new Date(s)).getFullYear();
@@ -312,7 +313,7 @@
         for(var j = 0; j < 4;j++) {
             echarts.util.each(jsonData.measurementStandard[j], function(dataItem, idx) {
                 var obj = {
-                    title: '2012',
+                    title: timelineData[j],
                     series: [
                         {data: dataItem.value[0]},
                         {data: dataItem.value[1]},
@@ -320,8 +321,9 @@
                         {data: dataItem.value[3]}
                     ]
                 };
+                option.options.push(obj);
             });
-            option.options.push(obj);
+
         };
         myChart.setOption(option);
     }

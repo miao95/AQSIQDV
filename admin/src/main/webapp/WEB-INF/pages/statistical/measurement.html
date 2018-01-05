@@ -38,19 +38,28 @@
 <script type="text/javascript">
     $(document).ready(function() {
         sample_chart.setOption(measure_std_option);
-        renderEachCity(sample_chart,measurementStandard,legend);
+        renderEachCity(sample_chart,measurementStandard,legend[0]);
     });
     function button1() {
-        renderEachCity(sample_chart,authorized);
+        sample_chart.setOption(measure_std_option);
+        renderEachCity(sample_chart,measurementStandard,legend[0]);
+        console.log(11111)
     };
     function button2() {
-        renderEachCity(sample_chart,standard_one);
+        sample_chart.setOption(measure_std_option);
+        renderEachCity(sample_chart,measurementAuthorized,legend[1]);
+        console.log(2222)
     };
     function button3() {
-        renderEachCity(sample_chart,standard_two);
+        sample_chart.setOption(measure_std_option);
+        renderEachCity(sample_chart,newInstrument,legend[2]);
+        console.log(3333)
+
     };
     function button4() {
-        renderEachCity2(sample_chart);
+        sample_chart.setOption(measure_std_option);
+        renderEachCity(sample_chart,maintainInstrument,legend[3]);
+        console.log(4444)
     }
 </script>
 </@override>

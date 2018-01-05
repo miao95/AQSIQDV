@@ -95,14 +95,15 @@ measure_std_option = {
                 position: 'left'
             },
             data: timeLineData,
+            top:'92%',
             label: {
                 formatter : function(s) {
                     return (new Date(s)).getFullYear();
                 }
             }
         },
-        top : '-20%',
-        bottom : '-45%',
+        top : '-40%',
+        bottom : '-65%',
         tooltip: {
             trigger: 'axis'
         },
@@ -111,7 +112,7 @@ measure_std_option = {
             map : 'china',
             left:'7%',
 
-            zoom:1,
+            zoom:0.7,
             label : {
                 normal : {
                     textStyle : {
@@ -146,7 +147,7 @@ measure_std_option = {
             },
             orient:'vertical',
             top:'75%',
-            left:'5%'
+            left:'2%'
             //bottom:'5%'
         }],
         series : []

@@ -13,6 +13,14 @@
         <result column="JLSQ_QTCDZXSQJDRWXM" property="jlsq_qtcdzxsqjdrwxm" jdbcType="INTEGER" />
         <result column="JLSQ_SQCDJLQJXSPJJG" property="jlsq_sqcdjlqjxspjjg" jdbcType="INTEGER" />
         <result column="JLSQ_SQCDJLQJXSPJXM" property="jlsq_sqcdjlqjxspjxm" jdbcType="INTEGER" />
+        <result column="JLQJXCP_XSPZZS_year" property="jlqjxcp_xspzzs_year" jdbcType="INTEGER" />
+        <result column="JLQJXCP_XSPZZS_all" property="jlqjxcp_xspzzs_all" jdbcType="INTEGER" />
+        <result column="ZZXLJLQJ_ZZXKZ_ADD" property="zzxljlqj_zzxkz_add" jdbcType="INTEGER" />
+        <result column="ZZXLJLQJ_ZZXKZ_REDUCE" property="zzxljlqj_zzxkz_reduce" jdbcType="INTEGER" />
+        <result column="ZZXLJLQJ_ZZXKZ_all" property="zzxljlqj_zzxkz_all" jdbcType="INTEGER" />
+        <result column="ZZXLJLQJ_XLXKZ_ADD" property="zzxljlqj_xlxkz_add" jdbcType="INTEGER" />
+        <result column="ZZXLJLQJ_XLXKZ_REDUCE" property="zzxljlqj_xlxkz_reduce" jdbcType="INTEGER" />
+        <result column="ZZXLJLQJ_XLXKZ_all" property="zzxljlqj_xlxkz_all" jdbcType="INTEGER" />
         <result column="YEAR" property="year" jdbcType="INTEGER" />
         <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
     </resultMap>
@@ -29,6 +37,14 @@
         JLSQ_QTCDZXSQJDRWXM,
         JLSQ_SQCDJLQJXSPJJG,
         JLSQ_SQCDJLQJXSPJXM,
+        JLQJXCP_XSPZZS_year,
+        JLQJXCP_XSPZZS_all,
+        ZZXLJLQJ_ZZXKZ_ADD,
+        ZZXLJLQJ_ZZXKZ_REDUCE,
+        ZZXLJLQJ_ZZXKZ_all,
+        ZZXLJLQJ_XLXKZ_ADD,
+        ZZXLJLQJ_XLXKZ_REDUCE,
+        ZZXLJLQJ_XLXKZ_all,
         YEAR,
         PROVINCE
     </sql>

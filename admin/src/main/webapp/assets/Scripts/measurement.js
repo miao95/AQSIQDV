@@ -34,6 +34,8 @@
 
 var standard = jsonData.measurementStandard[0];
 var authorized = jsonData.measurementAuthorized[0];
+var newInstrument = jsonData.newInstrument[0];
+var maintainInstrument = jsonData.maintainInstrument[0];
 var geoCoordMap = {
      '安徽省': [117.17, 31.52],
       '北京市': [116.24, 39.55],

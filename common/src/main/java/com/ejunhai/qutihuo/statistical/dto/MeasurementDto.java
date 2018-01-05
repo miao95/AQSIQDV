@@ -11,6 +11,10 @@ public class MeasurementDto {
 
     private  List<List<MeasureObj>>  measurementAuthorized ;
 
+    private  List<List<MeasureObj>>  newInstrument ;
+
+    private  List<List<MeasureObj>>  maintainInstrument ;
+
     public List<String> getTimeLineData() {
         return timeLineData;
     }
@@ -33,6 +37,22 @@ public class MeasurementDto {
 
     public void setMeasurementAuthorized(List<List<MeasureObj>> measurementAuthorized) {
         this.measurementAuthorized = measurementAuthorized;
+    }
+
+    public List<List<MeasureObj>> getNewInstrument() {
+        return newInstrument;
+    }
+
+    public void setNewInstrument(List<List<MeasureObj>> newInstrument) {
+        this.newInstrument = newInstrument;
+    }
+
+    public List<List<MeasureObj>> getMaintainInstrument() {
+        return maintainInstrument;
+    }
+
+    public void setMaintainInstrument(List<List<MeasureObj>> maintainInstrument) {
+        this.maintainInstrument = maintainInstrument;
     }
 
     public class MeasureObj {

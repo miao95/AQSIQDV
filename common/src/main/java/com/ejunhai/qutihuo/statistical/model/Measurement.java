@@ -64,6 +64,47 @@ public class Measurement implements Comparable{
     private Integer jlsq_sqcdjlqjxspjxm;
 
     /**
+     * 型式批准证书-本年
+     */
+    private Integer jlqjxcp_xspzzs_year;
+
+    /**
+     * 型式批准证书-累证
+     */
+    private Integer jlqjxcp_xspzzs_all;
+
+    /**
+     * 制造、修理计量器具-取得制造计量器具许可证的单位个体工商户-本年新增
+     */
+    private Integer zzxljlqj_zzxkz_add;
+
+    /**
+     * 制造、修理计量器具-取得制造计量器具许可证的单位个体工商户-本年减少
+     */
+    private Integer zzxljlqj_zzxkz_reduce;
+
+    /**
+     * 制造、修理计量器具-取得制造计量器具许可证的单位个体工商户累计
+     */
+    private Integer zzxljlqj_zzxkz_all;
+
+    /**
+     * 制造、修理计量器具-取得修理计量器具许可证的单位个体工商户-本年新增
+     */
+    private Integer zzxljlqj_xlxkz_add;
+
+    /**
+     * 制造、修理计量器具-取得修理计量器具许可证的单位个体工商户-本年减少
+     */
+    private Integer zzxljlqj_xlxkz_reduce;
+
+    /**
+     * 制造、修理计量器具-取得修理计量器具许可证的单位个体工商户
+     */
+    private Integer zzxljlqj_xlxkz_all;
+
+
+    /**
      * 年份
      */
     private Integer year;
@@ -175,6 +216,70 @@ public class Measurement implements Comparable{
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public Integer getJlqjxcp_xspzzs_year() {
+        return jlqjxcp_xspzzs_year;
+    }
+
+    public void setJlqjxcp_xspzzs_year(Integer jlqjxcp_xspzzs_year) {
+        this.jlqjxcp_xspzzs_year = jlqjxcp_xspzzs_year;
+    }
+
+    public Integer getJlqjxcp_xspzzs_all() {
+        return jlqjxcp_xspzzs_all;
+    }
+
+    public void setJlqjxcp_xspzzs_all(Integer jlqjxcp_xspzzs_all) {
+        this.jlqjxcp_xspzzs_all = jlqjxcp_xspzzs_all;
+    }
+
+    public Integer getZzxljlqj_zzxkz_add() {
+        return zzxljlqj_zzxkz_add;
+    }
+
+    public void setZzxljlqj_zzxkz_add(Integer zzxljlqj_zzxkz_add) {
+        this.zzxljlqj_zzxkz_add = zzxljlqj_zzxkz_add;
+    }
+
+    public Integer getZzxljlqj_zzxkz_reduce() {
+        return zzxljlqj_zzxkz_reduce;
+    }
+
+    public void setZzxljlqj_zzxkz_reduce(Integer zzxljlqj_zzxkz_reduce) {
+        this.zzxljlqj_zzxkz_reduce = zzxljlqj_zzxkz_reduce;
+    }
+
+    public Integer getZzxljlqj_zzxkz_all() {
+        return zzxljlqj_zzxkz_all;
+    }
+
+    public void setZzxljlqj_zzxkz_all(Integer zzxljlqj_zzxkz_all) {
+        this.zzxljlqj_zzxkz_all = zzxljlqj_zzxkz_all;
+    }
+
+    public Integer getZzxljlqj_xlxkz_add() {
+        return zzxljlqj_xlxkz_add;
+    }
+
+    public void setZzxljlqj_xlxkz_add(Integer zzxljlqj_xlxkz_add) {
+        this.zzxljlqj_xlxkz_add = zzxljlqj_xlxkz_add;
+    }
+
+    public Integer getZzxljlqj_xlxkz_reduce() {
+        return zzxljlqj_xlxkz_reduce;
+    }
+
+    public void setZzxljlqj_xlxkz_reduce(Integer zzxljlqj_xlxkz_reduce) {
+        this.zzxljlqj_xlxkz_reduce = zzxljlqj_xlxkz_reduce;
+    }
+
+    public Integer getZzxljlqj_xlxkz_all() {
+        return zzxljlqj_xlxkz_all;
+    }
+
+    public void setZzxljlqj_xlxkz_all(Integer zzxljlqj_xlxkz_all) {
+        this.zzxljlqj_xlxkz_all = zzxljlqj_xlxkz_all;
     }
 
     @Override

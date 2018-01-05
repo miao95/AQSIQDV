@@ -122,7 +122,7 @@ function createPromptOption(params) {
 function init_std(timeLineData,seriesOne,seriesTwo,seriesThree){
     for(var i=0;i<timeLineData.length;i++){
         var obj = {
-                title:{text:timeLineData[i]},
+      //          title:{text:"按制、修订分"},
                 series:[{data:seriesOne[i]},{data: seriesTwo[i],},{data: seriesThree[i]},]
                 };
         std_zxd_option.options.push(obj);

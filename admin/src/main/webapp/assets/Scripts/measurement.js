@@ -1,4 +1,4 @@
-﻿    ?/*var rawData1 = [
+﻿    /*var rawData1 = [
 {name:'上海',value:[268,1,448,713]},
 {name:'云南',value:[645,283,617,1896]},
 {name:'内蒙古',value:[3244,1115,72,958]},
@@ -32,10 +32,11 @@
 {name:'黑龙江',value:[3429,622,320,1157]}
 ];*/
 
-    var standard_zero = jsonData.measurementStandard[0];
-    var standard_one = jsonData.measurementStandard[1];
-    var standard_two = jsonData.measurementStandard[2];
-    var authorized = jsonData.measurementAuthorized[0];
+    var timeLineData = jsonData.timeLineData;
+    var measurementStandard = jsonData.measurementStandard;
+    var measurementAuthorized = jsonData.measurementAuthorized;
+    var newInstrument = jsonData.newInstrument;
+    var maintainInstrument = jsonData.maintainInstrument;
     var geoCoordMap = {
         '安徽省': [117.17, 31.52],
         '北京市': [116.24, 39.55],
@@ -71,257 +72,165 @@
         '澳门': [115.07, 21.33],
         '台湾': [121.21, 23.53]
     };
-    var namearr = [ '建立在依法设置计量检定机\r\n构的社会公用计量标准', '依法授权的社\r\n会公用计量标准', '依法授权其它单位开\r\n展专项检定工作计量标准', '建立在部门、企事业单位的\r\n最高计量标准' ];
+    var legend = [ '建立在依法设置计量检定机\r\n构的社会公用计量标准', '依法授权的社\r\n会公用计量标准', '依法授权其它单位开\r\n展专项检定工作计量标准', '建立在部门、企事业单位的\r\n最高计量标准' ];
 
     var colorarr = [ '#86b8e9', '#8b5cf8', '#67c730', '#f64681'];
 
 
     measure_std_option = {
-
-        top : '-20%',
-        bottom : '-45%',
-        tooltip: {
-            trigger: 'axis'
-        },
-        geo : {
-            type : 'map',
-            map : 'china',
-            left:'7%',
-
-            zoom:1,
-            label : {
-                normal : {
-                    textStyle : {
-                        color : '#0078ff'
-                    },
-                    show : false
+        baseOption:{
+            timeline: {
+                show : true,
+                // y: 0,
+                axisType: 'category',
+                // realtime: false,
+                // loop: false,
+                autoPlay: true,
+                // currentIndex: 2,
+                playInterval: 1000,
+                controlStyle: {
+                    position: 'left'
                 },
-                emphasis : {
-                    textStyle : {
-                        color : '#0078ff'
-                    },
-                    show : false
+                data: timeLineData,
+                label: {
+                    formatter : function(s) {
+                        return (new Date(s)).getFullYear();
+                    }
                 }
             },
-            itemStyle : {
-                normal : {
-                    areaColor : "rgba(0,0,0,0)",
-                    borderColor : "#383c41",
-                    borderWidth : 1
-                },
-                emphasis : {
-                    areaColor : "rgba(233,0,200,0.3)"
-                }
-            }
-        },
-        series : []
-    }
+            top : '-20%',
+            bottom : '-45%',
+            tooltip: {
+                trigger: 'axis'
+            },
+            geo : {
+                type : 'map',
+                map : 'china',
+                left:'7%',
 
-    function renderEachCity(myChart,standard) {
-        var options = {
-            legend:[],
-            xAxis : [],
-            yAxis : [],
-            grid : [],
+                zoom:1,
+                label : {
+                    normal : {
+                        textStyle : {
+                            color : '#0078ff'
+                        },
+                        show : false
+                    },
+                    emphasis : {
+                        textStyle : {
+                            color : '#0078ff'
+                        },
+                        show : false
+                    }
+                },
+                itemStyle : {
+                    normal : {
+                        areaColor : "rgba(0,0,0,0)",
+                        borderColor : "#383c41",
+                        borderWidth : 1
+                    },
+                    emphasis : {
+                        areaColor : "rgba(233,0,200,0.3)"
+                    }
+                }
+            },
+            legend:[{
+                itemWidth:5,
+                itemHeight:5,
+                textStyle:{
+                    color:'#0078ff',
+                    fontSize:12
+                },
+                orient:'vertical',
+                top:'75%',
+                left:'5%'
+                //bottom:'5%'
+            }],
             series : []
-        };
-
-        options.legend.push({
-            data : namearr,
-            itemWidth:5,
-            itemHeight:5,
-            textStyle:{
-                color:'#0078ff',
-                fontSize:12
-            },
-            orient:'vertical',
-            top:'75%',
-            left:'5%'
-            //bottom:'5%'
-        });
-
-        echarts.util.each(standard, function(dataItem, idx) {
-            var geoCoord = geoCoordMap[dataItem.name];
-            var coord = myChart.convertToPixel('geo', geoCoord);
-            idx += '';
-
-            options.xAxis.push({
-                id : idx,
-                gridId : idx,
-                type : 'category',
-                name : dataItem.name,
-                nameTextStyle : {
-                    color : '#0078ff',
-                    fontSize : 12
-                },
-                nameLocation : 'middle',
-                nameGap : 3,
-                splitLine : {
-                    show : false
-                },
-                axisTick : {
-                    show : false
-                },
-                axisLabel : {
-                    show : false
-                },
-                axisLine : {
-                    show : false,
-                    lineStyle : {
-                        color : '#bbb'
-                    }
-                },
-                data : [ dataItem.name ],
-            });
-            options.yAxis.push({
-                id : idx,
-                gridId : idx,
-                show : false
-            });
-            options.grid.push({
-                id : idx,
-                width : 30,
-                height : 50,
-                left : coord[0] - 15,
-                top : coord[1] - 35,
-            });
-            for (var i = 0; i < namearr.length; i++) {
-                options.series.push({
-                    name : namearr[i],
-                    type : 'bar',
-                    stack : 'bar' + idx,
-                    xAxisId : idx,
-                    yAxisId : idx,
-                    barWidth: 12,
-                    itemStyle : {
-                        normal : {
-                            color : colorarr[i]
-                        }
-                    },
-                    label:{
-                        normal:{color:'auto'}
-                    },
-                    data : [ dataItem.value[i] ]
-                });
-            }
-
-        });
-        myChart.setOption(options);
+        },
+        options: [
+        ]
     }
 
-    function renderEachCity2(myChart){
-        var option = {
-            baseoption: {
-                timeline: {
-                    axisType: 'category',
-                    autoPlay: true,
-                    playInterval: 1000,
-                    data: ['2012','2013','2014','2015','2016'],
-                    label: {
-                        formatter : function(s) {
-                            return (new Date(s)).getFullYear();
-                        }
-                    }
-                },
-                legend: [],
-                xAxis: [],
-                yAxis: [],
-                grid: [],
-                series: []
-            },
-            options: []
-        };
+    function renderEachCity(myChart,data,legend) {
+        var measurementStandard = data;
+        for(var i=0;i<timeLineData.length;i++){
+            var option = {
+                legend : [],
+                title:{text:timeLineData[i]},
+                xAxis : [],
+                yAxis : [],
+                grid : [],
+                series:[]
+            };
+            option.legend.push({data : legend})
+            echarts.util.each(measurementStandard[i], function(dataItem, idx) {
+                var geoCoord = geoCoordMap[dataItem.name];
+                var coord = myChart.convertToPixel('geo', geoCoord);
+                idx += '';
 
-        option.baseoption.legend.push({
-            data : namearr,
-            itemWidth:5,
-            itemHeight:5,
-            textStyle:{
-                color:'#0078ff',
-                fontSize:12
-            },
-            orient:'vertical',
-            top:'75%',
-            left:'5%'
-            //bottom:'5%'
-        });
-        echarts.util.each(jsonData.measurementStandard[0], function(dataItem, idx) {
-            var geoCoord = geoCoordMap[dataItem.name];
-            var coord = myChart.convertToPixel('geo', geoCoord);
-            idx += '';
-            option.baseoption.xAxis.push({
-                id: idx,
-                gridId: idx,
-                type: 'category',
-                name: dataItem.name,
-                nameTextStyle: {
-                    color: '#0078ff',
-                    fontSize: 12
-                },
-                nameLocation: 'middle',
-                nameGap: 3,
-                splitLine: {
-                    show: false
-                },
-                axisTick: {
-                    show: false
-                },
-                axisLabel: {
-                    show: false
-                },
-                axisLine: {
-                    show: false,
-                    lineStyle: {
-                        color: '#bbb'
-                    }
-                },
-                data: [dataItem.name],
-            });
-            option.baseoption.yAxis.push({
-                id: idx,
-                gridId: idx,
-                show: false
-            });
-            option.baseoption.grid.push({
-                id: idx,
-                width: 30,
-                height: 50,
-                left: coord[0] - 15,
-                top: coord[1] - 35,
-            });
-            for (var i = 0; i < namearr.length; i++) {
-                option.baseoption.series.push({
-                    name: namearr[i],
-                    type: 'bar',
-                    stack: 'bar' + idx,
-                    xAxisId: idx,
-                    yAxisId: idx,
-                    barWidth: 12,
-                    itemStyle: {
-                        normal: {
-                            color: colorarr[i]
+                option.xAxis.push({
+                    id : idx,
+                    gridId : idx,
+                    type : 'category',
+                    name : dataItem.name,
+                    nameTextStyle : {
+                        color : '#0078ff',
+                        fontSize : 12
+                    },
+                    nameLocation : 'middle',
+                    nameGap : 3,
+                    splitLine : {
+                        show : false
+                    },
+                    axisTick : {
+                        show : false
+                    },
+                    axisLabel : {
+                        show : false
+                    },
+                    axisLine : {
+                        show : false,
+                        lineStyle : {
+                            color : '#bbb'
                         }
                     },
-                    label: {
-                        normal: {color: 'auto'}
-                    },
+                    data : [ dataItem.name ],
                 });
-            }
-        });
+                option.yAxis.push({
+                    id : idx,
+                    gridId : idx,
+                    show : false
+                });
+                option.grid.push({
+                    id : idx,
+                    width : 30,
+                    height : 50,
+                    left : coord[0] - 15,
+                    top : coord[1] - 35,
+                });
+                for (var i = 0; i < legend.length; i++) {
+                    option.series.push({
+                        name : legend[i],
+                        type : 'bar',
+                        stack : 'bar' + idx,
+                        xAxisId : idx,
+                        yAxisId : idx,
+                        barWidth: 12,
+                        itemStyle : {
+                            normal : {
+                                color : colorarr[i]
+                            }
+                        },
+                        label:{
+                            normal:{color:'auto'}
+                        },
+                        data : [ dataItem.value[i] ]
+                    });
+                }
 
-        for(var j = 0; j < 4;j++) {
-            echarts.util.each(jsonData.measurementStandard[j], function(dataItem, idx) {
-                var obj = {
-                    title: '2012',
-                    series: [
-                        {data: dataItem.value[0]},
-                        {data: dataItem.value[1]},
-                        {data: dataItem.value[2]},
-                        {data: dataItem.value[3]}
-                    ]
-                };
             });
-            option.options.push(obj);
-        };
-        myChart.setOption(option);
+            measure_std_option.options.push(option);
+        }
+        myChart.setOption(measure_std_option);
     }

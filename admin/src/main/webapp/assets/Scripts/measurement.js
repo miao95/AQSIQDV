@@ -1,4 +1,4 @@
-﻿﻿/*var rawData1 = [
+﻿    ?/*var rawData1 = [
 {name:'上海',value:[268,1,448,713]},
 {name:'云南',value:[645,283,617,1896]},
 {name:'内蒙古',value:[3244,1115,72,958]},
@@ -32,179 +32,296 @@
 {name:'黑龙江',value:[3429,622,320,1157]}
 ];*/
 
-var standard = jsonData.measurementStandard[0];
-var authorized = jsonData.measurementAuthorized[0];
-var newInstrument = jsonData.newInstrument[0];
-var maintainInstrument = jsonData.maintainInstrument[0];
-var geoCoordMap = {
-     '安徽省': [117.17, 31.52],
-      '北京市': [116.24, 39.55],
-      '重庆市': [106.54, 29.59],
-      '福建省': [119.18, 26.05],
-      '甘肃省': [103.51, 36.04],
-      '广东省': [113.14, 23.08],
-      '广西壮族自治区': [108.19, 22.48],
-      '贵州省': [106.42, 26.35],
-      '河北省': [114.30, 38.02],
-      '河南省': [113.40, 34.46],
-      '黑龙江省': [128.36, 45.44],
-      '湖北省': [112.27, 30.15],
-      '湖南省': [112.59, 28.12],
-      '吉林省': [125.19, 43.54],
-      '江苏省': [118.46, 32.03],
-      '江西省': [115.55, 28.40],
-      '辽宁省': [123.25, 41.48],
-      '内蒙古自治区': [108.41, 40.48],
-      '宁夏回族自治区': [106.16, 38.27],
-      '青海省': [101.48, 36.38],
-      '山东省': [118.00, 36.40],
-      '山西省': [112.33, 37.54],
-      '陕西省': [108.57, 34.17],
-      '上海市': [121.29, 31.14],
-      '海南省': [108.77, 19.10],
-      '四川省': [104.04, 30.40],
-      '天津市': [117.12, 39.02],
-      '西藏自治区': [91.08, 29.39],
-      '新疆维吾尔自治区': [87.36, 43.45],
-      '云南省': [102.42, 25.04],
-      '浙江省': [120.10, 30.16],
-      '澳门': [115.07, 21.33],
-      '台湾': [121.21, 23.53]
-};
-var namearr = [ '建立在依法设置计量检定机\r\n构的社会公用计量标准', '依法授权的社\r\n会公用计量标准', '依法授权其它单位开\r\n展专项检定工作计量标准', '建立在部门、企事业单位的\r\n最高计量标准' ];
+    var standard_zero = jsonData.measurementStandard[0];
+    var standard_one = jsonData.measurementStandard[1];
+    var standard_two = jsonData.measurementStandard[2];
+    var authorized = jsonData.measurementAuthorized[0];
+    var geoCoordMap = {
+        '安徽省': [117.17, 31.52],
+        '北京市': [116.24, 39.55],
+        '重庆市': [106.54, 29.59],
+        '福建省': [119.18, 26.05],
+        '甘肃省': [103.51, 36.04],
+        '广东省': [113.14, 23.08],
+        '广西壮族自治区': [108.19, 22.48],
+        '贵州省': [106.42, 26.35],
+        '河北省': [114.30, 38.02],
+        '河南省': [113.40, 34.46],
+        '黑龙江省': [128.36, 45.44],
+        '湖北省': [112.27, 30.15],
+        '湖南省': [112.59, 28.12],
+        '吉林省': [125.19, 43.54],
+        '江苏省': [118.46, 32.03],
+        '江西省': [115.55, 28.40],
+        '辽宁省': [123.25, 41.48],
+        '内蒙古自治区': [108.41, 40.48],
+        '宁夏回族自治区': [106.16, 38.27],
+        '青海省': [101.48, 36.38],
+        '山东省': [118.00, 36.40],
+        '山西省': [112.33, 37.54],
+        '陕西省': [108.57, 34.17],
+        '上海市': [121.29, 31.14],
+        '海南省': [108.77, 19.10],
+        '四川省': [104.04, 30.40],
+        '天津市': [117.12, 39.02],
+        '西藏自治区': [91.08, 29.39],
+        '新疆维吾尔自治区': [87.36, 43.45],
+        '云南省': [102.42, 25.04],
+        '浙江省': [120.10, 30.16],
+        '澳门': [115.07, 21.33],
+        '台湾': [121.21, 23.53]
+    };
+    var namearr = [ '建立在依法设置计量检定机\r\n构的社会公用计量标准', '依法授权的社\r\n会公用计量标准', '依法授权其它单位开\r\n展专项检定工作计量标准', '建立在部门、企事业单位的\r\n最高计量标准' ];
 
-var colorarr = [ '#86b8e9', '#8b5cf8', '#67c730', '#f64681'];
+    var colorarr = [ '#86b8e9', '#8b5cf8', '#67c730', '#f64681'];
 
 
-measure_std_option = {
-        
-		top : '-20%',
-		bottom : '-45%',
-		tooltip: {
-		    trigger: 'axis'
-		},
-		geo : {
-			type : 'map',
-			map : 'china',
-            left:'7%',
-            
-            zoom:1,
-			label : {
-				normal : {
-					textStyle : {
-						color : '#0078ff'
-					},
-					show : false
-				},
-				emphasis : {
-					textStyle : {
-						color : '#0078ff'
-					},
-					show : false
-				}
-			},
-			itemStyle : {
-				normal : {
-					areaColor : "rgba(0,0,0,0)",
-					borderColor : "#383c41",
-					borderWidth : 1
-				},
-				emphasis : {
-					areaColor : "rgba(233,0,200,0.3)"
-				}
-			}
-		},
-		series : []
-	}
-	
-function renderEachCity(myChart) {
-	var options = {
-		legend:[],
-		xAxis : [],
-		yAxis : [],
-		grid : [],
-		series : []
-	};
-	
-	options.legend.push({
-        data : namearr,
-        itemWidth:5,
-        itemHeight:5,
-        textStyle:{
-            color:'#0078ff',
-            fontSize:12
+    measure_std_option = {
+
+        top : '-20%',
+        bottom : '-45%',
+        tooltip: {
+            trigger: 'axis'
         },
-       orient:'vertical',
-       top:'75%',
-       left:'5%'
-        //bottom:'5%'
-    });
+        geo : {
+            type : 'map',
+            map : 'china',
+            left:'7%',
 
-	echarts.util.each(standard, function(dataItem, idx) {
-		var geoCoord = geoCoordMap[dataItem.name];
-		var coord = myChart.convertToPixel('geo', geoCoord);
-		idx += '';
-		
-		options.xAxis.push({
-			id : idx,
-			gridId : idx,
-			type : 'category',
-			name : dataItem.name,
-			nameTextStyle : {
-				color : '#0078ff',
-				fontSize : 12
-			},
-			nameLocation : 'middle',
-			nameGap : 3,
-			splitLine : {
-				show : false
-			},
-			axisTick : {
-				show : false
-			},
-			axisLabel : {
-				show : false
-			},
-			axisLine : {
-				show : false,
-				lineStyle : {
-					color : '#bbb'
-				}
-			},
-			data : [ dataItem.name ],
-		});
-		options.yAxis.push({
-			id : idx,
-			gridId : idx,
-			show : false
-		});
-		options.grid.push({
-			id : idx,
-			width : 30,
-			height : 50,
-			left : coord[0] - 15,
-			top : coord[1] - 35,
-		});
-		for (var i = 0; i < namearr.length; i++) {
-			options.series.push({
-				name : namearr[i],
-				type : 'bar',
-				stack : 'bar' + idx,
-				xAxisId : idx,
-				yAxisId : idx,
-				barWidth: 12,
-				itemStyle : {
-					normal : {
-						color : colorarr[i]
-					}
-				},
-                label:{
-                    normal:{color:'auto'}
+            zoom:1,
+            label : {
+                normal : {
+                    textStyle : {
+                        color : '#0078ff'
+                    },
+                    show : false
                 },
-				data : [ dataItem.value[i] ]
-			});
-		}
+                emphasis : {
+                    textStyle : {
+                        color : '#0078ff'
+                    },
+                    show : false
+                }
+            },
+            itemStyle : {
+                normal : {
+                    areaColor : "rgba(0,0,0,0)",
+                    borderColor : "#383c41",
+                    borderWidth : 1
+                },
+                emphasis : {
+                    areaColor : "rgba(233,0,200,0.3)"
+                }
+            }
+        },
+        series : []
+    }
 
-	});
-	myChart.setOption(options);
-}
+    function renderEachCity(myChart,standard) {
+        var options = {
+            legend:[],
+            xAxis : [],
+            yAxis : [],
+            grid : [],
+            series : []
+        };
+
+        options.legend.push({
+            data : namearr,
+            itemWidth:5,
+            itemHeight:5,
+            textStyle:{
+                color:'#0078ff',
+                fontSize:12
+            },
+            orient:'vertical',
+            top:'75%',
+            left:'5%'
+            //bottom:'5%'
+        });
+
+        echarts.util.each(standard, function(dataItem, idx) {
+            var geoCoord = geoCoordMap[dataItem.name];
+            var coord = myChart.convertToPixel('geo', geoCoord);
+            idx += '';
+
+            options.xAxis.push({
+                id : idx,
+                gridId : idx,
+                type : 'category',
+                name : dataItem.name,
+                nameTextStyle : {
+                    color : '#0078ff',
+                    fontSize : 12
+                },
+                nameLocation : 'middle',
+                nameGap : 3,
+                splitLine : {
+                    show : false
+                },
+                axisTick : {
+                    show : false
+                },
+                axisLabel : {
+                    show : false
+                },
+                axisLine : {
+                    show : false,
+                    lineStyle : {
+                        color : '#bbb'
+                    }
+                },
+                data : [ dataItem.name ],
+            });
+            options.yAxis.push({
+                id : idx,
+                gridId : idx,
+                show : false
+            });
+            options.grid.push({
+                id : idx,
+                width : 30,
+                height : 50,
+                left : coord[0] - 15,
+                top : coord[1] - 35,
+            });
+            for (var i = 0; i < namearr.length; i++) {
+                options.series.push({
+                    name : namearr[i],
+                    type : 'bar',
+                    stack : 'bar' + idx,
+                    xAxisId : idx,
+                    yAxisId : idx,
+                    barWidth: 12,
+                    itemStyle : {
+                        normal : {
+                            color : colorarr[i]
+                        }
+                    },
+                    label:{
+                        normal:{color:'auto'}
+                    },
+                    data : [ dataItem.value[i] ]
+                });
+            }
+
+        });
+        myChart.setOption(options);
+    }
+
+    function renderEachCity2(myChart){
+        var option = {
+            baseoption: {
+                timeline: {
+                    axisType: 'category',
+                    autoPlay: true,
+                    playInterval: 1000,
+                    data: ['2012','2013','2014','2015','2016'],
+                    label: {
+                        formatter : function(s) {
+                            return (new Date(s)).getFullYear();
+                        }
+                    }
+                },
+                legend: [],
+                xAxis: [],
+                yAxis: [],
+                grid: [],
+                series: []
+            },
+            options: []
+        };
+
+        option.baseoption.legend.push({
+            data : namearr,
+            itemWidth:5,
+            itemHeight:5,
+            textStyle:{
+                color:'#0078ff',
+                fontSize:12
+            },
+            orient:'vertical',
+            top:'75%',
+            left:'5%'
+            //bottom:'5%'
+        });
+        echarts.util.each(jsonData.measurementStandard[0], function(dataItem, idx) {
+            var geoCoord = geoCoordMap[dataItem.name];
+            var coord = myChart.convertToPixel('geo', geoCoord);
+            idx += '';
+            option.baseoption.xAxis.push({
+                id: idx,
+                gridId: idx,
+                type: 'category',
+                name: dataItem.name,
+                nameTextStyle: {
+                    color: '#0078ff',
+                    fontSize: 12
+                },
+                nameLocation: 'middle',
+                nameGap: 3,
+                splitLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                },
+                axisLine: {
+                    show: false,
+                    lineStyle: {
+                        color: '#bbb'
+                    }
+                },
+                data: [dataItem.name],
+            });
+            option.baseoption.yAxis.push({
+                id: idx,
+                gridId: idx,
+                show: false
+            });
+            option.baseoption.grid.push({
+                id: idx,
+                width: 30,
+                height: 50,
+                left: coord[0] - 15,
+                top: coord[1] - 35,
+            });
+            for (var i = 0; i < namearr.length; i++) {
+                option.baseoption.series.push({
+                    name: namearr[i],
+                    type: 'bar',
+                    stack: 'bar' + idx,
+                    xAxisId: idx,
+                    yAxisId: idx,
+                    barWidth: 12,
+                    itemStyle: {
+                        normal: {
+                            color: colorarr[i]
+                        }
+                    },
+                    label: {
+                        normal: {color: 'auto'}
+                    },
+                });
+            }
+        });
+
+        for(var j = 0; j < 4;j++) {
+            echarts.util.each(jsonData.measurementStandard[j], function(dataItem, idx) {
+                var obj = {
+                    title: '2012',
+                    series: [
+                        {data: dataItem.value[0]},
+                        {data: dataItem.value[1]},
+                        {data: dataItem.value[2]},
+                        {data: dataItem.value[3]}
+                    ]
+                };
+            });
+            option.options.push(obj);
+        };
+        myChart.setOption(option);
+    }

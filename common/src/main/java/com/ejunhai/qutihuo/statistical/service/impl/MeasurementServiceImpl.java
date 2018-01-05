@@ -23,10 +23,11 @@ public class MeasurementServiceImpl implements MeasurementService{
         List<Integer> years = measurementMapper.getDistinctYear();		//step timeLineData
         measurementDto.setTimeLineData(timeLineData(years));
 
-        List<Measurement> provinceMeasurement = measurementMapper.readProvinceMeasurements();       //step measureObjYearList
+        List<Measurement> provinceMeasurement = measurementMapper.readProvinceMeasurements();
         Map<Integer,Set<Measurement>> yearProvinceMeasurement = mapping4yearMeasurement(provinceMeasurement);
-        List<List<MeasurementDto.MeasureObj>>  measureObjList = mapping4List(yearProvinceMeasurement,years);
-        measurementDto.setMeasureObjYearList(measureObjList);
+        Map<String,List<List<MeasurementDto.MeasureObj>>>  result = mapping2result(yearProvinceMeasurement,years);
+        measurementDto.setMeasurementStandard(result.get("measurementStandard"));          //step measurementStandard
+        measurementDto.setMeasurementAuthorized(result.get("measurementAuthorized"));          //step measurementAuthorized
         return measurementDto;
     }
 
@@ -54,27 +55,45 @@ public class MeasurementServiceImpl implements MeasurementService{
         return result;
     }
 
-    List<List<MeasurementDto.MeasureObj>> mapping4List(Map<Integer,Set<Measurement>> yearProvinceMap, List<Integer> years){
-        List<List<MeasurementDto.MeasureObj>> resultList = new ArrayList<List<MeasurementDto.MeasureObj>>();
+    Map<String,List<List<MeasurementDto.MeasureObj>>> mapping2result(Map<Integer,Set<Measurement>> yearProvinceMap, List<Integer> years){
+        Map<String,List<List<MeasurementDto.MeasureObj>>> resultMap = new HashMap<String, List<List<MeasurementDto.MeasureObj>>>();
+        List<List<MeasurementDto.MeasureObj>> measurementStandard = new ArrayList<List<MeasurementDto.MeasureObj>>();
+        List<List<MeasurementDto.MeasureObj>> measurementAuthorized = new ArrayList<List<MeasurementDto.MeasureObj>>();
         for(Integer year:years){
-            List<MeasurementDto.MeasureObj> list = new ArrayList<MeasurementDto.MeasureObj>();
+            List<MeasurementDto.MeasureObj> yearMeasurementStandard = new ArrayList<MeasurementDto.MeasureObj>();
+            List<MeasurementDto.MeasureObj> yearMeasurementAuthorized = new ArrayList<MeasurementDto.MeasureObj>();
             Set<Measurement> provinceMeasurement = yearProvinceMap.get(year);
             Iterator<Measurement> iterator = provinceMeasurement.iterator();
             while(iterator.hasNext()){
-                MeasurementDto.MeasureObj  measureObj = new MeasurementDto().new MeasureObj();
-                List<Integer> values = new ArrayList<Integer>();
+                MeasurementDto.MeasureObj  standardObj = new MeasurementDto().new MeasureObj();
+                List<Integer> standardValues = new ArrayList<Integer>();
                 Measurement measurement = iterator.next();
                 String name = measurement.getProvince();
-                values.add(measurement.getMs_shgy());
-                values.add(measurement.getMs_sqjlbz());
-                values.add(measurement.getMs_zxjdgzjlbz());
-                values.add(measurement.getMs_zgjlbz());
-                measureObj.setName(name);
-                measureObj.setValue(values);
-                list.add(measureObj);
+                standardValues.add(measurement.getMs_shgy());
+                standardValues.add(measurement.getMs_sqjlbz());
+                standardValues.add(measurement.getMs_zxjdgzjlbz());
+                standardValues.add(measurement.getMs_zgjlbz());
+                standardObj.setName(name);
+                standardObj.setValue(standardValues);
+                yearMeasurementStandard.add(standardObj);
+
+                MeasurementDto.MeasureObj  authorizedObj = new MeasurementDto().new MeasureObj();
+                List<Integer> authorizedValues = new ArrayList<Integer>();
+                authorizedValues.add(measurement.getJlsq_yfszjljdjsjg());
+                authorizedValues.add(measurement.getJlsq_yfsqjljdjg());
+                authorizedValues.add(measurement.getJlsq_qtcdzxsqjdrwjg());
+                authorizedValues.add(measurement.getJlsq_qtcdzxsqjdrwxm());
+                authorizedValues.add(measurement.getJlsq_sqcdjlqjxspjjg());
+                authorizedValues.add(measurement.getJlsq_sqcdjlqjxspjxm());
+                authorizedObj.setName(name);
+                authorizedObj.setValue(authorizedValues);
+                yearMeasurementAuthorized.add(authorizedObj);
             }
-            resultList.add(list);
+            measurementStandard.add(yearMeasurementStandard);
+            measurementAuthorized.add(yearMeasurementAuthorized);
         }
-        return resultList;
+        resultMap.put("measurementStandard",measurementStandard);
+        resultMap.put("measurementAuthorized",measurementAuthorized);
+        return resultMap;
     }
 }

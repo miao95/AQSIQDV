@@ -72,7 +72,7 @@ var geoCoordMap = {
     '澳门': [115.07, 21.33],
     '台湾': [121.21, 23.53]
 };
-var legend = [[ '建立在依法设置计量检定机\r\n构的社会公用计量标准', '依法授权的社\r\n会公用计量标准', '依法授权其它单位开\r\n展专项检定工作计量标准', '建立在部门、企事业单位的\r\n最高计量标准' ],
+var legendArray = [[ '建立在依法设置计量检定机\r\n构的社会公用计量标准', '依法授权的社\r\n会公用计量标准', '依法授权其它单位开\r\n展专项检定工作计量标准', '建立在部门、企事业单位的\r\n最高计量标准' ],
                 ['计量授权-依法设置的计量检定技术机构','依法授权建立的计量检定机构','其它承担专项授权检定任务的机构','其它承担专项授权检定任务的项目','授权承担计量器具型式评价的机构','授权承担计量器具型式评价的项目'],
                 ['型式批准证书-本年','型式批准证书-累证'],
                 ['制造、修理计量器具-取得制造计量器具许可证的单位个体工商户-本年新增','制造、修理计量器具-取得制造计量器具许可证的单位个体工商户-本年减少','制造、修理计量器具-取得制造计量器具许可证的单位个体工商户累计','制造、修理计量器具-取得修理计量器具许可证的单位个体工商户-本年新增','制造、修理计量器具-取得修理计量器具许可证的单位个体工商户-本年减少','制造、修理计量器具-取得修理计量器具许可证的单位个体工商户']];
@@ -138,7 +138,23 @@ measure_std_option = {
                 }
             }
         },
-        legend:[{
+    },
+    options: [
+    ]
+}
+
+function renderEachCity(myChart,data,legendEle) {
+    measure_std_option.options=[];
+    for(var i=0;i<timeLineData.length;i++){
+        var option = {
+            legend : [],
+            title:{text:timeLineData[i]},
+            xAxis : [],
+            yAxis : [],
+            grid : [],
+            series:[]
+        };
+        option.legend.push({
             itemWidth:5,
             itemHeight:5,
             textStyle:{
@@ -147,26 +163,10 @@ measure_std_option = {
             },
             orient:'vertical',
             top:'75%',
-            left:'2%'
+            left:'2%',
             //bottom:'5%'
-        }],
-        series : []
-    },
-    options: [
-    ]
-}
-
-function renderEachCity(myChart,data,legend) {
-    measure_std_option.options=[];
-    for(var i=0;i<timeLineData.length;i++){
-        var option = {
-            legend : [{data : legend}],
-            title:{text:timeLineData[i]},
-            xAxis : [],
-            yAxis : [],
-            grid : [],
-            series:[]
-        };
+            data : legendEle
+        })
         echarts.util.each(data[i], function(dataItem, idx) {
             var geoCoord = geoCoordMap[dataItem.name];
             var coord = myChart.convertToPixel('geo', geoCoord);
@@ -212,9 +212,9 @@ function renderEachCity(myChart,data,legend) {
                 left : coord[0] - 15,
                 top : coord[1] - 35,
             });
-            for (var i = 0; i < legend.length; i++) {
+            for (var i = 0; i < legendEle.length; i++) {
                 option.series.push({
-                    name : legend[i],
+                    name : legendEle[i],
                     type : 'bar',
                     stack : 'bar' + idx,
                     xAxisId : idx,
@@ -235,5 +235,7 @@ function renderEachCity(myChart,data,legend) {
         });
         measure_std_option.options.push(option);
     }
-    myChart.setOption(measure_std_option);
+    console.log(measure_std_option)
+
+    myChart.setOption(measure_std_option,true);
 }

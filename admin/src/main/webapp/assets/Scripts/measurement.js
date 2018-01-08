@@ -33,10 +33,6 @@
 ];*/
 
 var timeLineData = jsonData.timeLineData;
-var measurementStandard = jsonData.measurementStandard;
-var measurementAuthorized = jsonData.measurementAuthorized;
-var newInstrument = jsonData.newInstrument;
-var maintainInstrument = jsonData.maintainInstrument;
 var geoCoordMap = {
     '安徽省': [117.17, 31.52],
     '北京市': [116.24, 39.55],

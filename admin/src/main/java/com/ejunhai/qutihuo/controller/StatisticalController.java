@@ -40,4 +40,13 @@ public class StatisticalController extends BaseController {
 		modelMap.put("jsonData",dto);
 		return "statistical/measurement";
 	}
+
+	@RequestMapping("/measurement2")
+	public String measurement2(HttpServletRequest request, ModelMap modelMap) {
+		Map<String,Object> jsonMap = new HashMap<>();
+		MeasurementDto measurement = measurementService.acquireMeasurement2();
+		JSONObject dto = JSONObject.fromObject(measurement);
+		modelMap.put("jsonData",dto);
+		return "statistical/measurement2";
+	}
 }

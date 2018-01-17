@@ -9,4 +9,6 @@ public interface MeasurementService {
      * @return MeasurementDto
      */
     MeasurementDto acquireMeasurement();
+
+    MeasurementDto acquireMeasurement2();
 }

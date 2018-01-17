@@ -24,6 +24,8 @@ public class MeasurementServiceImpl implements MeasurementService{
         measurementDto.setTimeLineData(timeLineData(years));
 
         List<Measurement> provinceMeasurement = measurementMapper.readProvinceMeasurements();
+        List<String> yAxisData = set2List(yAxisData(provinceMeasurement));
+        measurementDto.setyAxisData(yAxisData);   //step yAxisData
         Map<Integer,Set<Measurement>> yearProvinceMeasurement = mapping4yearMeasurement(provinceMeasurement);
         Map<String,List<List<MeasurementDto.MeasureObj>>>  result = mapping2result(yearProvinceMeasurement,years);
         measurementDto.setMeasurementStandard(result.get("measurementStandard"));          //step measurementStandard
@@ -33,12 +35,37 @@ public class MeasurementServiceImpl implements MeasurementService{
         return measurementDto;
     }
 
+    @Override
+    public  MeasurementDto acquireMeasurement2(){
+        MeasurementDto measurementDto = new MeasurementDto();
+
+        List<Integer> years = measurementMapper.getDistinctYear();		//step timeLineData
+        measurementDto.setTimeLineData(timeLineData(years));
+
+        List<Measurement> provinceMeasurement = measurementMapper.readProvinceMeasurements();
+        List<String> yAxisData = set2List(yAxisData(provinceMeasurement));
+        measurementDto.setyAxisData(yAxisData);   //step yAxisData
+
+        Map<Integer,Set<Measurement>> yearProvinceMeasurement = mapping4yearMeasurement(provinceMeasurement);
+        Map<String,List<List<List<Integer>>>>  result = mapping2result2(yearProvinceMeasurement,years,yAxisData);
+        measurementDto.setMeasurementStandardList(result.get("measurementStandard"));          //step measurementStandard
+        return measurementDto;
+    }
+
     List<String> timeLineData(List<Integer> years){
         List<String> result = new ArrayList<String>();
         for(Integer year:years){
-            result.add(String.valueOf(year)+"-01-01");
+            result.add(String.valueOf(year));
         }
         return result;
+    }
+
+    Set<String> yAxisData(List<Measurement> data){
+        TreeSet<String> yAxisData = new TreeSet<String>();
+        for(Measurement measurement:data){
+            yAxisData.add(measurement.getProvince());
+        }
+        return yAxisData;
     }
 
     Map<Integer,Set<Measurement>> mapping4yearMeasurement(List<Measurement> measurementList){
@@ -125,5 +152,55 @@ public class MeasurementServiceImpl implements MeasurementService{
         resultMap.put("newInstrument",newInstrument);
         resultMap.put("maintainInstrument",maintainInstrument);
         return resultMap;
+    }
+
+    Map<String,List<List<List<Integer>>>> mapping2result2(Map<Integer,Set<Measurement>> yearProvinceMap, List<Integer> years,List<String> yAxisData){
+        Map<String,List<List<List<Integer>>>> resultMap = new HashMap<>();
+        List<List<List<Integer>>> measurementStandard = new ArrayList<>();
+        for(Integer year:years){
+            List<List<Integer>> yearMeasurement = new ArrayList<>();
+            List<Integer> list1 = new ArrayList<>();
+            List<Integer> list2 = new ArrayList<>();
+            List<Integer> list3 = new ArrayList<>();
+            List<Integer> list4 = new ArrayList<>();
+            Set<Measurement> provinceMeasurement = yearProvinceMap.get(year);
+            completment(provinceMeasurement,yAxisData);
+            Iterator<Measurement> iterator = provinceMeasurement.iterator();
+            while(iterator.hasNext()){
+                Measurement measurement = iterator.next();
+                list1.add(measurement.getMs_shgy());
+                list2.add(measurement.getMs_sqjlbz());
+                list3.add(measurement.getMs_zxjdgzjlbz());
+                list4.add(measurement.getMs_zgjlbz());
+            }
+            yearMeasurement.add(list1);
+            yearMeasurement.add(list2);
+            yearMeasurement.add(list3);
+            yearMeasurement.add(list4);
+            measurementStandard.add(yearMeasurement);
+        }
+        resultMap.put("measurementStandard",measurementStandard);
+        return resultMap;
+    }
+
+    public void completment(Set<Measurement> data,List<String> province){
+        int provinceSize = province.size();
+        if(provinceSize!=data.size()){
+            for(int i=0;i<provinceSize;i++){
+                Measurement measurement = new Measurement();
+                measurement.setProvince(province.get(i));
+                data.add(measurement);
+            }
+        }
+    }
+
+    <T> List<T> set2List(Set<T> set){
+        List<T> resultList = new ArrayList<T>();
+        Iterator<T> iterator = set.iterator();
+        while(iterator.hasNext()){
+            T ele = iterator.next();
+            resultList.add(ele);
+        }
+        return resultList;
     }
 }

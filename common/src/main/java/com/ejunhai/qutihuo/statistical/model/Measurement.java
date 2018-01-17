@@ -288,6 +288,6 @@ public class Measurement implements Comparable{
             throw new RuntimeException("no Measurement");
         Measurement measurement = (Measurement)obj;
         int result = this.getProvince().compareTo(measurement.getProvince());
-        return result==0?this.getYear().compareTo(measurement.getYear()):result;
+        return result;
     }
 }

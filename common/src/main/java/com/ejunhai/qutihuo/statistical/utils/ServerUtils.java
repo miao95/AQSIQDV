@@ -1,4 +1,4 @@
-package com.ejunhai.qutihuo.utils;
+package com.ejunhai.qutihuo.statistical.utils;
 
 import java.util.ArrayList;
 import java.util.Iterator;

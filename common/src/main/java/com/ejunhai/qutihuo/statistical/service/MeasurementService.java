@@ -1,6 +1,7 @@
 package com.ejunhai.qutihuo.statistical.service;
 
 import com.ejunhai.qutihuo.statistical.dto.MeasurementDto;
+import com.ejunhai.qutihuo.statistical.dto.MeasurementDto2;
 
 public interface MeasurementService {
     /**
@@ -10,5 +11,5 @@ public interface MeasurementService {
      */
     MeasurementDto acquireMeasurement();
 
-    MeasurementDto acquireMeasurement2();
+    MeasurementDto2 acquireMeasurement2();
 }

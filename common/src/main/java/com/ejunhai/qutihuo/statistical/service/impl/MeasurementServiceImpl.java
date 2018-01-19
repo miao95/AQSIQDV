@@ -2,11 +2,11 @@ package com.ejunhai.qutihuo.statistical.service.impl;
 
 import com.ejunhai.qutihuo.statistical.dao.MeasurementMapper;
 import com.ejunhai.qutihuo.statistical.dto.MeasurementDto;
+import com.ejunhai.qutihuo.statistical.dto.MeasurementDto2;
 import com.ejunhai.qutihuo.statistical.model.Measurement;
-import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
 import com.ejunhai.qutihuo.statistical.service.MeasurementService;
+import com.ejunhai.qutihuo.statistical.utils.ServerUtils;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.*;
 
@@ -19,13 +19,10 @@ public class MeasurementServiceImpl implements MeasurementService{
     @Override
     public  MeasurementDto acquireMeasurement(){
         MeasurementDto measurementDto = new MeasurementDto();
-
         List<Integer> years = measurementMapper.getDistinctYear();		//step timeLineData
         measurementDto.setTimeLineData(timeLineData(years));
 
         List<Measurement> provinceMeasurement = measurementMapper.readProvinceMeasurements();
-        List<String> yAxisData = set2List(yAxisData(provinceMeasurement));
-        measurementDto.setyAxisData(yAxisData);   //step yAxisData
         Map<Integer,Set<Measurement>> yearProvinceMeasurement = mapping4yearMeasurement(provinceMeasurement);
         Map<String,List<List<MeasurementDto.MeasureObj>>>  result = mapping2result(yearProvinceMeasurement,years);
         measurementDto.setMeasurementStandard(result.get("measurementStandard"));          //step measurementStandard
@@ -36,14 +33,14 @@ public class MeasurementServiceImpl implements MeasurementService{
     }
 
     @Override
-    public  MeasurementDto acquireMeasurement2(){
-        MeasurementDto measurementDto = new MeasurementDto();
+    public  MeasurementDto2 acquireMeasurement2(){
+        MeasurementDto2 measurementDto = new MeasurementDto2();
 
         List<Integer> years = measurementMapper.getDistinctYear();		//step timeLineData
         measurementDto.setTimeLineData(timeLineData(years));
 
         List<Measurement> provinceMeasurement = measurementMapper.readProvinceMeasurements();
-        List<String> yAxisData = set2List(yAxisData(provinceMeasurement));
+        List<String> yAxisData = ServerUtils.set2List(yAxisData(provinceMeasurement));
         measurementDto.setyAxisData(yAxisData);   //step yAxisData
 
         Map<Integer,Set<Measurement>> yearProvinceMeasurement = mapping4yearMeasurement(provinceMeasurement);
@@ -192,15 +189,5 @@ public class MeasurementServiceImpl implements MeasurementService{
                 data.add(measurement);
             }
         }
-    }
-
-    <T> List<T> set2List(Set<T> set){
-        List<T> resultList = new ArrayList<T>();
-        Iterator<T> iterator = set.iterator();
-        while(iterator.hasNext()){
-            T ele = iterator.next();
-            resultList.add(ele);
-        }
-        return resultList;
     }
 }

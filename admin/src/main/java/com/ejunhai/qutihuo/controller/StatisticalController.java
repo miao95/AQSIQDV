@@ -2,6 +2,7 @@ package com.ejunhai.qutihuo.controller;
 
 import com.ejunhai.qutihuo.common.base.BaseController;
 import com.ejunhai.qutihuo.statistical.dto.MeasurementDto;
+import com.ejunhai.qutihuo.statistical.dto.MeasurementDto2;
 import com.ejunhai.qutihuo.statistical.dto.StandardReviseDto;
 import com.ejunhai.qutihuo.statistical.service.MeasurementService;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
@@ -44,7 +45,7 @@ public class StatisticalController extends BaseController {
 	@RequestMapping("/measurement2")
 	public String measurement2(HttpServletRequest request, ModelMap modelMap) {
 		Map<String,Object> jsonMap = new HashMap<>();
-		MeasurementDto measurement = measurementService.acquireMeasurement2();
+		MeasurementDto2 measurement = measurementService.acquireMeasurement2();
 		JSONObject dto = JSONObject.fromObject(measurement);
 		modelMap.put("jsonData",dto);
 		return "statistical/measurement2";

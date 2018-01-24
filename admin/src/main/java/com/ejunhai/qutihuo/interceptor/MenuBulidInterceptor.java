@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.ejunhai.qutihuo.common.menu.Menu;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,24 +62,37 @@ public class MenuBulidInterceptor implements HandlerInterceptor {
 		}
 
 		// 按根节点分组
-		Map<String, List<SystemAction>> systemActionMap = new HashMap<String, List<SystemAction>>();
+		Map<String, Menu> systemActionMap = new HashMap<>();
 		for (SystemAction rootSystemAction : rootMenuSystemActionList) {
-			List<SystemAction> systemActionGroupList = new ArrayList<SystemAction>();
 			for (SystemAction systemAction : authorizedActionList) {
 				if (systemAction.getParentId().equals(rootSystemAction.getId())) {
-					systemActionGroupList.add(systemAction);
+					if(CommonConstant.SUBMENU_ACTION_ID.equals(systemAction.getActionType())){
+						List<SystemAction> systemActionGroupList = new ArrayList<SystemAction>();
+						for (SystemAction action : authorizedActionList) {
+							if (action.getParentId().equals(systemAction.getId())){
+								systemActionGroupList.add(action);
+							}
+						}
+						Menu menu = new Menu(false);
+						menu.setMenuNode(systemAction);
+						menu.setMenuList(systemActionGroupList);
+						systemActionMap.put(String.valueOf(rootSystemAction.getId()),menu);
+					}else{
+						Menu menu = new Menu(true);
+						menu.setMenuNode(systemAction);
+						systemActionMap.put(String.valueOf(rootSystemAction.getId()),menu);
+					}
 				}
 			}
-			systemActionMap.put(String.valueOf(rootSystemAction.getId()), systemActionGroupList);
 		}
 		if(arg3!=null){
 			arg3.addObject("_user", SessionManager.get(request));
-			arg3.addObject("menuSystemActionMap", systemActionMap);
-			arg3.addObject("rootMenuSystemActionList", rootMenuSystemActionList);
-			arg3.addObject("menuRouteMap", SystemActionUtil.getRouteMapByUrl(authorizedActionList, request.getRequestURI()));
+			arg3.addObject("menuSystemActionMap", systemActionMap);   //根节点到二、三级节点的映射
+			arg3.addObject("rootMenuSystemActionList", rootMenuSystemActionList);		//所有的根节点
+			arg3.addObject("menuRouteMap", SystemActionUtil.getRouteMapByUrl(authorizedActionList, request.getRequestURI())); //请求url的一个路由
 			arg3.addObject("_referUrl", request.getHeader("referer"));
 		}
-		
+
 	}
 
 	@Override

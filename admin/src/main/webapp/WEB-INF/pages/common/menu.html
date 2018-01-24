@@ -20,13 +20,27 @@
                          <i class="menu-expand"></i>
                      </a>
                      <ul class="submenu">
-                         <#list menuSystemActionMap[item.id?string] as node >
-                             <li class="<#if menuRouteMap[node.id?string]??>active</#if>">
-                                 <a href="${node.url}">
-                                     <span class="menu-text">${node.actionName}</span>
-                                 </a>
-                             </li>
-                         </#list>
+                         <li class="<#if menuRouteMap[menuSystemActionMap[item.id?string].menuNode.id?string]??>active</#if>  <#if menuRouteMap[menuSystemActionMap[item.id?string].menuNode.id?string]??&& menuSystemActionMap[item.id?string].menuNode.actionType==1>open</#if>">
+                         <#if menuSystemActionMap[item.id?string]?? && menuSystemActionMap[item.id?string].node >
+                             <a href="${menuSystemActionMap[item.id?string].menuNode.url}">
+                                 <span class="menu-text">${menuSystemActionMap[item.id?string].menuNode.actionName}</span>
+                             </a>
+                         <#else>
+                             <a href="#" class="menu-dropdown">
+                                 <i class="menu-icon ${menuSystemActionMap[item.id?string].menuNode.iconCss}"></i>
+                                 <span class="menu-text"> ${menuSystemActionMap[item.id?string].menuNode.actionName} </span>
+                                 <i class="menu-expand"></i>
+                             </a>
+                             <ul class="submenu">
+                             <#list menuSystemActionMap[item.id?string].menuList as node >
+                                 <li class="<#if menuRouteMap[node.id?string]??>active</#if>">
+                                     <a href="${node.url}">
+                                         <span class="menu-text">${node.actionName}</span>
+                                     </a>
+                                 </li>
+                             </#list>
+                        </#if>
+                         </li>
                      </ul>
                  </#if>
             </li>

@@ -94,6 +94,7 @@ public class SystemActionUtil {
 
 	/**
 	 * 根据url获取目录路由
+	 *即追踪请求url一直到根的一个路由
 	 * 
 	 * @param systemActionList
 	 * @param url

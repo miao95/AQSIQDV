@@ -1,0 +1,187 @@
+<@override name="custom-css">
+<style type="text/css">
+  .r_out {width:120px; height:120px; border:2px solid #d9d9d9; background:#fff; box-shadow:3px 3px 5px #bfbfbf; -webkit-box-shadow:3px 3px 5px #bfbfbf; -moz-box-shadow:3px 3px 5px #bfbfbf; -ms-box-shadow:3px 3px 5px #bfbfbf; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; display:inline-block; margin-right:90px; position:relative;}
+  .r_out p {position:absolute; /**bottom:-50px;*/ color:#fff; text-align:center; margin:0 auto; width:100%; font-size:14px; line-height:1.5; font-weight:bold;}
+
+  .r_in {width:120px; height:120px; border:10px solid #fff; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; overflow:hidden; position:relative;}
+  .r_c {width:120px; height:120px; position:absolute; bottom:0; left:0; height:0;}
+  .c1 {background:#fbad4c;}
+  .c2 {background:#fff143;}
+  .c3 {background:#c9dd22;}
+  .c4 {background:#00e079;}
+  .c5 {background:#0eb83a;}
+  .r_num {color:#404040; font-size:23px; line-height:1.5; font-weight:bold; position:absolute; top:50%; margin-top:-25px; text-align:center; width:100%;}
+
+  #triangle-right {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-left: 15px solid #DB241C;
+    border-bottom: 15px solid transparent;
+  }
+  .alert-lost{
+    padding:5px;
+    margin-top:10px;
+    margin-bottom:-8px;
+    font-size:14px;
+  }
+</style>
+</@override>
+
+<@override name="page-content">
+<!-- Breadcrumb -->
+<ol class="breadcrumb hidden-xs">
+  <li><a href="index.jhtml">首页</a></li>
+  <li>质量基础</li>
+  <li  class="active">标准化能力</li>
+</ol>
+<div  class="block-area" style="margin: 0px -7px;">
+
+  <!--地方标准制、修订情况-->
+    <div class="col-md-12">
+      <div class="tile" style="height: 420px">
+        <h2 class="tile-title" style="font-size: 15px">地方标准制、修订情况</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu pull-right text-right">
+            <li><a class="tile-info-toggle" href="">查询</a></li>
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div class="row" style="margin-top:10px" >
+          <div class='col-md-2'>
+            <div class='col-md-6'>
+              <div style="margin-left:75px;margin-top:7px">年份:</div>
+            </div>
+            <div class='col-md-6'>
+              <select class="select">
+                <option>2017年</option>
+                <option>2016年</option>
+                <option>2015年</option>
+                <option>2014年</option>
+                <option>2013年</option>
+              </select>
+            </div>
+          </div>
+          <br />
+        </div>
+        <div id="c1_stddiv_content" class="robin_circle" style="margin: 6px 0px 18px 20px;">
+          <div class="r_out">
+            <div class="r_in" id="c1_stddiv_zxd">
+            </div>
+            <p>按制、修订分</p><br>
+            <div class="alert alert-success alert-lost">
+              制订：3848
+            </div>
+            <div class="alert alert-warning alert-lost">
+              修订：283
+            </div>
+          </div>
+          <div class="r_out">
+            <div class="r_in" id="c1_stddiv_xz">
+
+            </div>
+            <p>按性质分</p><br>
+            <div class="alert alert-success alert-lost" >
+              推荐：3648
+            </div>
+            <div class="alert alert-warning alert-lost" >
+              强制：263
+            </div>
+          </div>
+          <div id="c1_stddiv_province" style="margin-top:-240px;margin-left:320px;height:250px;width:80%">
+          </div>
+        </div>
+
+     </div>
+    </div>
+
+  <!--承担ISO工作情况情况-->
+  <div class="col-md-12">
+    <div class="tile" style="height: 420px">
+      <h2 class="tile-title" style="font-size: 15px">承担ISO工作情况</h2>
+      <div class="tile-config dropdown">
+        <a data-toggle="dropdown" href="" class="tile-menu"></a>
+        <ul class="dropdown-menu pull-right text-right">
+          <li><a class="tile-info-toggle" href="">Chart Information</a></li>
+          <li><a href="">Refresh</a></li>
+          <li><a href="">Settings</a></li>
+        </ul>
+      </div>
+      <div class="row" style="margin-top:10px" >
+        <div class='col-md-2'>
+          <div class='col-md-6'>
+            <div style="margin-left:75px;margin-top:7px">年份:</div>
+          </div>
+          <div class='col-md-6'>
+            <select class="select">
+              <option>2017年</option>
+              <option>2016年</option>
+              <option>2015年</option>
+              <option>2014年</option>
+              <option>2013年</option>
+            </select>
+          </div>
+        </div>
+        <br />
+      </div>
+      <div id="c1_stddiv_content_1" class="robin_circle" style="margin: 6px 0px 18px 20px;">
+        <div class="r_out">
+          <div class="r_in" id="c1_stddiv_zxd_1">
+          </div>
+          <p>按制、修订分</p><br>
+          <div class="alert alert-success alert-lost">
+            制订：3848
+          </div>
+          <div class="alert alert-warning alert-lost">
+            修订：283
+          </div>
+        </div>
+        <div class="r_out">
+          <div class="r_in" id="c1_stddiv_xz_1">
+
+          </div>
+          <p>按性质分</p><br>
+          <div class="alert alert-success alert-lost" >
+            推荐：3648
+          </div>
+          <div class="alert alert-warning alert-lost" >
+            强制：263
+          </div>
+        </div>
+        <div id="c1_stddiv_province_1" style="margin-top:-240px;margin-left:320px;height:250px;width:80%">
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</@override>
+
+<@override name="custom-script">
+<script type="text/javascript" src="/assets/Scripts/china.js"></script>
+<script type="text/javascript" src="/assets/Scripts/standardization.js"></script>
+<script src="/assets/js/media-player.min.js"></script> <!-- USA Map for jVectorMap -->
+
+<script type="text/javascript">
+    var std_chart = echarts.init(document.getElementById("c1_stddiv_zxd"));
+    std_chart.setOption(std_zxd_option);
+    var std_chart_xz = echarts.init(document.getElementById("c1_stddiv_xz"));
+    std_chart_xz.setOption(std_qztj_option);
+    var std_chart_province = echarts.init(document.getElementById("c1_stddiv_province"));
+    std_chart_province.setOption(std_province_option);
+    $('.accordion').find('a').each(function () {
+        if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
+            $(this).parent().addClass('active');
+            $(this).parent().parent().addClass('open');
+            $(this).parent().parent().parent().addClass('open');
+        }
+        // else {
+        //     $(this).parent().parent().parent().removeClass('open'); // this.className = 'active';
+        // }
+    });
+
+</script>
+</@override>
+<@extends name="/common/base.html"/>

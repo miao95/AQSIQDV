@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.ejunhai.qutihuo.common.menu.Menu;
+import com.ejunhai.qutihuo.common.utils.CommonUtils;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -62,7 +63,13 @@ public class MenuBulidInterceptor implements HandlerInterceptor {
 		}
 
 		// 按根节点分组
-		Map<String, Menu> systemActionMap = new HashMap<>();
+		// 为一级菜单设置子菜单，getChild是递归调用的
+		for (SystemAction menu : rootMenuSystemActionList) {
+			menu.setChildMenus(CommonUtils.getChild(menu.getId(), authorizedActionList));
+		}
+
+		// 按根节点分组
+		/*Map<String, Menu> systemActionMap = new HashMap<>();
 		for (SystemAction rootSystemAction : rootMenuSystemActionList) {
 			for (SystemAction systemAction : authorizedActionList) {
 				if (systemAction.getParentId().equals(rootSystemAction.getId())) {
@@ -84,11 +91,13 @@ public class MenuBulidInterceptor implements HandlerInterceptor {
 					}
 				}
 			}
-		}
+		}*/
+
 		if(arg3!=null){
 			arg3.addObject("_user", SessionManager.get(request));
-			arg3.addObject("menuSystemActionMap", systemActionMap);   //根节点到二、三级节点的映射
-			arg3.addObject("rootMenuSystemActionList", rootMenuSystemActionList);		//所有的根节点
+			//arg3.addObject("menuSystemActionMap", systemActionMap);   //根节点到二、三级节点的映射
+			//arg3.addObject("rootMenuSystemActionList", rootMenuSystemActionList);		//所有的根节点
+			arg3.addObject("menuList", rootMenuSystemActionList); //最后的导航树
 			arg3.addObject("menuRouteMap", SystemActionUtil.getRouteMapByUrl(authorizedActionList, request.getRequestURI())); //请求url的一个路由
 			arg3.addObject("_referUrl", request.getHeader("referer"));
 		}

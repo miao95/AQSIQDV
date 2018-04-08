@@ -1,0 +1,154 @@
+<@override name="page-content">
+<!-- Breadcrumb -->
+<ol class="breadcrumb hidden-xs">
+  <li><a href="indexl.html">首页</a></li>
+  <li>质量发展</li>
+  <li  class="active">产品质量</li>
+</ol>
+<h4 class="page-title" style="font-size:16px;">产品监督抽查</h4>
+<!--产品监督抽查-->
+<div class="row" style="margin-left:7px;margin-top:5px">
+  <div class="col-md-8" style="padding-left: 0px;">
+    <div class="tile" style="height: 600px">
+      <h3 class="tile-title" style="font-size: 15px">地方监督抽查企业、产品合格率</h3>
+      <div class="tile-config dropdown">
+        <a data-toggle="dropdown" href="" class="tile-menu"></a>
+        <ul class="dropdown-menu animated pull-right text-right">
+          <li><a href="">Refresh</a></li>
+          <li><a href="">Settings</a></li>
+        </ul>
+      </div>
+      <div class="p-10">
+        <div style="margin-top:2px;width:120px">
+          <select id="select_pc_elige" class="select" style="width:120px">
+            <option value="product">产品合格率</option>
+            <option value="company">企业合格率</option>
+          </select>
+        </div>
+        <div id="div_province_product" style="width: 100%; height:550px;display:block"></div>
+
+      </div>
+    </div>
+    <div class="row" style="margin-left:2px">
+      <div class="col-md-6" style="padding-left: 0px;">
+        <div class="tile" style="height: 480px">
+          <h3 class="tile-title" style="font-size: 15px">国家产品监督抽查合格率</h3>
+          <div class="tile-config dropdown">
+            <a data-toggle="dropdown" href="" class="tile-menu"></a>
+            <ul class="dropdown-menu animated pull-right text-right">
+              <li><a href="">Refresh</a></li>
+              <li><a href="">Settings</a></li>
+            </ul>
+          </div>
+          <div class="p-10">
+            <div id="div_gchgl" style="width: 100%; height: 400px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="tile" style="height: 480px">
+          <h2 class="tile-title" style="font-size: 15px">国抽七大类产品合格率</h2>
+          <div class="tile-config dropdown">
+            <a data-toggle="dropdown" href="" class="tile-menu"></a>
+            <ul class="dropdown-menu pull-right text-right">
+              <li id="todo-add"><a href="">Add New</a></li>
+              <li id="todo-refresh"><a href="">Refresh</a></li>
+              <li id="todo-clear"><a href="">Clear All</a></li>
+            </ul>
+          </div>
+          <div class="p-10">
+            <div id="div_samplesevenclass" class="main-chart" style="height: 400px;margin-top:10px"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-md-4" style="margin-left:-2px">
+    <div class="tile" style="height: 760px">
+      <h2 class="tile-title" style="font-size: 15px">电子电器产品合格率</h2>
+      <div class="tile-config dropdown">
+        <a data-toggle="dropdown" href="" class="tile-menu"></a>
+        <ul class="dropdown-menu pull-right text-right">
+          <li id="div_dzdq_viewall"><a href="#">查看全图</a></li>
+          <li id="div_dzdq_comment"><a href="#">说明</a></li>
+        </ul>
+      </div>
+      <div class="p-10">
+        <span class="col-md-11" style="padding-left: 20px"></span>
+        <div id="div_electronic" style="width: 100%; height:700px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4" style="margin-left:-2px">
+    <div class="tile" style="height: 320px">
+      <h2 class="tile-title" style="font-size: 15px">产品质量投诉情况</h2>
+      <div class="tile-config dropdown">
+        <a data-toggle="dropdown" href="" class="tile-menu"></a>
+        <ul class="dropdown-menu pull-right text-right">
+          <li id="div_dzdq_viewall"><a href="#">查看全图</a></li>
+          <li id="div_dzdq_comment"><a href="#">说明</a></li>
+        </ul>
+      </div>
+      <div class="p-10">
+        <div id="div_complaint" style="width: 100%; height:300px;"></div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<div class="clearfix"></div>
+</@override>
+
+<@override name="custom-script">
+<script src="/assets/Scripts/china.js"></script>
+<script src="/assets/Scripts/sample.js"></script>
+<script src="/assets/Scripts/echarts_common.js"></script>
+
+<script type="text/javascript">
+    var chart_gchgl = echarts.init(document.getElementById('div_gchgl'));
+    chart_gchgl.setOption(option_sample1);
+    //
+    var chart_samplesevenclass = echarts.init(document.getElementById('div_samplesevenclass'));
+    chart_samplesevenclass.setOption(option_sample3);
+
+    var chart_electronic =  echarts.init(document.getElementById('div_electronic'));
+    chart_electronic.setOption(option_sample2);
+
+    var chart_province_product =  echarts.init(document.getElementById('div_province_product'));
+    chart_province_product.setOption(option_sample5);
+    showData(chart_province_product);
+    $(document).ready(function(){
+        $("#select_pc_elige").change(function(){
+
+            if($("#select_pc_elige").val() == "product"){
+                chart_province_product.clear();
+                chart_province_product.setOption(option_sample5);
+                showData(chart_province_product);
+
+            }
+            else{
+                chart_province_product.clear();
+                chart_province_product.setOption(option_sample4);
+            }
+        })
+    });
+    var chart_complaint =  echarts.init(document.getElementById('div_complaint'));
+    chart_complaint.setOption(option_sample6);
+    $('.accordion').find('a').each(function () {
+
+        if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
+            $(this).parent().addClass('active');
+            $(this).parent().parent().addClass('open');
+            $(this).parent().parent().parent().addClass('open');
+        }
+        // else {
+        //     $(this).parent().parent().parent().removeClass('open'); // this.className = 'active';
+        // }
+    });
+
+</script>
+</@override>
+<@extends name="/common/base.html"/>

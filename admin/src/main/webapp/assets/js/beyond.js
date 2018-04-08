@@ -1,538 +1,229 @@
-/*Sets Themed Colors Based on Themes*/
+$(function() {
+  var Accordion = function(el, multiple) {
+    this.el = el || {};
+    this.multiple = multiple || false;
 
-var themeprimary = getThemeColorFromCss('themeprimary');
-var themesecondary = getThemeColorFromCss('themesecondary');
-var themethirdcolor = getThemeColorFromCss('themethirdcolor');
-var themefourthcolor = getThemeColorFromCss('themefourthcolor');
-var themefifthcolor = getThemeColorFromCss('themefifthcolor');
+    // Variables privadas
+    var links = this.el.find('.link');
+    // Evento
+    links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+  }
 
-//Gets Theme Colors From Selected Skin To Use For Drawing Charts
-function getThemeColorFromCss(style) {
-    var $span = $("<span></span>").hide().appendTo("body");
-    $span.addClass(style);
-    var color = $span.css("color");
-    $span.remove();
-    return color;
-}
+  Accordion.prototype.dropdown = function(e) {
+    var $el = e.data.el;
+    $this = $(this),
+    $next = $this.next();
 
-//Handle RTL SUpport for Changer CheckBox
-$("#skin-changer li a").click(function () {
-    createCookie("current-skin", $(this).attr('rel'), 10);
-    window.location.reload();
+    $next.slideToggle();
+    $this.parent().toggleClass('open');
+    if (!e.data.multiple) {
+      $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+    };
+  }
+
+  var accordion = new Accordion($('#accordion'), false);
 });
 
-//Checks Not to Do rtl-support for Arabic and Persian Demo Pages
 
-var rtlchanger = document.getElementById('rtl-changer');
-
-if (location.pathname != "/index-rtl-fa.html" && location.pathname != "/index-rtl-ar.html") {
-    if (readCookie("rtl-support")) {
-        switchClasses("pull-right", "pull-left");
-        switchClasses("databox-right", "databox-left");
-        switchClasses("item-right", "item-left");
-        $('.navbar-brand small img').attr('src', 'assets/img/logo-rtl.png')
-        if (rtlchanger != null)
-            document.getElementById('rtl-changer').checked = true;
-    }
-    else {
-        if (rtlchanger != null)
-            rtlchanger.checked = false;
-    }
-
-    if (rtlchanger != null) {
-        rtlchanger.onchange = function () {
-            if (this.checked) {
-                createCookie("rtl-support", "true", 10);
-            }
-            else {
-                eraseCookie("rtl-support");
-            }
-            setTimeout(function () {
-                window.location.reload();
-            }, 600);
-
-        };
-    }
+function getThemeColorFromCss(n) {
+    var t = $("<span><\/span>").hide().appendTo("body"),
+    i;
+    return t.addClass(n),
+    i = t.css("color"),
+    t.remove(),
+    i
 }
-/*Loading*/
-$(window)
-    .load(function () {
-        setTimeout(function () {
-            $('.loading-container')
-                .addClass('loading-inactive');
-        }, 0);
+
+function InitiateSideMenu() {
+
+    $(".sidebar-toggler").on("click",
+    function() {
+        return $("#sidebar").toggleClass("hide"),
+        $(".sidebar-toggler").toggleClass("active"),
+        !1
     });
 
-
-/*Account Area --> Setting Button*/
-$('#btn-setting')
-    .on('click', function (e) {
-        $('.navbar-account')
-            .toggleClass('setting-open');
+    var n = $("#sidebar").hasClass("menu-compact");
+    $("#sidebar-collapse").on("click",
+    function() {
+        $("#sidebar").is(":visible") || $("#sidebar").toggleClass("hide");
+        $("#sidebar").toggleClass("menu-compact");
+        $(".sidebar-collapse").toggleClass("active");
+        n = $("#sidebar").hasClass("menu-compact");
+        n && $(".open > .submenu").removeClass("open")
     });
+    $(".sidebar-menu").on("click",
+    function(t) {
 
-/*Toggle FullScreen*/
-$('#fullscreen-toggler')
-    .on('click', function (e) {
-        var element = document.documentElement;
-        if (!$('body')
-            .hasClass("full-screen")) {
-
-            $('body')
-                .addClass("full-screen");
-            $('#fullscreen-toggler')
-                .addClass("active");
-            if (element.requestFullscreen) {
-                element.requestFullscreen();
-            } else if (element.mozRequestFullScreen) {
-                element.mozRequestFullScreen();
-            } else if (element.webkitRequestFullscreen) {
-                element.webkitRequestFullscreen();
-            } else if (element.msRequestFullscreen) {
-                element.msRequestFullscreen();
+        var i = $(t.target).closest("a"),
+        u,
+        r,
+        f;
+        if (i && i.length != 0) {
+            if (!i.hasClass("menu-dropdown")) return n && i.get(0).parentNode.parentNode == this && (u = i.find(".menu-text").get(0), t.target != u && !$.contains(u, t.target)) ? !1 : void 0;
+            if (r = i.next().get(0), !$(r).is(":visible")) {
+                if (f = $(r.parentNode).closest("ul"), n && f.hasClass("sidebar-menu")) return;
+                f.find("> .open > .submenu").each(function() {
+                    this == r || $(this.parentNode).hasClass("active") || $(this).slideUp(200).parent().removeClass("open")
+                })
             }
 
-        } else {
-
-            $('body')
-                .removeClass("full-screen");
-            $('#fullscreen-toggler')
-                .removeClass("active");
-
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.mozCancelFullScreen) {
-                document.mozCancelFullScreen();
-            } else if (document.webkitExitFullscreen) {
-                document.webkitExitFullscreen();
-            }
-
+            return n && $(r.parentNode.parentNode).hasClass("sidebar-menu") ? !1 : ($(r).slideToggle(200).parent().toggleClass("open"), !1)
         }
+    })
+}
+
+function InitiateWidgets() {
+    $('.widget-buttons *[data-toggle="maximize"]').on("click",
+    function(n) {
+        n.preventDefault();
+        var t = $(this).parents(".widget").eq(0),
+        i = $(this).find("i").eq(0),
+        r = "fa-compress",
+        u = "fa-expand";
+        t.hasClass("maximized") ? (i && i.addClass(u).removeClass(r), t.removeClass("maximized"), t.find(".widget-body").css("height", "auto")) : (i && i.addClass(r).removeClass(u), t.addClass("maximized"), maximize(t))
     });
-
-/*Handles Popovers*/
-var popovers = $('[data-toggle=popover]');
-$.each(popovers, function () {
-    $(this)
-        .popover({
-            html: true,
-            template: '<div class="popover ' + $(this)
-                .data("class") +
-                '"><div class="arrow"></div><h3 class="popover-title ' +
-                $(this)
-                .data("titleclass") + '">Popover right</h3><div class="popover-content"></div></div>'
-        });
-});
-
-var hoverpopovers = $('[data-toggle=popover-hover]');
-$.each(hoverpopovers, function () {
-    $(this)
-        .popover({
-            html: true,
-            template: '<div class="popover ' + $(this)
-                .data("class") +
-                '"><div class="arrow"></div><h3 class="popover-title ' +
-                $(this)
-                .data("titleclass") + '">Popover right</h3><div class="popover-content"></div></div>',
-            trigger: "hover"
-        });
-});
-
-
-/*Handles ToolTips*/
-$("[data-toggle=tooltip]")
-    .tooltip({
-        html: true
+    $('.widget-buttons *[data-toggle="collapse"]').on("click",
+    function(n) {
+        n.preventDefault();
+        var t = $(this).parents(".widget").eq(0),
+        r = t.find(".widget-body"),
+        i = $(this).find("i"),
+        u = "fa-plus",
+        f = "fa-minus",
+        e = 300;
+        t.hasClass("collapsed") ? (i && i.addClass(f).removeClass(u), t.removeClass("collapsed"), r.slideUp(0,
+        function() {
+            r.slideDown(e)
+        })) : (i && i.addClass(u).removeClass(f), r.slideUp(200,
+        function() {
+            t.addClass("collapsed")
+        }))
     });
+    $('.widget-buttons *[data-toggle="dispose"]').on("click",
+    function(n) {
+        n.preventDefault();
+        var i = $(this),
+        t = i.parents(".widget").eq(0);
+        t.hide(300,
+        function() {
+            t.remove()
+        })
+    })
+}
+
+function maximize(n) {
+    if (n) {
+        var t = $(window).height(),
+        i = n.find(".widget-header").height();
+        n.find(".widget-body").height(t - i)
+    }
+}
+
+function scrollTo(n, t) {
+    var i = n && n.size() > 0 ? n.offset().top: 0;
+    jQuery("html,body").animate({
+        scrollTop: i + (t ? t: 0)
+    },
+    "slow")
+}
+
+function Notify(n, t, i, r, u, f) {
+    toastr.options.positionClass = "toast-" + t;
+    toastr.options.extendedTimeOut = 0;
+    toastr.options.timeOut = i;
+    toastr.options.closeButton = f;
+    toastr.options.iconClass = u + " toast-" + r;
+    toastr.custom(n)
+}
+
+function InitiateSettings() {
+    readCookie("navbar-fixed-top") != null && readCookie("navbar-fixed-top") == "true" && ($("#checkbox_fixednavbar").prop("checked", !0), $(".navbar").addClass("navbar-fixed-top"));
+    readCookie("sidebar-fixed") != null && readCookie("sidebar-fixed") == "true" && ($("#checkbox_fixedsidebar").prop("checked", !0), $(".page-sidebar").addClass("sidebar-fixed"));
+    readCookie("breadcrumbs-fixed") != null && readCookie("breadcrumbs-fixed") == "true" && ($("#checkbox_fixedbreadcrumbs").prop("checked", !0), $(".page-breadcrumbs").addClass("breadcrumbs-fixed"));
+    readCookie("page-header-fixed") != null && readCookie("page-header-fixed") == "true" && ($("#checkbox_fixedheader").prop("checked", !0), $(".page-header").addClass("page-header-fixed"));
+    $("#checkbox_fixednavbar").change(function() {
+        $(".navbar").toggleClass("navbar-fixed-top");
+        $("#checkbox_fixedsidebar").is(":checked") && ($("#checkbox_fixedsidebar").prop("checked", !1), $(".page-sidebar").toggleClass("sidebar-fixed"));
+        $("#checkbox_fixedbreadcrumbs").is(":checked") && !$(this).is(":checked") && ($("#checkbox_fixedbreadcrumbs").prop("checked", !1), $(".page-breadcrumbs").toggleClass("breadcrumbs-fixed"));
+        $("#checkbox_fixedheader").is(":checked") && !$(this).is(":checked") && ($("#checkbox_fixedheader").prop("checked", !1), $(".page-header").toggleClass("page-header-fixed"));
+        setCookiesForFixedSettings()
+    });
+    $("#checkbox_fixedsidebar").change(function() {
+        $(".page-sidebar").toggleClass("sidebar-fixed");
+        $("#checkbox_fixednavbar").is(":checked") || ($("#checkbox_fixednavbar").prop("checked", !0), $(".navbar").toggleClass("navbar-fixed-top"));
+        $("#checkbox_fixedbreadcrumbs").is(":checked") && !$(this).is(":checked") && ($("#checkbox_fixedbreadcrumbs").prop("checked", !1), $(".page-breadcrumbs").toggleClass("breadcrumbs-fixed"));
+        $("#checkbox_fixedheader").is(":checked") && !$(this).is(":checked") && ($("#checkbox_fixedheader").prop("checked", !1), $(".page-header").toggleClass("page-header-fixed"));
+        setCookiesForFixedSettings()
+    });
+    $("#checkbox_fixedbreadcrumbs").change(function() {
+        $(".page-breadcrumbs").toggleClass("breadcrumbs-fixed");
+        $("#checkbox_fixedsidebar").is(":checked") || ($("#checkbox_fixedsidebar").prop("checked", !0), $(".page-sidebar").toggleClass("sidebar-fixed"));
+        $("#checkbox_fixednavbar").is(":checked") || ($("#checkbox_fixednavbar").prop("checked", !0), $(".navbar").toggleClass("navbar-fixed-top"));
+        $("#checkbox_fixedheader").is(":checked") && !$(this).is(":checked") && ($("#checkbox_fixedheader").prop("checked", !1), $(".page-header").toggleClass("page-header-fixed"));
+        setCookiesForFixedSettings()
+    });
+    $("#checkbox_fixedheader").change(function() {
+        $(".page-header").toggleClass("page-header-fixed");
+        $("#checkbox_fixedbreadcrumbs").is(":checked") || ($("#checkbox_fixedbreadcrumbs").prop("checked", !0), $(".page-breadcrumbs").toggleClass("breadcrumbs-fixed"));
+        $("#checkbox_fixedsidebar").is(":checked") || ($("#checkbox_fixedsidebar").prop("checked", !0), $(".page-sidebar").toggleClass("sidebar-fixed"));
+        $("#checkbox_fixednavbar").is(":checked") || ($("#checkbox_fixednavbar").prop("checked", !0), $(".navbar").toggleClass("navbar-fixed-top"));
+        setCookiesForFixedSettings()
+    })
+}
+
+function setCookiesForFixedSettings() {
+    createCookie("navbar-fixed-top", $("#checkbox_fixednavbar").is(":checked"), 100);
+    createCookie("sidebar-fixed", $("#checkbox_fixedsidebar").is(":checked"), 100);
+    createCookie("breadcrumbs-fixed", $("#checkbox_fixedbreadcrumbs").is(":checked"), 100);
+    createCookie("page-header-fixed", $("#checkbox_fixedheader").is(":checked"), 100)
+}
+
+function getcolor(n) {
+    switch (n) {
+    case "themeprimary":
+        return themeprimary;
+    case "themesecondary":
+        return themesecondary;
+    case "themethirdcolor":
+        return themethirdcolor;
+    case "themefourthcolor":
+        return themefourthcolor;
+    case "themefifthcolor":
+        return themefifthcolor;
+    default:
+        return n
+    }
+}
+
+function switchClasses(n, t) {
+    var u = document.getElementsByClassName(n),
+    r;
+    for (i = u.length - 1; i >= 0; i--) hasClass(u[i], "dropdown-menu") || (addClass(u[i], n + "-temp"), removeClass(u[i], n));
+    for (r = document.getElementsByClassName(t), i = r.length - 1; i >= 0; i--) hasClass(r[i], "dropdown-menu") || (addClass(r[i], n), removeClass(r[i], t));
+    for (tempClasses = document.getElementsByClassName(n + "-temp"), i = tempClasses.length - 1; i >= 0; i--) hasClass(tempClasses[i], "dropdown-menu") || (addClass(tempClasses[i], t), removeClass(tempClasses[i], n + "-temp"))
+}
+
+function addClass(n, t) {
+    var i = n.className;
+    i && (i += " ");
+    n.className = i + t
+}
+
+function removeClass(n, t) {
+    var i = " " + n.className + " ";
+    n.className = i.replace(" " + t, "").replace(/^\s+/g, "").replace(/\s+$/g, "")
+}
+
+function hasClass(n, t) {
+    var i = " " + n.className + " ",
+    r = " " + t + " ";
+    return i.indexOf(r) != -1
+}
 
 InitiateSideMenu();
 InitiateSettings();
 InitiateWidgets();
-
-function InitiateSideMenu() {
-
-    //Sidebar Toggler
-    $(".sidebar-toggler").on('click', function () {
-        $("#sidebar").toggleClass("hide");
-        $(".sidebar-toggler").toggleClass("active");
-        return false;
-    });
-    //End Sidebar Toggler
-
-    //Sidebar Collapse
-    var b = $("#sidebar").hasClass("menu-compact");
-    $("#sidebar-collapse").on('click', function () {
-        if (!$('#sidebar').is(':visible'))
-            $("#sidebar").toggleClass("hide");
-        $("#sidebar").toggleClass("menu-compact");
-        $(".sidebar-collapse").toggleClass("active");
-        b = $("#sidebar").hasClass("menu-compact");
-        if (b) {
-            $(".open > .submenu")
-                .removeClass("open");
-        }
-    });
-    //End Sidebar Collapse
-
-
-    //Sidebar Menu Handle
-    $(".sidebar-menu").on('click', function (e) {
-        var menuLink = $(e.target).closest("a");
-        if (!menuLink || menuLink.length == 0)
-            return;
-        if (!menuLink.hasClass("menu-dropdown")) {
-            if (b && menuLink.get(0).parentNode.parentNode == this) {
-                var menuText = menuLink.find(".menu-text").get(0);
-                if (e.target != menuText && !$.contains(menuText, e.target)) {
-                    return false;
-                }
-            }
-            return;
-        }
-        var submenu = menuLink.next().get(0);
-        if (!$(submenu).is(":visible")) {
-            var c = $(submenu.parentNode).closest("ul");
-            if (b && c.hasClass("sidebar-menu"))
-                return;
-            c.find("> .open > .submenu")
-                .each(function () {
-                    if (this != submenu && !$(this.parentNode).hasClass("active"))
-                        $(this).slideUp(200).parent().removeClass("open");
-                });
-        }
-        if (b && $(submenu.parentNode.parentNode).hasClass("sidebar-menu"))
-            return false;
-        $(submenu).slideToggle(200).parent().toggleClass("open");
-        return false;
-    });
-    //End Sidebar Menu Handle
-}
-
-function InitiateWidgets() {
-    $('.widget-buttons *[data-toggle="maximize"]').on("click", function (event) {
-        event.preventDefault();
-        var widget = $(this).parents(".widget").eq(0);
-        var button = $(this).find("i").eq(0);
-        var compress = "fa-compress";
-        var expand = "fa-expand";
-        if (widget.hasClass("maximized")) {
-            if (button) {
-                button.addClass(expand).removeClass(compress);
-            }
-            widget.removeClass("maximized");
-            widget.find(".widget-body").css("height", "auto");
-        } else {
-            if (button) {
-                button.addClass(compress).removeClass(expand);
-            }
-            widget.addClass("maximized");
-            maximize(widget);
-        }
-    });
-
-    $('.widget-buttons *[data-toggle="collapse"]').on("click", function (event) {
-        event.preventDefault();
-        var widget = $(this).parents(".widget").eq(0);
-        var body = widget.find(".widget-body");
-        var button = $(this).find("i");
-        var down = "fa-plus";
-        var up = "fa-minus";
-        var slidedowninterval = 300;
-        var slideupinterval = 200;
-        if (widget.hasClass("collapsed")) {
-            if (button) {
-                button.addClass(up).removeClass(down);
-            }
-            widget.removeClass("collapsed");
-            body.slideUp(0, function () {
-                body.slideDown(slidedowninterval);
-            });
-        } else {
-            if (button) {
-                button.addClass(down)
-                    .removeClass(up);
-            }
-            body.slideUp(slideupinterval, function () {
-                widget.addClass("collapsed");
-            });
-        }
-    });
-
-    $('.widget-buttons *[data-toggle="dispose"]').on("click", function (event) {
-        event.preventDefault();
-        var toolbarLink = $(this);
-        var widget = toolbarLink.parents(".widget").eq(0);
-        var disposeinterval = 300;
-        widget.hide(disposeinterval, function () {
-            widget.remove();
-        });
-    });
-}
-
-// Fullscreen Widget
-function maximize(widgetbox) {
-    if (widgetbox) {
-        var windowHeight = $(window).height();
-        var headerHeight = widgetbox.find(".widget-header").height();
-        widgetbox.find(".widget-body").height(windowHeight - headerHeight);
-    }
-}
-
-/* Scroll To */
-function scrollTo(el, offeset) {
-    var pos = (el && el.size() > 0) ? el.offset().top : 0;
-    jQuery('html,body').animate({ scrollTop: pos + (offeset ? offeset : 0) }, 'slow');
-}
-
-/*Show Notification*/
-function Notify(message, position, timeout, theme, icon, closable) {
-    toastr.options.positionClass = 'toast-' + position;
-    toastr.options.extendedTimeOut = 0; //1000;
-    toastr.options.timeOut = timeout;
-    toastr.options.closeButton = closable;
-    toastr.options.iconClass = icon + ' toast-' + theme;
-    toastr['custom'](message);
-}
-
-/*#region handle Settings*/
-function InitiateSettings() {
-    if (readCookie("navbar-fixed-top") !=null) {
-        if (readCookie("navbar-fixed-top") == "true") {
-            $('#checkbox_fixednavbar').prop('checked', true);
-            $('.navbar').addClass('navbar-fixed-top');
-        }
-    }
-
-    if (readCookie("sidebar-fixed") !=null) {
-        if (readCookie("sidebar-fixed") == "true") {
-            $('#checkbox_fixedsidebar').prop('checked', true);
-            $('.page-sidebar').addClass('sidebar-fixed');
-        }
-    }
-    if (readCookie("breadcrumbs-fixed") != null) {
-        if (readCookie("breadcrumbs-fixed") == "true") {
-            $('#checkbox_fixedbreadcrumbs').prop('checked', true);
-            $('.page-breadcrumbs').addClass('breadcrumbs-fixed');
-        }
-    }
-    if (readCookie("page-header-fixed") != null) {
-        if (readCookie("page-header-fixed") == "true") {
-            $('#checkbox_fixedheader').prop('checked', true);
-            $('.page-header').addClass('page-header-fixed');
-        }
-    }
-
-
-    $('#checkbox_fixednavbar')
-        .change(function () {
-            $('.navbar')
-                .toggleClass('navbar-fixed-top');
-
-            if (($('#checkbox_fixedsidebar')
-                .is(":checked"))) {
-                $('#checkbox_fixedsidebar')
-                    .prop('checked', false);
-                $('.page-sidebar')
-                    .toggleClass('sidebar-fixed');
-            }
-
-            if (($('#checkbox_fixedbreadcrumbs')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedbreadcrumbs')
-                    .prop('checked', false);
-                $('.page-breadcrumbs')
-                    .toggleClass('breadcrumbs-fixed');
-            }
-
-            if (($('#checkbox_fixedheader')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedheader')
-                    .prop('checked', false);
-                $('.page-header')
-                    .toggleClass('page-header-fixed');
-            }
-            setCookiesForFixedSettings();
-        });
-
-    $('#checkbox_fixedsidebar')
-        .change(function () {
-
-            $('.page-sidebar')
-                .toggleClass('sidebar-fixed');
-
-            if (!($('#checkbox_fixednavbar')
-                .is(":checked"))) {
-                $('#checkbox_fixednavbar')
-                    .prop('checked', true);
-                $('.navbar')
-                    .toggleClass('navbar-fixed-top');
-            }
-            if (($('#checkbox_fixedbreadcrumbs')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedbreadcrumbs')
-                    .prop('checked', false);
-                $('.page-breadcrumbs')
-                    .toggleClass('breadcrumbs-fixed');
-            }
-
-            if (($('#checkbox_fixedheader')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedheader')
-                    .prop('checked', false);
-                $('.page-header')
-                    .toggleClass('page-header-fixed');
-            }
-            setCookiesForFixedSettings();
-
-        });
-    $('#checkbox_fixedbreadcrumbs')
-        .change(function () {
-
-            $('.page-breadcrumbs')
-                .toggleClass('breadcrumbs-fixed');
-
-
-            if (!($('#checkbox_fixedsidebar')
-                .is(":checked"))) {
-                $('#checkbox_fixedsidebar')
-                    .prop('checked', true);
-                $('.page-sidebar')
-                    .toggleClass('sidebar-fixed');
-            }
-            if (!($('#checkbox_fixednavbar')
-                .is(":checked"))) {
-                $('#checkbox_fixednavbar')
-                    .prop('checked', true);
-                $('.navbar')
-                    .toggleClass('navbar-fixed-top');
-            }
-            if (($('#checkbox_fixedheader')
-                .is(":checked")) && !($(this)
-                .is(":checked"))) {
-                $('#checkbox_fixedheader')
-                    .prop('checked', false);
-                $('.page-header')
-                    .toggleClass('page-header-fixed');
-            }
-            setCookiesForFixedSettings();
-
-        });
-
-    $('#checkbox_fixedheader')
-        .change(function () {
-
-            $('.page-header')
-                .toggleClass('page-header-fixed');
-
-
-            if (!($('#checkbox_fixedbreadcrumbs')
-                .is(":checked"))) {
-                $('#checkbox_fixedbreadcrumbs')
-                    .prop('checked', true);
-                $('.page-breadcrumbs')
-                    .toggleClass('breadcrumbs-fixed');
-            }
-
-            if (!($('#checkbox_fixedsidebar')
-                .is(":checked"))) {
-                $('#checkbox_fixedsidebar')
-                    .prop('checked', true);
-                $('.page-sidebar')
-                    .toggleClass('sidebar-fixed');
-            }
-            if (!($('#checkbox_fixednavbar')
-                .is(":checked"))) {
-                $('#checkbox_fixednavbar')
-                    .prop('checked', true);
-                $('.navbar')
-                    .toggleClass('navbar-fixed-top');
-            }
-
-            setCookiesForFixedSettings();
-        });
-}
-
-function setCookiesForFixedSettings() {
-    createCookie("navbar-fixed-top", $('#checkbox_fixednavbar').is(':checked'), 100);
-    createCookie("sidebar-fixed", $('#checkbox_fixedsidebar').is(':checked'), 100);
-    createCookie("breadcrumbs-fixed", $('#checkbox_fixedbreadcrumbs').is(':checked'), 100);
-    createCookie("page-header-fixed", $('#checkbox_fixedheader').is(':checked'), 100);
-}
-/*#endregion handle Settings*/
-
-/*#region Get Colors*/
-//Get colors from a string base on theme colors
-function getcolor(colorString) {
-    switch (colorString) {
-        case ("themeprimary"):
-            return themeprimary;
-        case ("themesecondary"):
-            return themesecondary;
-        case ("themethirdcolor"):
-            return themethirdcolor;
-        case ("themefourthcolor"):
-            return themefourthcolor;
-        case ("themefifthcolor"):
-            return themefifthcolor;
-        default:
-            return colorString;
-    }
-}
-/*#endregion Get Colors*/
-
-//Switch Classes Function
-function switchClasses(firstClass, secondClass) {
-
-    var firstclasses = document.getElementsByClassName(firstClass);
-
-    for (i = firstclasses.length - 1; i >= 0; i--) {
-        if (!hasClass(firstclasses[i], 'dropdown-menu')) {
-            addClass(firstclasses[i], firstClass + '-temp');
-            removeClass(firstclasses[i], firstClass);
-        }
-    }
-
-    var secondclasses = document.getElementsByClassName(secondClass);
-
-    for (i = secondclasses.length - 1; i >= 0; i--) {
-        if (!hasClass(secondclasses[i], 'dropdown-menu')) {
-            addClass(secondclasses[i], firstClass);
-            removeClass(secondclasses[i], secondClass);
-        }
-    }
-
-    tempClasses = document.getElementsByClassName(firstClass + '-temp');
-
-    for (i = tempClasses.length - 1; i >= 0; i--) {
-        if (!hasClass(tempClasses[i], 'dropdown-menu')) {
-            addClass(tempClasses[i], secondClass);
-            removeClass(tempClasses[i], firstClass + '-temp');
-        }
-    }
-}
-
-//Add Classes Function
-function addClass(elem, cls) {
-    var oldCls = elem.className;
-    if (oldCls) {
-        oldCls += " ";
-    }
-    elem.className = oldCls + cls;
-}
-
-//Remove Classes Function
-function removeClass(elem, cls) {
-    var str = " " + elem.className + " ";
-    elem.className = str.replace(" " + cls, "").replace(/^\s+/g, "").replace(/\s+$/g, "");
-}
-
-//Has Classes Function
-function hasClass(elem, cls) {
-    var str = " " + elem.className + " ";
-    var testCls = " " + cls + " ";
-    return (str.indexOf(testCls) != -1);
-}
+/*
+//# sourceMappingURL=beyond.min.js.map
+*/

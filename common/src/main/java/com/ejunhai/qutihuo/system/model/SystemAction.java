@@ -2,6 +2,7 @@ package com.ejunhai.qutihuo.system.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * 功能表
@@ -57,6 +58,11 @@ public class SystemAction implements Serializable {
 	 * 创建时间
 	 */
 	private Timestamp createTime;
+
+	/**
+	 * 子菜单
+	 */
+	private List<SystemAction> childMenus;
 
 	public Integer getId() {
 		return id;
@@ -130,4 +136,11 @@ public class SystemAction implements Serializable {
 		this.createTime = createTime;
 	}
 
+	public List<SystemAction> getChildMenus() {
+		return childMenus;
+	}
+
+	public void setChildMenus(List<SystemAction> childMenus) {
+		this.childMenus = childMenus;
+	}
 }

@@ -1,0 +1,798 @@
+[DEBUG] 2018-01-30 14:03:00,078
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:00,122
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT * FROM tb_system_area 
+***********************
+
+[DEBUG] 2018-01-30 14:03:00,122
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:03:06,904
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:06,909
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, login_name, passwd, nickname, telephone, user_type, merchant_id, picture_url, state, role_ids, create_time, update_time from tb_system_user where login_name = ? 
+***********************
+
+[DEBUG] 2018-01-30 14:03:06,909
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: luozj(String)
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,226
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,249
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,249
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,323
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,326
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,326
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,373
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,374
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,374
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,376
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,378
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:07,378
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:10,938
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:10,940
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:10,941
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:10,948
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:10,950
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:10,950
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:10,952
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:10,953
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT DISTINCT YEAR FROM provincestandardinfo ORDER BY YEAR ASC 
+***********************
+
+[DEBUG] 2018-01-30 14:03:10,953
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,011
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,012
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT ID, YEAR, LASTYEAR_CNT, BND_ZXD_ZD, BND_ZXD_XD, BND_XZ_QZ, BND_XZ_TJ, BND_FZ, BNM_QZ, BNM_TJ, PROVINCE FROM provincestandardinfo WHERE province='全国总计' 
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,012
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,014
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,015
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT ID, YEAR, LASTYEAR_CNT, BND_ZXD_ZD, BND_ZXD_XD, BND_XZ_QZ, BND_XZ_TJ, BND_FZ, BNM_QZ, BNM_TJ, PROVINCE FROM provincestandardinfo WHERE province NOT IN ('全国总计','地方单位合计') 
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,015
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,085
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,085
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,086
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,087
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,088
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:11,088
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,896
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,898
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,898
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,901
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,904
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,904
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,907
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,908
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT DISTINCT YEAR FROM measurelegalmanagement ORDER BY YEAR ASC 
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,909
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,967
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,969
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT ID, MS_SHGY, MS_SQJLBZ, MS_ZXJDGZJLBZ, MS_ZGJLBZ, JLSQ_YFSZJLJDJSJG, JLSQ_YFSQJLJLJDJG, JLSQ_QTCDZXSQJDRWJG, JLSQ_QTCDZXSQJDRWXM, JLSQ_SQCDJLQJXSPJJG, JLSQ_SQCDJLQJXSPJXM, JLQJXCP_XSPZZS_year, JLQJXCP_XSPZZS_all, ZZXLJLQJ_ZZXKZ_ADD, ZZXLJLQJ_ZZXKZ_REDUCE, ZZXLJLQJ_ZZXKZ_all, ZZXLJLQJ_XLXKZ_ADD, ZZXLJLQJ_XLXKZ_REDUCE, ZZXLJLQJ_XLXKZ_all, YEAR, PROVINCE FROM measurelegalmanagement WHERE PROVINCE LIKE '%省' or PROVINCE LIKE '%市' or PROVINCE LIKE '%自治区' 
+***********************
+
+[DEBUG] 2018-01-30 14:03:26,969
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:03:27,010
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:27,011
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:27,011
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:27,012
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:27,013
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:27,013
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,959
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,960
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,960
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,961
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,962
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,962
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,965
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,965
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT DISTINCT YEAR FROM measurelegalmanagement ORDER BY YEAR ASC 
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,965
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,966
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,969
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT ID, MS_SHGY, MS_SQJLBZ, MS_ZXJDGZJLBZ, MS_ZGJLBZ, JLSQ_YFSZJLJDJSJG, JLSQ_YFSQJLJLJDJG, JLSQ_QTCDZXSQJDRWJG, JLSQ_QTCDZXSQJDRWXM, JLSQ_SQCDJLQJXSPJJG, JLSQ_SQCDJLQJXSPJXM, JLQJXCP_XSPZZS_year, JLQJXCP_XSPZZS_all, ZZXLJLQJ_ZZXKZ_ADD, ZZXLJLQJ_ZZXKZ_REDUCE, ZZXLJLQJ_ZZXKZ_all, ZZXLJLQJ_XLXKZ_ADD, ZZXLJLQJ_XLXKZ_REDUCE, ZZXLJLQJ_XLXKZ_all, YEAR, PROVINCE FROM measurelegalmanagement WHERE PROVINCE LIKE '%省' or PROVINCE LIKE '%市' or PROVINCE LIKE '%自治区' 
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,969
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,981
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,982
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,985
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,986
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,987
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:03:38,987
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,247
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,250
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,250
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,252
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,255
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,255
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,258
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,259
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT DISTINCT YEAR FROM measurelegalmanagement ORDER BY YEAR ASC 
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,259
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,262
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,263
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT ID, MS_SHGY, MS_SQJLBZ, MS_ZXJDGZJLBZ, MS_ZGJLBZ, JLSQ_YFSZJLJDJSJG, JLSQ_YFSQJLJLJDJG, JLSQ_QTCDZXSQJDRWJG, JLSQ_QTCDZXSQJDRWXM, JLSQ_SQCDJLQJXSPJJG, JLSQ_SQCDJLQJXSPJXM, JLQJXCP_XSPZZS_year, JLQJXCP_XSPZZS_all, ZZXLJLQJ_ZZXKZ_ADD, ZZXLJLQJ_ZZXKZ_REDUCE, ZZXLJLQJ_ZZXKZ_all, ZZXLJLQJ_XLXKZ_ADD, ZZXLJLQJ_XLXKZ_REDUCE, ZZXLJLQJ_XLXKZ_all, YEAR, PROVINCE FROM measurelegalmanagement WHERE PROVINCE LIKE '%省' or PROVINCE LIKE '%市' or PROVINCE LIKE '%自治区' 
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,263
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,290
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,290
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,290
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,292
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,293
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:04:02,293
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,528
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,530
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,531
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,533
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,535
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,535
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,538
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,538
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT DISTINCT YEAR FROM provincestandardinfo ORDER BY YEAR ASC 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,539
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,540
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,541
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT ID, YEAR, LASTYEAR_CNT, BND_ZXD_ZD, BND_ZXD_XD, BND_XZ_QZ, BND_XZ_TJ, BND_FZ, BNM_QZ, BNM_TJ, PROVINCE FROM provincestandardinfo WHERE province='全国总计' 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,541
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,542
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,543
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: SELECT ID, YEAR, LASTYEAR_CNT, BND_ZXD_ZD, BND_ZXD_XD, BND_XZ_QZ, BND_XZ_TJ, BND_FZ, BNM_QZ, BNM_TJ, PROVINCE FROM provincestandardinfo WHERE province NOT IN ('全国总计','地方单位合计') 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,543
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,550
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,552
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,552
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer)
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,554
+java.sql.Connection
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+ooo Connection Opened
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,556
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
+***********************
+
+[DEBUG] 2018-01-30 14:04:04,556
+java.sql.PreparedStatement
+StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
+***********************
+==> Parameters: 1(Integer), 2(Integer), 3(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer)
+***********************
+

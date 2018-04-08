@@ -1,0 +1,54 @@
+
+
+
+#menuurl{
+	font-size: 18px;
+	vertical-align: middle;
+	font-size: 14px;
+	text-align: left;
+	padding-left: 30px;
+	color: white;
+}
+
+#menuurl .span{
+	text-align: center;
+}
+.nav-more{float:right;margin-right: 20px;font-size: 12px;transition: transform .3s;}
+/* 此处为导航右侧箭头 如果自定义iconfont 也需要替换*/
+.menu-expand {
+	position: absolute;
+	top: 15px;
+	right: 12px;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 10px;
+	height: 10px;
+	color: #666;
+	text-align: center;
+	text-shadow: none;
+	font-weight: 400;
+	font-style: normal;
+	font-size: 13px;
+	font-family: FontAwesome;
+	line-height: 10px;
+	-webkit-transition: all .3s ease-in-out;
+	-moz-transition: all .3s ease-in-out;
+	-o-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	-webkit-text-shadow: none
+}
+
+.menu-expand:before {
+	content: " "
+}
+li.open>a .menu-expand {
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+	-ms-transform: rotate(90deg)
+}
+li>a .menu-expand {
+	display: none
+}

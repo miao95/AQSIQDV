@@ -1,49 +1,41 @@
-<div class="page-sidebar" id="sidebar">
-    <div class="sidebar-header-wrapper">
-        <input type="text" class="searchinput" />
-        <i class="searchicon fa fa-search"></i>
-        <div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>
-    </div>
-    
-    <ul class="nav sidebar-menu">
-        <#list rootMenuSystemActionList as item >
-            <li  class="<#if menuRouteMap[item.id?string]??>active</#if> <#if menuRouteMap[item.id?string]??&&item.actionType==1>open</#if>">
-                <#if item.actionType==2>
-                     <a href="${item.url}">
-                         <i class="menu-icon ${item.iconCss}"></i>
-                         <span class="menu-text"> ${item.actionName} </span>    
-                     </a>
-                 <#else>
-                     <a href="#" class="menu-dropdown">
-                         <i class="menu-icon ${item.iconCss}"></i>
-                         <span class="menu-text"> ${item.actionName} </span>
-                         <i class="menu-expand"></i>
-                     </a>
-                     <ul class="submenu">
-                         <li class="<#if menuRouteMap[menuSystemActionMap[item.id?string].menuNode.id?string]??>active</#if>  <#if menuRouteMap[menuSystemActionMap[item.id?string].menuNode.id?string]??&& menuSystemActionMap[item.id?string].menuNode.actionType==1>open</#if>">
-                         <#if menuSystemActionMap[item.id?string]?? && menuSystemActionMap[item.id?string].node >
-                             <a href="${menuSystemActionMap[item.id?string].menuNode.url}">
-                                 <span class="menu-text">${menuSystemActionMap[item.id?string].menuNode.actionName}</span>
-                             </a>
-                         <#else>
-                             <a href="#" class="menu-dropdown">
-                                 <i class="menu-icon ${menuSystemActionMap[item.id?string].menuNode.iconCss}"></i>
-                                 <span class="menu-text"> ${menuSystemActionMap[item.id?string].menuNode.actionName} </span>
-                                 <i class="menu-expand"></i>
-                             </a>
-                             <ul class="submenu">
-                             <#list menuSystemActionMap[item.id?string].menuList as node >
-                                 <li class="<#if menuRouteMap[node.id?string]??>active</#if>">
-                                     <a href="${node.url}">
-                                         <span class="menu-text">${node.actionName}</span>
-                                     </a>
-                                 </li>
-                             </#list>
+<aside id="sidebar">
+    <div class="page-sidebar" id="sidebar_nav">
+        <ul id="accordion" class="accordion">
+        <#list menuList as item >
+        <li  class="<#if menuRouteMap[item.id?string]??>active</#if> <#if menuRouteMap[item.id?string]??&&item.actionType==1>open</#if>">
+            <#if item.actionType==2>
+            <div class="link">
+                <i class="${item.iconCss}"></i>
+                <a href="${item.url}">${item.actionName}</a>
+            </div>
+            <#else>
+            <div class="link">
+                <i class="${item.iconCss}"></i>${item.actionName}<i class="fa fa-chevron-down"></i>
+            </div>
+            <ul class="submenu">
+                <#list item.childMenus as secondChild >
+                    <li class="<#if menuRouteMap[secondChild.id?string]??>active</#if>  <#if menuRouteMap[secondChild.id?string]??&& secondChild.actionType==1>open</#if>">
+                        <#if secondChild.actionType==2 >
+                            <a href="${secondChild.url}">${secondChild.actionName}</a>
+                        <#else>
+                        <div class="link">
+                            <i class="${secondChild.iconCss}"></i>${secondChild.actionName}<i class="fa fa-chevron-down"></i>
+                        </div>
+                        <ul class="submenu">
+                            <#list secondChild.childMenus as thirdChild >
+                            <li class="<#if menuRouteMap[thirdChild.id?string]??>active</#if>">
+                                <a href="${thirdChild.url}">${thirdChild.actionName}</a>
+                            </li>
+                            </#list>
+                        </ul>
+
                         </#if>
-                         </li>
-                     </ul>
-                 </#if>
-            </li>
+                    </li>
+                </#list>
+            </ul>
+            </#if>
+        </li>
         </#list>
-    </ul>
-</div>
+        </ul>
+    </div>
+</aside>

@@ -1,0 +1,164 @@
+<@override name="page-content">
+<!-- Breadcrumb -->
+<ol class="breadcrumb hidden-xs">
+  <li><a href="indexl.html">首页</a></li>
+  <li  class="active">质量基础</li>
+</ol>
+
+<h4 class="page-title">进出口检验检疫</h4>
+
+
+<div class="block-area">
+
+
+  <!--  Recent Postings -->
+  <div class="row" style="margin-top:0px">
+    <div class="col-md-6">
+      <div class="tile">
+        <h2 class="tile-title">截获进境有害生物种类情况</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_imp_bio" style="width: 100%;height:300px;"></div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="tile">
+        <h2 class="tile-title">出口消费类产品被扣留（召回）原因</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_exp_consumer" style="width: 100%;height:300px;"></div>
+      </div>
+    </div>
+
+    <!-- 光学 声学  化学  电离辐射 -->
+
+    <div class="col-md-4">
+      <div class="tile">
+        <h2 class="tile-title">动植物产品、饲料产品国外扣留（召回）</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_detain1" style="width: 100%;height:400px;"></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="tile">
+        <h2 class="tile-title">动植物、饲料产品国外扣留（召回）原因</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_detain2" style="width: 100%;height:400px;"></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="tile">
+        <h2 class="tile-title">消费类产品种类扣留（召回）</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_detain3" style="width: 100%;height:400px;"></div>
+      </div>
+    </div>
+    <!-- Tasks to do -->
+    <div class="col-md-6">
+      <div class="tile">
+        <h2 class="tile-title">轻纺类产品出口国家及组织扣留（召回）</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu pull-right text-right">
+            <li id="todo-refresh"><a href="">Refresh</a></li>
+            <li id="todo-clear"><a href="">Clear All</a></li>
+          </ul>
+        </div>
+        <div id="div_detain4" style="width: 100%;height:300px;"></div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="clearfix"></div>
+  <!--                         </div> --><!-- 12 -->
+  <div class="clearfix"></div>
+  <!--                     </div> --><!-- row -->
+</div>
+</@override>
+
+<@override name="custom-script">
+<script src="/assets/Scripts/china.js"></script>
+<script src="/assets/Scripts/detain.js"></script>
+<script src="/assets/Scripts/import.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        $(".c1").animate({
+            height: "70%"
+        },1000);
+        $(".c2").animate({
+            height: "50%"
+        },1000);
+        $(".c3").animate({
+            height: "33%"
+        },1000);
+        $(".c4").animate({
+            height: "23%"
+        },1000);
+        $(".c5").animate({
+            height: "13%"
+        },1000)
+        //$('#container1').hotSpot();
+    });
+    // 基于准备好的dom，初始化echarts实例
+    var chart_imp_bio = echarts.init(document.getElementById('div_imp_bio'));
+
+    chart_imp_bio.setOption(option_import11);
+    // 基于准备好的dom，初始化echarts实例
+    var chart_exp_consumer = echarts.init(document.getElementById('div_exp_consumer'));
+    chart_exp_consumer.setOption(option_detain5);
+
+    var chart_detain1 = echarts.init(document.getElementById('div_detain1'));
+    chart_detain1.setOption(option_detain1);
+
+    var chart_detain2 = echarts.init(document.getElementById('div_detain2'));
+    chart_detain2.setOption(option_detain2);
+
+    var chart_detain3 = echarts.init(document.getElementById('div_detain3'));
+    chart_detain3.setOption(option_detain3);
+
+    var chart_detain4 = echarts.init(document.getElementById('div_detain4'));
+    chart_detain4.setOption(option_detain4);
+    $('.accordion').find('a').each(function () {
+        if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
+            $(this).parent().addClass('active');
+            $(this).parent().parent().addClass('open');
+            $(this).parent().parent().parent().addClass('open');
+        }
+        //else {
+        //$(this).parent().parent().parent().removeClass('open'); // this.className = 'active';
+        //}
+    });
+</script>
+</@override>
+<@extends name="/common/base.html"/>

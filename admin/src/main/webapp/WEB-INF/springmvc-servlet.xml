@@ -48,7 +48,7 @@
 	<bean id="overrideDirective" class="com.ejunhai.qutihuo.common.freemarker.directive.OverrideDirective"/>
 	<bean id="superDirective" class="com.ejunhai.qutihuo.common.freemarker.directive.SuperDirective"/>
 	
-	<!-- 模板配置 -->
+	<!-- freemarker模板配置,模板引擎，详见freemarker文档 -->
 	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
 		<property name="templateLoaderPath"  value="/WEB-INF/pages/" />
 		<property name="defaultEncoding" value="UTF-8" />

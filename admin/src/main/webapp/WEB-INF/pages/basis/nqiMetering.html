@@ -1,0 +1,111 @@
+<@override name="page-content">
+<!-- Breadcrumb -->
+<ol class="breadcrumb hidden-xs">
+  <li><a href="indexl.html">首页</a></li>
+  <li  class="active">质量基础</li>
+</ol>
+
+<h4 class="page-title">计量法制管理</h4>
+<div class="block-area">
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="nav nav-tabs">
+        <li  style="width:25%"  class="active">
+          <a data-toggle="tab" href="#fwq"
+             onclick="showMeteringLawManagement('div_m_std')">计量标准</a>
+        </li>
+        <li style="width:25%">
+          <a data-toggle="tab"  href="#fwq"
+             onclick="showMeteringLawManagement('authorization')">计量授权</a>
+        </li>
+        <!--<li style="width:25%">
+          <a data-toggle="tab"  href="#jhj"
+          onclick="jhjTabClick()">型式批准证书</a>
+        </li>
+        <li style="width:25%">
+          <a data-toggle="tab"  href="#jhj"
+          onclick="jhjTabClick()">许可单位个体</a>
+        </li>-->
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="tab-content" style="min-height: 260px;">
+      <div id="fwq" class="tab-pane active">
+        <div class="col-md-12">
+          <!-- Main Chart -->
+          <div class="tile">
+            <div style="float:left;width:98%;height:400px" id="div_m_legal"></div>
+
+          </div>
+        </div><!-- col -->
+      </div>
+    </div>
+  </div><!-- row -->
+</div>
+<hr class="whiter" />
+<h4 class="page-title">计量仪器检定情况</h4>
+<div class="block-area">
+  <!--  Recent Postings -->
+  <div class="row" style="margin-top:8px">
+    <div id="div_metering_inspection" style="width:100%;height:500px">
+    </div>
+  </div>
+  <div class="clearfix"></div>
+  <!--                         </div> --><!-- 12 -->
+  <div class="clearfix"></div>
+  <!--                     </div> --><!-- row -->
+</div>
+</@override>
+
+<@override name="custom-script">
+<script type="text/javascript" src="/assets/Scripts/china.js"></script>
+<script type="text/javascript" src="/assets/Scripts/meteringlaw.js"></script>
+<script type="text/javascript">
+    var chart_m_legal = echarts.init(document.getElementById('div_m_legal'));
+    chart_m_legal.setOption(metering_std_option);
+    function showMeteringLawManagement(id){
+        var chart_m_legal = echarts.init(document.getElementById('div_m_legal'));
+        chart_m_legal.setOption(metering_std_option);
+        if(id== 'authorization'){
+            chart_m_legal.clear();
+            chart_m_legal.setOption(metering_auth_option);
+        }
+
+    }
+    $(document).ready(function(){
+        $(".c1").animate({
+            height: "70%"
+        },1000);
+        $(".c2").animate({
+            height: "50%"
+        },1000);
+        $(".c3").animate({
+            height: "33%"
+        },1000);
+        $(".c4").animate({
+            height: "23%"
+        },1000);
+        $(".c5").animate({
+            height: "13%"
+        },1000)
+        //$('#container1').hotSpot();
+    });
+    // 基于准备好的dom，初始化echarts实例
+
+    // 基于准备好的dom，初始化echarts实例
+    var chart_metering_inspection = echarts.init(document.getElementById('div_metering_inspection'));
+    chart_metering_inspection.setOption(option_metering_inspection);
+    $('.accordion').find('a').each(function () {
+        if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
+            $(this).parent().addClass('active');
+            $(this).parent().parent().addClass('open');
+            $(this).parent().parent().parent().addClass('open');
+        }
+        //else {
+        //$(this).parent().parent().parent().removeClass('open'); // this.className = 'active';
+        //}
+    });
+</script>
+</@override>
+<@extends name="/common/base.html"/>

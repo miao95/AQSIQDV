@@ -44,7 +44,7 @@
         <div class="tile-config dropdown">
           <a data-toggle="dropdown" href="" class="tile-menu"></a>
           <ul class="dropdown-menu pull-right text-right">
-            <li><a class="tile-info-toggle" href="">查询</a></li>
+            <li><a class="tile-info-toggle" href="" onclick="queryMain()">查询</a></li>
             <li><a href="">Refresh</a></li>
             <li><a href="">Settings</a></li>
           </ul>
@@ -90,7 +90,7 @@
               强制：263
             </div>
           </div>
-          <div id="c1_stddiv_province" style="margin-top:-240px;margin-left:320px;height:250px;width:80%">
+          <div id="c1_stddiv_province" style="margin-top:-240px;margin-left:320px;height:250px;width:75%">
           </div>
         </div>
 
@@ -150,19 +150,73 @@
             强制：263
           </div>
         </div>
-        <div id="c1_stddiv_province_1" style="margin-top:-240px;margin-left:320px;height:250px;width:80%">
+        <div id="c1_stddiv_province_1" >
         </div>
       </div>
     </div>
   </div>
 
 </div>
+
+<!---  查询地方情况模态框 -->
+<!-- 模态框示例（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="myModalLabel">
+          查询
+        </h4>
+      </div>
+      <div class="modal-body" style="height:500px; overflow:auto;">
+        <form role="form">
+          <div class="form-group">
+            <label for="user_id" class="col-sm-3 control-label">年份</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="user_id" name="user_id" value=""
+                     placeholder="请选择年份">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="user_name" class="col-sm-3 control-label">地区</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="user_name" value="" id="user_name"
+                     placeholder="请选择地区">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address" class="col-sm-3 control-label">维度</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" name="address" value="" id="address"
+                     placeholder="请选择查询维度">
+            </div>
+          </div>
+
+
+        </form>
+      </div>
+      <div class="modal-footer" style="text-align: right;">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 15px;">关闭</button>
+        <button type="submit" class="btn btn-primary" style="font-size: 15px;">查询</button><span id="tip"> </span>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+</div>
+
+
+
 </@override>
 
 <@override name="custom-script">
 <script type="text/javascript" src="/assets/Scripts/china.js"></script>
 <script type="text/javascript" src="/assets/Scripts/standardization.js"></script>
 <script src="/assets/js/media-player.min.js"></script> <!-- USA Map for jVectorMap -->
+<script src="/assets/my-scripts/nqi.js"></script>
 
 <script type="text/javascript">
     var std_chart = echarts.init(document.getElementById("c1_stddiv_zxd"));

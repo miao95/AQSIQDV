@@ -1,4 +1,6 @@
 <@override name="custom-css">
+<link rel="stylesheet" href="/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="/assets/css/my-style.css">
 <style type="text/css">
   .r_out {width:120px; height:120px; border:2px solid #d9d9d9; background:#fff; box-shadow:3px 3px 5px #bfbfbf; -webkit-box-shadow:3px 3px 5px #bfbfbf; -moz-box-shadow:3px 3px 5px #bfbfbf; -ms-box-shadow:3px 3px 5px #bfbfbf; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; display:inline-block; margin-right:90px; position:relative;}
   .r_out p {position:absolute; /**bottom:-50px;*/ color:#fff; text-align:center; margin:0 auto; width:100%; font-size:14px; line-height:1.5; font-weight:bold;}
@@ -175,26 +177,46 @@
       <div class="modal-body" style="height:500px; overflow:auto;">
         <form role="form">
           <div class="form-group">
-            <label for="user_id" class="col-sm-3 control-label">年份</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" id="user_id" name="user_id" value=""
-                     placeholder="请选择年份">
+            <label for="year_name" class="col-sm-3 control-label">年份</label>
+            <div class="col-sm-9 my-select-bg">
+              <select id="year_name" class="selectpicker" multiple data-live-search="true"
+                      data-actions-box="true" data-width="100%" title="请选择年份">
+                <option value="1">2018年</option>
+                <option value="2">2017年</option>
+                <option value="3">2016年</option>
+                <option value="4">2015年</option>
+                <option value="5">2014年</option>
+              </select>
             </div>
+            <div style="clear:both;"></div>
           </div>
 
           <div class="form-group">
-            <label for="user_name" class="col-sm-3 control-label">地区</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" name="user_name" value="" id="user_name"
-                     placeholder="请选择地区">
+            <label for="area_name" class="col-sm-3 control-label">地区</label>
+            <div class="col-sm-9 my-select-bg">
+              <select id="area_name" class="selectpicker" multiple data-live-search="true"
+                      data-actions-box="true" data-width="100%" title="请选择省份">
+                <option value="1">广东省</option>
+                <option value="2">广西省</option>
+                <option value="3">福建省</option>
+                <option value="4">湖南省</option>
+                <option value="5">山东省</option>
+              </select>
             </div>
+            <div style="clear:both;"></div>
           </div>
           <div class="form-group">
-            <label for="address" class="col-sm-3 control-label">维度</label>
-            <div class="col-sm-9">
-              <input type="text" class="form-control" name="address" value="" id="address"
-                     placeholder="请选择查询维度">
+            <label for="method_name" class="col-sm-3 control-label">维度</label>
+            <div class="col-sm-9 my-select-bg">
+              <select id="method_name" class="selectpicker" multiple data-live-search="true"
+                      data-actions-box="true" data-width="100%" title="请选择维度">
+                <option value="1">制定</option>
+                <option value="2">修订</option>
+                <option value="3">推荐</option>
+                <option value="4">强制</option>
+              </select>
             </div>
+            <div style="clear:both;"></div>
           </div>
 
 
@@ -217,6 +239,7 @@
 <script type="text/javascript" src="/assets/Scripts/standardization.js"></script>
 <script src="/assets/js/media-player.min.js"></script> <!-- USA Map for jVectorMap -->
 <script src="/assets/my-scripts/nqi.js"></script>
+<script src="/assets/js/bootstrap-select.min.js"></script>
 
 <script type="text/javascript">
     var std_chart = echarts.init(document.getElementById("c1_stddiv_zxd"));

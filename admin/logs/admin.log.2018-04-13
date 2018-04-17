@@ -1,837 +1,543 @@
-[DEBUG] 2018-04-17 13:22:54,015
+[DEBUG] 2018-04-13 13:09:43,712
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:22:54,140
+[DEBUG] 2018-04-13 13:09:43,812
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: SELECT * FROM tb_system_area 
 ***********************
 
-[DEBUG] 2018-04-17 13:22:54,141
+[DEBUG] 2018-04-13 13:09:43,822
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,367
+[DEBUG] 2018-04-13 13:10:04,822
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,375
+[DEBUG] 2018-04-13 13:10:04,835
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, login_name, passwd, nickname, telephone, user_type, merchant_id, picture_url, state, role_ids, create_time, update_time from tb_system_user where login_name = ? 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,378
+[DEBUG] 2018-04-13 13:10:04,836
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: luozj(String)
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,606
+[DEBUG] 2018-04-13 13:10:04,920
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,685
+[DEBUG] 2018-04-13 13:10:04,988
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,686
+[DEBUG] 2018-04-13 13:10:04,988
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,745
+[DEBUG] 2018-04-13 13:10:05,036
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,751
+[DEBUG] 2018-04-13 13:10:05,042
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,752
+[DEBUG] 2018-04-13 13:10:05,043
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,786
+[DEBUG] 2018-04-13 13:10:05,085
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,788
+[DEBUG] 2018-04-13 13:10:05,086
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,788
+[DEBUG] 2018-04-13 13:10:05,087
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,791
+[DEBUG] 2018-04-13 13:10:05,100
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,802
+[DEBUG] 2018-04-13 13:10:05,112
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:03,803
+[DEBUG] 2018-04-13 13:10:05,114
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,108
+[DEBUG] 2018-04-13 13:10:08,646
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,110
+[DEBUG] 2018-04-13 13:10:08,663
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,111
+[DEBUG] 2018-04-13 13:10:08,663
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,115
+[DEBUG] 2018-04-13 13:10:08,670
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,126
+[DEBUG] 2018-04-13 13:10:08,675
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,126
+[DEBUG] 2018-04-13 13:10:08,675
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,140
+[DEBUG] 2018-04-13 13:10:08,681
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,141
+[DEBUG] 2018-04-13 13:10:08,684
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,142
+[DEBUG] 2018-04-13 13:10:08,684
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,158
+[DEBUG] 2018-04-13 13:10:08,693
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,163
+[DEBUG] 2018-04-13 13:10:08,697
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 13:23:07,163
+[DEBUG] 2018-04-13 13:10:08,698
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,721
+[DEBUG] 2018-04-13 13:10:40,893
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,722
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, login_name, passwd, nickname, telephone, user_type, merchant_id, picture_url, state, role_ids, create_time, update_time from tb_system_user where login_name = ? 
-***********************
-
-[DEBUG] 2018-04-17 14:29:11,723
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: luozj(String)
-***********************
-
-[DEBUG] 2018-04-17 14:29:11,739
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:29:11,750
+[DEBUG] 2018-04-13 13:10:40,895
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,750
+[DEBUG] 2018-04-13 13:10:40,896
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,769
+[DEBUG] 2018-04-13 13:10:40,908
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,787
+[DEBUG] 2018-04-13 13:10:40,924
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,788
+[DEBUG] 2018-04-13 13:10:40,925
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,801
+[DEBUG] 2018-04-13 13:10:40,929
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,806
+[DEBUG] 2018-04-13 13:10:40,931
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,807
+[DEBUG] 2018-04-13 13:10:40,931
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,831
+[DEBUG] 2018-04-13 13:10:40,934
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,842
+[DEBUG] 2018-04-13 13:10:40,939
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:11,843
+[DEBUG] 2018-04-13 13:10:40,939
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,753
+[DEBUG] 2018-04-13 13:10:42,802
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,762
+[DEBUG] 2018-04-13 13:10:42,804
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,763
+[DEBUG] 2018-04-13 13:10:42,805
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,771
+[DEBUG] 2018-04-13 13:10:42,809
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,773
+[DEBUG] 2018-04-13 13:10:42,816
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,774
+[DEBUG] 2018-04-13 13:10:42,816
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,781
+[DEBUG] 2018-04-13 13:10:42,833
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,783
+[DEBUG] 2018-04-13 13:10:42,835
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,786
+[DEBUG] 2018-04-13 13:10:42,835
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,790
+[DEBUG] 2018-04-13 13:10:42,838
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,798
+[DEBUG] 2018-04-13 13:10:42,841
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:15,803
+[DEBUG] 2018-04-13 13:10:42,842
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:47,967
+[DEBUG] 2018-04-13 13:10:45,342
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:47,969
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, login_name, passwd, nickname, telephone, user_type, merchant_id, picture_url, state, role_ids, create_time, update_time from tb_system_user where login_name = ? 
-***********************
-
-[DEBUG] 2018-04-17 14:29:47,969
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: luozj(String)
-***********************
-
-[DEBUG] 2018-04-17 14:29:47,983
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:29:47,986
+[DEBUG] 2018-04-13 13:10:45,345
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:47,987
+[DEBUG] 2018-04-13 13:10:45,345
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:47,992
+[DEBUG] 2018-04-13 13:10:45,347
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:47,996
+[DEBUG] 2018-04-13 13:10:45,350
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:47,996
+[DEBUG] 2018-04-13 13:10:45,350
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:48,002
+[DEBUG] 2018-04-13 13:10:45,354
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:48,004
+[DEBUG] 2018-04-13 13:10:45,355
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:48,004
+[DEBUG] 2018-04-13 13:10:45,355
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:48,010
+[DEBUG] 2018-04-13 13:10:45,357
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:48,020
+[DEBUG] 2018-04-13 13:10:45,359
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:48,023
+[DEBUG] 2018-04-13 13:10:45,359
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,593
+[DEBUG] 2018-04-13 13:10:47,062
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,595
+[DEBUG] 2018-04-13 13:10:47,065
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,595
+[DEBUG] 2018-04-13 13:10:47,066
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,597
+[DEBUG] 2018-04-13 13:10:47,071
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,609
+[DEBUG] 2018-04-13 13:10:47,076
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,610
+[DEBUG] 2018-04-13 13:10:47,076
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,613
+[DEBUG] 2018-04-13 13:10:47,080
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,615
+[DEBUG] 2018-04-13 13:10:47,081
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,617
+[DEBUG] 2018-04-13 13:10:47,082
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==> Parameters: 1(Integer)
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,619
+[DEBUG] 2018-04-13 13:10:47,085
 java.sql.Connection
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ooo Connection Opened
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,622
+[DEBUG] 2018-04-13 13:10:47,088
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************
 ==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
 ***********************
 
-[DEBUG] 2018-04-17 14:29:50,623
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,936
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,943
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,943
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 1(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,946
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,948
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,948
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,953
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,955
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,955
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 1(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,964
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,966
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:30:57,967
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,799
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,802
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,802
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 1(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,804
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,808
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,809
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,818
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,819
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,819
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 1(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,821
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,823
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:31:25,824
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,958
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,963
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,964
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 1(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,979
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,984
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,985
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 32(Integer), 1(Integer), 33(Integer), 2(Integer), 3(Integer), 4(Integer), 14(Integer), 15(Integer), 16(Integer), 17(Integer), 18(Integer), 19(Integer), 20(Integer), 21(Integer), 22(Integer), 23(Integer), 24(Integer), 25(Integer), 26(Integer), 27(Integer), 28(Integer), 29(Integer), 30(Integer), 31(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,994
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,996
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, role_id, action_id from tb_system_privilage where role_id in ( ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,996
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==> Parameters: 1(Integer)
-***********************
-
-[DEBUG] 2018-04-17 14:48:30,998
-java.sql.Connection
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-ooo Connection Opened
-***********************
-
-[DEBUG] 2018-04-17 14:48:31,001
-java.sql.PreparedStatement
-StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
-***********************
-==>  Executing: select id, action_name, action_type, parent_id, url, icon_css, remark, weight, create_time from tb_system_action where id in ( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? ) 
-***********************
-
-[DEBUG] 2018-04-17 14:48:31,001
+[DEBUG] 2018-04-13 13:10:47,088
 java.sql.PreparedStatement
 StackTrace : org.apache.ibatis.logging.slf4j.Slf4jImpl.debug(Slf4jImpl.java:28)
 ***********************

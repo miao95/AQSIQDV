@@ -1,5 +1,7 @@
 $(function () {
     //js初始化方法
+    initTimeSelects("year_name");
+    initProvinceSelects("area_name");
 });
 
 //查询当地情况面板
@@ -20,6 +22,43 @@ function centerModals(domId) {
         top = top > 0 ? top : 0;
         $clone.remove();
         $(this).find('.modal-content').css("margin-top", top);
+    });
+}
+
+//显示最近n年的数据
+function getYearList(n) {
+    var dateTime = new Date();
+    var year = dateTime.getFullYear();
+
+    var yearList = new Array(n);
+    for(var i = 0; i < n; i++){
+        yearList[i] = year;
+        year--;
+    }
+
+    return yearList;
+}
+
+//初始化日期下拉列表
+function initTimeSelects(domId){
+    var data = getYearList(10);
+    $.each(data, function (i, item) {
+        $("#" + domId).append(" <option value=\"" + item + "\">" + item + "年" + "</option>");
+    });
+    $("#" + domId).selectpicker('refresh');
+}
+
+function initProvinceSelects(domId) {
+    $.ajax({
+        type: "POST",//请求方式
+        url: "/assets/json/province.json",//地址，就是json文件的请求路径
+        dataType: "json",//数据类型可以为 text xml json  script  jsonp
+        success: function(result){
+            $.each(result, function (i, item) {
+                $("#" + domId).append(" <option value=\"" + item.name + "\">" + item.name + "</option>");
+            });
+            $("#" + domId).selectpicker('refresh');
+        }
     });
 }
 

@@ -13,6 +13,22 @@ function queryMain(){
     $(window).on('resize', centerModals("myModal"));
 }
 
+//查询制修订等情况
+function queryStandard(){
+    $.ajax({
+        type: "POST",//为post请求
+        url: "/basis/findStandardByParams.action",
+        data: $('#query-standard-fm').serialize(),//将该表单序列化
+        async: false,
+        error: function(data){//请求失败之后的操作
+            return;
+        },
+        success: function(data){//请求成功之后的操作
+            console.log("success");
+        }
+    });
+}
+
 //模态框居中
 function centerModals(domId) {
     var domId = '#' + domId;

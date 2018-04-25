@@ -37,6 +37,10 @@ public class PrivilageInterceptor implements HandlerInterceptor {
 			return true;
 		}
 
+		if(request.getRequestURI().endsWith(".action")) {
+			return true;
+		}
+
 		// 获取当前用户所拥有的action列表
 		String roleIds = SessionManager.get(request).getRoleIds();
 		List<SystemPrivilage> authorizedPrivilageList = systemPrivilageService.getSystemPrivilageListByRoleIds(roleIds);

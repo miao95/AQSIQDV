@@ -51,48 +51,8 @@
             <li><a href="">Settings</a></li>
           </ul>
         </div>
-        <div class="row" style="margin-top:10px" >
-          <div class='col-md-2'>
-            <div class='col-md-6'>
-              <div style="margin-left:75px;margin-top:7px">年份:</div>
-            </div>
-            <div class='col-md-6'>
-              <select class="select">
-                <option>2017年</option>
-                <option>2016年</option>
-                <option>2015年</option>
-                <option>2014年</option>
-                <option>2013年</option>
-              </select>
-            </div>
-          </div>
-          <br />
-        </div>
         <div id="c1_stddiv_content" class="robin_circle" style="margin: 6px 0px 18px 20px;">
-          <div class="r_out">
-            <div class="r_in" id="c1_stddiv_zxd">
-            </div>
-            <p>按制、修订分</p><br>
-            <div class="alert alert-success alert-lost">
-              制订：3848
-            </div>
-            <div class="alert alert-warning alert-lost">
-              修订：283
-            </div>
-          </div>
-          <div class="r_out">
-            <div class="r_in" id="c1_stddiv_xz">
-
-            </div>
-            <p>按性质分</p><br>
-            <div class="alert alert-success alert-lost" >
-              推荐：3648
-            </div>
-            <div class="alert alert-warning alert-lost" >
-              强制：263
-            </div>
-          </div>
-          <div id="c1_stddiv_province" style="margin-top:-240px;margin-left:320px;height:250px;width:75%">
+          <div id="c1_stddiv_province" style="margin-top:20px;height:250px;width:100%">
           </div>
         </div>
 
@@ -111,47 +71,9 @@
           <li><a href="">Settings</a></li>
         </ul>
       </div>
-      <div class="row" style="margin-top:10px" >
-        <div class='col-md-2'>
-          <div class='col-md-6'>
-            <div style="margin-left:75px;margin-top:7px">年份:</div>
-          </div>
-          <div class='col-md-6'>
-            <select class="select">
-              <option>2017年</option>
-              <option>2016年</option>
-              <option>2015年</option>
-              <option>2014年</option>
-              <option>2013年</option>
-            </select>
-          </div>
-        </div>
-        <br />
-      </div>
-      <div id="c1_stddiv_content_1_111" class="robin_circle" style="margin: 6px 0px 18px 20px;">
-        <div class="r_out">
-          <div class="r_in" id="c1_stddiv_zxd_1">
-          </div>
-          <p>按制、修订分</p><br>
-          <div class="alert alert-success alert-lost">
-            制订：3848
-          </div>
-          <div class="alert alert-warning alert-lost">
-            修订：283
-          </div>
-        </div>
-        <div class="r_out">
-          <div class="r_in" id="c1_stddiv_xz_1">
 
-          </div>
-          <p>按性质分</p><br>
-          <div class="alert alert-success alert-lost" >
-            推荐：3648
-          </div>
-          <div class="alert alert-warning alert-lost" >
-            强制：263
-          </div>
-        </div>
+      <div id="c1_stddiv_content_1_111" class="robin_circle" style="margin: 6px 0px 18px 20px;">
+
         <div id="c1_stddiv_province_1" >
         </div>
       </div>
@@ -175,11 +97,11 @@
         </h4>
       </div>
       <div class="modal-body" style="height:500px; overflow:auto;">
-        <form role="form">
+        <form id="query-standard-fm" role="form">
           <div class="form-group">
             <label for="year_name" class="col-sm-3 control-label">年份</label>
             <div class="col-sm-9 my-select-bg">
-              <select id="year_name" class="selectpicker" multiple data-live-search="true"
+              <select id="year_name" name="yearName" class="selectpicker" multiple data-live-search="true"
                       data-actions-box="true" data-width="100%" title="请选择年份">
               </select>
             </div>
@@ -189,7 +111,7 @@
           <div class="form-group">
             <label for="area_name" class="col-sm-3 control-label">地区</label>
             <div class="col-sm-9 my-select-bg">
-              <select id="area_name" class="selectpicker" multiple data-live-search="true"
+              <select id="area_name"  name="areaName" class="selectpicker" multiple data-live-search="true"
                       data-actions-box="true" data-width="100%" title="请选择省份">
               </select>
             </div>
@@ -198,7 +120,7 @@
           <div class="form-group">
             <label for="method_name" class="col-sm-3 control-label">维度</label>
             <div class="col-sm-9 my-select-bg">
-              <select id="method_name" class="selectpicker" multiple data-live-search="true"
+              <select id="method_name" name="methodName" class="selectpicker" multiple data-live-search="true"
                       data-actions-box="true" data-width="100%" title="请选择维度">
                 <option value="1">制定</option>
                 <option value="2">修订</option>
@@ -208,13 +130,11 @@
             </div>
             <div style="clear:both;"></div>
           </div>
-
-
         </form>
       </div>
       <div class="modal-footer" style="text-align: right;">
         <button type="button" class="btn btn-default" data-dismiss="modal" style="font-size: 15px;">关闭</button>
-        <button type="submit" class="btn btn-primary" style="font-size: 15px;">查询</button><span id="tip"> </span>
+        <button type="button" class="btn btn-primary" onclick="queryStandard()" style="font-size: 15px;">查询</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal -->
@@ -232,10 +152,10 @@
 <script src="/assets/js/bootstrap-select.min.js"></script>
 
 <script type="text/javascript">
-    var std_chart = echarts.init(document.getElementById("c1_stddiv_zxd"));
+   /* var std_chart = echarts.init(document.getElementById("c1_stddiv_zxd"));
     std_chart.setOption(std_zxd_option);
     var std_chart_xz = echarts.init(document.getElementById("c1_stddiv_xz"));
-    std_chart_xz.setOption(std_qztj_option);
+    std_chart_xz.setOption(std_qztj_option);*/
     var std_chart_province = echarts.init(document.getElementById("c1_stddiv_province"));
     std_chart_province.setOption(std_province_option);
     $('.accordion').find('a').each(function () {

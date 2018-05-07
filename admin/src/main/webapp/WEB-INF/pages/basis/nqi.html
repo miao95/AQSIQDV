@@ -146,7 +146,7 @@
 
 <@override name="custom-script">
 <script type="text/javascript" src="/assets/Scripts/china.js"></script>
-<script type="text/javascript" src="/assets/Scripts/standardization.js"></script>
+<!--<script type="text/javascript" src="/assets/Scripts/standardization.js"></script>-->
 <script src="/assets/js/media-player.min.js"></script> <!-- USA Map for jVectorMap -->
 <script src="/assets/my-scripts/nqi.js"></script>
 <script src="/assets/js/bootstrap-select.min.js"></script>
@@ -156,17 +156,15 @@
     std_chart.setOption(std_zxd_option);
     var std_chart_xz = echarts.init(document.getElementById("c1_stddiv_xz"));
     std_chart_xz.setOption(std_qztj_option);*/
-    var std_chart_province = echarts.init(document.getElementById("c1_stddiv_province"));
-    std_chart_province.setOption(std_province_option);
+    /*var std_chart_province = echarts.init(document.getElementById("c1_stddiv_province"));
+    std_chart_province.setOption(std_province_option);*/
+    //展开导航栏，手风琴模式
     $('.accordion').find('a').each(function () {
         if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
             $(this).parent().addClass('active');
             $(this).parent().parent().addClass('open');
             $(this).parent().parent().parent().addClass('open');
         }
-        // else {
-        //     $(this).parent().parent().parent().removeClass('open'); // this.className = 'active';
-        // }
     });
 
 </script>

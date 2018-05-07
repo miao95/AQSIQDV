@@ -2,6 +2,8 @@ $(function () {
     //js初始化方法
     initTimeSelects("year_name");
     initProvinceSelects("area_name");
+
+    drawLineChart("c1_stddiv_province");
 });
 
 //查询当地情况面板
@@ -76,5 +78,80 @@ function initProvinceSelects(domId) {
             $("#" + domId).selectpicker('refresh');
         }
     });
+}
+
+/**
+ * 条形图，显示最近一年全部省份总体制修订数量
+ * @param domId
+ */
+function drawLineChart(domId) {
+    var data2016 = [253,220,215,211,208,205,203,199,185,179,169,140,139,137,131,124,122,121,118,94,94,93,90,90,78,71,67,63,52,50,10];
+    var yAxisData = ['安徽','四川','江苏','山西','广西','山东','辽宁','黑龙江','吉林','河南','广东','新疆','甘肃','宁夏','内蒙古','河北','天津','北京','湖南','湖北','贵州','云南','福建','重庆','海南','上海','陕西','青海','江西','浙江','西藏'];
+
+    $.ajax({
+        type: "POST",//为post请求
+        url: "/basis/findTotalStandardForAllProvinces.action",
+        async: false,
+        error: function(data){//请求失败之后的操作
+            return;
+        },
+        success: function(data){//请求成功之后的操作
+            var xData = data.x.split(",");
+            var yData = data.y.split(",");
+            var std_province_option = {
+                title:[
+                    {text:"各省标准制修订数（单位：个）",x: '15%', y: '0%',textStyle:{color:"#fff",fontSize:"14"}},
+                ],
+                grid: [
+                    {x: '8%', y: '7%', width: '85%', height: '80%'},
+                ],
+                tooltip: {
+                    formatter: '{b} ({c})'
+                },
+
+                xAxis: [
+                    {
+                        data:xData,
+                        axisLabel: {
+                            show:true,
+                            rotate:30,
+                            interval:0,
+                            textStyle:{
+                                color:'#fff'
+                            }
+                        },
+                        type:'category',
+                    },
+                ],
+                yAxis: [
+                    {
+                        type:'value',
+                        axisLabel: {show:true,
+                            textStyle:{
+                                color:'#fff'
+                            }
+                        },
+                    }
+                ],
+                series: [
+                    {
+                        name: '各省标准制修订数（单位：个）',
+                        type: 'bar',
+                        xAxisIndex: 0,
+                        yAxisIndex: 0,
+                        barWidth:'45%',
+                        itemStyle:{normal:{color:'#ffff66'}},
+                        data: yData
+                    },
+
+                ]
+            };
+
+            var std_chart_province = echarts.init(document.getElementById(domId));
+            std_chart_province.setOption(std_province_option);
+        }
+    });
+
+
 }
 

@@ -11,10 +11,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ejunhai.qutihuo.aftersale.dto.AfterSaleRequDto;
-import com.ejunhai.qutihuo.aftersale.enums.RequState;
-import com.ejunhai.qutihuo.aftersale.model.AfterSaleRequ;
-import com.ejunhai.qutihuo.aftersale.service.AfterSaleRequService;
+import com.ejunhai.qutihuo.basis.dto.AfterSaleRequDto;
+import com.ejunhai.qutihuo.basis.enums.RequState;
+import com.ejunhai.qutihuo.basis.model.AfterSaleRequ;
+import com.ejunhai.qutihuo.basis.service.AfterSaleRequService;
 import com.ejunhai.qutihuo.common.base.BaseController;
 import com.ejunhai.qutihuo.common.utils.PropertyConfigurer;
 import com.ejunhai.qutihuo.coupon.model.Coupon;

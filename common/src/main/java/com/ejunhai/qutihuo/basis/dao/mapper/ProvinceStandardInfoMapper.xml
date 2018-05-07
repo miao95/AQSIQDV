@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejunhai.qutihuo.basis.dao.ProvinceStandardInfoMapper" >
+    <resultMap id="ProvinceStandardMapper" type="com.ejunhai.qutihuo.basis.model.ProvinceStandard" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="year" property="year" jdbcType="INTEGER" />
+        <result column="bnd_zxd_zd" property="bndZxdZd" jdbcType="INTEGER" />
+        <result column="bnd_zxd_xd" property="bndZxdXd" jdbcType="INTEGER" />
+        <result column="bnd_xz_qz" property="bndXzQz" jdbcType="INTEGER" />
+        <result column="bnd_xz_tj" property="bndXzTj" jdbcType="INTEGER" />
+        <result column="province" property="province" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        id,
+        year,
+        bnd_zxd_zd,
+        bnd_zxd_xd,
+        bnd_xz_qz,
+        bnd_xz_tj,
+        province
+    </sql>
+    
+    <select id="read" resultMap="ProvinceStandardMapper" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from province_standard_info
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    
+    <select id="findByParams" parameterType="String" resultMap="ProvinceStandardMapper">
+  		SELECT * FROM province_standard_info
+  		<where>
+            <if test="province != null and province !=''"> and province=#{province} </if>
+            <if test="year != null and year !=''"> and year = #{year} </if>
+        </where>
+  	</select>
+    
+    <!--<insert id="insert" parameterType="com.ejunhai.qutihuo.basis.model.AfterSaleRequ" useGeneratedKeys="true" keyProperty="id" >
+        insert into tb_after_sale_requ (<include refid="Base_Column_List" />)
+        values (
+	        #{id,jdbcType=VARCHAR},
+	        #{merchantId,jdbcType=INTEGER},
+	        #{orderMainNo,jdbcType=VARCHAR},
+	        #{urls,jdbcType=VARCHAR},
+	        #{description,jdbcType=VARCHAR},
+	        #{state,jdbcType=SMALLINT},
+	        #{createTime,jdbcType=TIMESTAMP},
+	        #{dealTime,jdbcType=TIMESTAMP},
+	        #{dealInfo,jdbcType=VARCHAR}
+        )
+    </insert>-->
+    
+    <!--<update id="update" parameterType="com.ejunhai.qutihuo.basis.model.AfterSaleRequ" >
+        update tb_after_sale_requ
+        <set>
+            id = #{id,jdbcType=VARCHAR},
+            merchant_id = #{merchantId,jdbcType=INTEGER},
+            order_main_no = #{orderMainNo,jdbcType=VARCHAR},
+            urls = #{urls,jdbcType=VARCHAR},
+            description = #{description,jdbcType=VARCHAR},
+            state = #{state,jdbcType=SMALLINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            deal_time = #{dealTime,jdbcType=TIMESTAMP},
+            deal_info = #{dealInfo,jdbcType=VARCHAR}
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>-->
+    
+    <!--<select id="queryAfterSaleRequCount" resultType="java.lang.Integer">
+    	select count(1) from tb_after_sale_requ
+    	<where>
+    		<if test="merchantId != null and merchantId !=''"> and merchant_id = #{merchantId} </if>
+    		<if test="orderMainNo != null and orderMainNo !=''"> and order_main_no = #{orderMainNo} </if>
+  			<if test="state != null">and state=#{state} </if>
+		</where>
+    </select>-->
+    
+    <!--<select id="queryAfterSaleRequList" resultMap="ProvinceStandardInfoMapper">
+    	select <include refid="Base_Column_List" /> from tb_after_sale_requ
+    	<where>
+    		<if test="merchantId != null and merchantId !=''"> and merchant_id = #{merchantId} </if>
+    		<if test="orderMainNo != null and orderMainNo !=''"> and order_main_no = #{orderMainNo} </if>
+  			<if test="state != null">and state=#{state} </if>
+		</where>
+		order by create_time desc
+		limit #{offset},#{pageSize}
+    </select>-->
+    
+</mapper>

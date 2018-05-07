@@ -1,6 +1,8 @@
 package com.ejunhai.qutihuo.statistical.dao;
 
 import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -48,5 +50,14 @@ public interface ProvinceStandardMapper {
      * @return 年份数组
      */
     List<Integer> getDistinctYear();
+
+    /**
+     * 根据省份和年份获取
+     *
+     * @param province
+     * @param year
+     * @return
+     */
+     List<ProvinceStandard> findByParams(@Param("province") String province, @Param("year") Integer year);
 
 }

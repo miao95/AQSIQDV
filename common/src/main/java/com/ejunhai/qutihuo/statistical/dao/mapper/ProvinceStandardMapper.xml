@@ -62,5 +62,15 @@
         FROM provincestandardinfo
         ORDER BY YEAR ASC
     </select>
+
+    <select id="findByParams" resultMap="ProvinceStandardMapper" resultType="com.ejunhai.qutihuo.statistical.model.ProvinceStandard">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM provincestandardinfo
+        <where>
+            <if test="province != null and province !=''"> and province=#{province} </if>
+            <if test="year != null and year !=''"> and year = #{year} </if>
+        </where>
+    </select>
     
 </mapper>

@@ -5,6 +5,7 @@ import com.ejunhai.qutihuo.statistical.dto.StandardReviseDto;
 import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
 import com.sun.xml.internal.ws.util.QNameMap;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.*;
@@ -226,5 +227,10 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 			resultList.add(ele);
 		}
 		return resultList;
+	}
+
+	@Override
+	public List<ProvinceStandard> findByParams(String province, Integer year) {
+		return provinceStandardMapper.findByParams(province, year);
 	}
 }

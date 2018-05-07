@@ -1,8 +1,8 @@
 package com.ejunhai.qutihuo.controller;
 
-import com.ejunhai.qutihuo.basis.model.ProvinceStandard;
-import com.ejunhai.qutihuo.basis.service.ProvinceStandardInfoService;
 import com.ejunhai.qutihuo.common.base.BaseController;
+import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
+import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,7 +22,7 @@ import java.util.Map;
 @RequestMapping("basis")
 public class BasisController extends BaseController {
     @Resource
-    private ProvinceStandardInfoService provinceStandardInfoService;
+    private ProvinceStandardService provinceStandardService;
 
     @RequestMapping("/nqi")
     public String nqiPage(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
@@ -62,12 +62,12 @@ public class BasisController extends BaseController {
 
         Integer[] data = new Integer[provinces.length];
         for (int i = 0; i < provinces.length; i++) {
-            List<ProvinceStandard> pojoList = provinceStandardInfoService.findByProvince(provinces[i], "2016");
+            List<ProvinceStandard> pojoList = provinceStandardService.findByParams(provinces[i], 2016);
 
             if(pojoList != null && pojoList.size() > 0){
 
                 ProvinceStandard pojo = pojoList.get(0);
-                data[i] = pojo.getBndZxdXd() + pojo.getBndZxdZd();
+                data[i] = pojo.getBnd_zxd_xd() + pojo.getBnd_zxd_zd();
             }
 
         }

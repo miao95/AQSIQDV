@@ -112,7 +112,7 @@
             <label for="area_name" class="col-sm-3 control-label">地区</label>
             <div class="col-sm-9 my-select-bg">
               <select id="area_name"  name="areaName" class="selectpicker" multiple data-live-search="true"
-                      data-actions-box="true" data-width="100%" title="请选择省份">
+                       data-width="100%" data-max-options="6" title="请选择省份(最多选择6项)">
               </select>
             </div>
             <div style="clear:both;"></div>
@@ -122,10 +122,8 @@
             <div class="col-sm-9 my-select-bg">
               <select id="method_name" name="methodName" class="selectpicker" multiple data-live-search="true"
                       data-actions-box="true" data-width="100%" title="请选择维度">
-                <option value="1">制定</option>
-                <option value="2">修订</option>
-                <option value="3">推荐</option>
-                <option value="4">强制</option>
+                <option value="1">按制定、修订</option>
+                <option value="2">按推荐、强制</option>
               </select>
             </div>
             <div style="clear:both;"></div>

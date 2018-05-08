@@ -45,8 +45,9 @@ function centerModals(domId) {
 
 //显示最近n年的数据
 function getYearList(n) {
-    var dateTime = new Date();
-    var year = dateTime.getFullYear();
+    /*var dateTime = new Date();
+    var year = dateTime.getFullYear();*/
+    var year = 2016;
 
     var yearList = new Array(n);
     for(var i = 0; i < n; i++){
@@ -59,7 +60,7 @@ function getYearList(n) {
 
 //初始化日期下拉列表
 function initTimeSelects(domId){
-    var data = getYearList(10);
+    var data = getYearList(5);
     $.each(data, function (i, item) {
         $("#" + domId).append(" <option value=\"" + item + "\">" + item + "年" + "</option>");
     });
@@ -96,8 +97,9 @@ function drawLineChart(domId) {
             return;
         },
         success: function(data){//请求成功之后的操作
-            var xData = data.x.split(",");
-            var yData = data.y.split(",");
+            var json = JSON.parse(data); //json字符串转为json对象
+            var xData = json.x.split(",");
+            var yData = json.y.split(",");
             var std_province_option = {
                 title:[
                     {text:"各省标准制修订数（单位：个）",x: '15%', y: '0%',textStyle:{color:"#fff",fontSize:"14"}},

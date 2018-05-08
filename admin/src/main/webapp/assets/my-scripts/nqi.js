@@ -86,9 +86,6 @@ function initProvinceSelects(domId) {
  * @param domId
  */
 function drawLineChart(domId) {
-    var data2016 = [253,220,215,211,208,205,203,199,185,179,169,140,139,137,131,124,122,121,118,94,94,93,90,90,78,71,67,63,52,50,10];
-    var yAxisData = ['安徽','四川','江苏','山西','广西','山东','辽宁','黑龙江','吉林','河南','广东','新疆','甘肃','宁夏','内蒙古','河北','天津','北京','湖南','湖北','贵州','云南','福建','重庆','海南','上海','陕西','青海','江西','浙江','西藏'];
-
     $.ajax({
         type: "POST",//为post请求
         url: "/basis/findTotalStandardForAllProvinces.action",
@@ -102,15 +99,23 @@ function drawLineChart(domId) {
             var yData = json.y.split(",");
             var std_province_option = {
                 title:[
-                    {text:"各省标准制修订数（单位：个）",x: '15%', y: '0%',textStyle:{color:"#fff",fontSize:"14"}},
+                    {
+                        text:"各省标准制修订数（单位：个）",
+                        left:"center",
+                        textStyle:{
+                            color:"#fff",
+                            fontSize:"14"
+                        }},
                 ],
+                legend: {
+                    data:['制定','修订']
+                },
                 grid: [
-                    {x: '8%', y: '7%', width: '85%', height: '80%'},
+                    {x: '8%', y: '7%', width: '85%', height: '80%'}
                 ],
                 tooltip: {
                     formatter: '{b} ({c})'
                 },
-
                 xAxis: [
                     {
                         data:xData,
@@ -137,12 +142,30 @@ function drawLineChart(domId) {
                 ],
                 series: [
                     {
-                        name: '各省标准制修订数（单位：个）',
+                        name: '制定',
+                        type: 'bar',
+                        stack: '',
+                        xAxisIndex: 0,
+                        yAxisIndex: 0,
+                        barWidth:'20%',
+                        itemStyle:{
+                            normal:{
+                                color:'#ffff66'
+                            }
+                         },
+                        data: yData
+                    },
+                    {
+                        name: '修订',
                         type: 'bar',
                         xAxisIndex: 0,
                         yAxisIndex: 0,
-                        barWidth:'45%',
-                        itemStyle:{normal:{color:'#ffff66'}},
+                        barWidth:'20%',
+                        itemStyle:{
+                            normal:{
+                                color:'#ffff66'
+                            }
+                        },
                         data: yData
                     },
 

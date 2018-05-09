@@ -15,6 +15,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,26 +58,51 @@ public class BasisController extends BaseController {
     @RequestMapping("/findTotalStandardForAllProvinces")
     @ResponseBody
     public Map findTotalStandardForAllProvinces(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap){
-        String[] provinces = {"安徽省","四川省","江苏省","山西省","山东省","辽宁省"};
+        String[] provinces = { "北京市","天津市","河北省","山西省","内蒙古自治区","辽宁省","吉林省","黑龙江省",
+                "上海市","江苏省","浙江省","安徽省","福建省","江西省","山东省","河南省",
+                "湖北省","湖南省","广东省","广西壮族自治区","海南省","重庆市","四川省","贵州省",
+                "云南省","西藏自治区","陕西省","甘肃省","青海","宁夏回族自治区","新疆维吾尔自治区"};
+        int[] yearList = {2012, 2013, 2014, 2015, 2016};
 
-        Integer[] data = new Integer[provinces.length];
-        for (int i = 0; i < provinces.length; i++) {
-            List<ProvinceStandard> pojoList = provinceStandardService.findByParams(provinces[i], 2016);
 
-            if(pojoList != null && pojoList.size() > 0){
+        List zdList = new ArrayList();//存储“制定”的数据
+        List xdList = new ArrayList();//存储“修订”的数据
+        for (int i = 0; i < yearList.length; i++) {
+            Map zdMap = new HashMap();
+            Map xdMap = new HashMap();
+            /*String zdStr = "";
+            String xdStr = "";*/
+            List list1 = new ArrayList();
+            List list2 = new ArrayList();
+            for (int j = 0; j < provinces.length; j++) {
+                List<ProvinceStandard> pojoList = provinceStandardService.findByParams(provinces[j], yearList[i]);
 
-                ProvinceStandard pojo = pojoList.get(0);
-                data[i] = pojo.getBnd_zxd_xd() + pojo.getBnd_zxd_zd();
+                if(pojoList != null && pojoList.size() > 0){
+                    ProvinceStandard pojo = pojoList.get(0);
+                    /*zdStr += pojo.getBnd_zxd_zd() + ",";
+                    xdStr += pojo.getBnd_zxd_xd() + ",";*/
+                    list1.add(pojo.getBnd_zxd_zd());
+                    list2.add(pojo.getBnd_zxd_xd());
+                }
             }
+
+           /* zdStr = StringUtils.removeEnd(zdStr, ",");
+            xdStr = StringUtils.removeEnd(xdStr, ",");
+
+            zdMap.put(yearList[i], zdStr);
+            xdMap.put(yearList[i], xdStr);*/
+
+            zdMap.put(yearList[i], list1);
+            xdMap.put(yearList[i], list2);
+
+            zdList.add(zdMap);
+            xdList.add(xdMap);
 
         }
 
-        String xData = StringUtils.join(provinces, ",");
-        String yData = StringUtils.join(data, ",");
-
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("x", xData);
-        map.put("y", yData);
+        map.put("zd", zdList);
+        map.put("xd", xdList);
 
        return map;
     }

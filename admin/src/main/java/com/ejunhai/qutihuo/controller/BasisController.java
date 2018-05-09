@@ -56,7 +56,7 @@ public class BasisController extends BaseController {
 
     @RequestMapping("/findTotalStandardForAllProvinces")
     @ResponseBody
-    public String findTotalStandardForAllProvinces(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap){
+    public Map findTotalStandardForAllProvinces(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap){
         String[] provinces = {"安徽省","四川省","江苏省","山西省","山东省","辽宁省"};
 
         Integer[] data = new Integer[provinces.length];
@@ -78,9 +78,6 @@ public class BasisController extends BaseController {
         map.put("x", xData);
         map.put("y", yData);
 
-        Gson gson = new Gson();
-        String json = gson.toJson(map);
-
-        return json;
+       return map;
     }
 }

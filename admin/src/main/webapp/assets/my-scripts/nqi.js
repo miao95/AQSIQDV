@@ -4,6 +4,7 @@ $(function () {
     initProvinceSelects("area_name");
 
     drawLineChart("c1_stddiv_province");
+
 });
 
 //查询当地情况面板
@@ -17,6 +18,16 @@ function queryMain(){
 
 //查询制修订等情况
 function queryStandard(){
+    var yearName = $("#year_name").val();
+    var areaName = $("#area_name").val();
+    var methodName = $("#method_name").val();
+
+    if(yearName == '' || areaName == '' || methodName == '' || yearName == '2015'
+        || yearName == null || areaName == null || methodName == null){
+        $('.selectpicker').selectpicker('val', "");
+        $("#myModal").modal('hide');
+        return;
+    }
     $.ajax({
         type: "POST",//为post请求
         url: "/basis/findStandardByParams.action",
@@ -26,9 +37,25 @@ function queryStandard(){
             return;
         },
         success: function(data){//请求成功之后的操作
-            console.log("success");
+            var json = JSON.parse(data); //json字符串转为json对象
+
+            //echarts绘图
+            drawLineChartByParams("c1_stddiv_province", json);
+
+            $('.selectpicker').selectpicker('val', "");
+
+            $("#myModal").modal('hide');
+
         }
     });
+}
+
+//查询最近一年的
+function queryAll() {
+    drawLineChart("c1_stddiv_province");
+
+    $('.selectpicker').selectpicker('val', "");
+    $("#myModal").modal('hide');
 }
 
 //模态框居中
@@ -85,7 +112,7 @@ function initProvinceSelects(domId) {
  * 条形图，显示最近一年全部省份总体制修订数量
  * @param domId
  */
-/*function drawLineChart(domId) {
+function drawLineChart(domId) {
     $.ajax({
         type: "POST",//为post请求
         url: "/basis/findTotalStandardForAllProvinces.action",
@@ -95,20 +122,25 @@ function initProvinceSelects(domId) {
         },
         success: function(data){//请求成功之后的操作
             var json = JSON.parse(data); //json字符串转为json对象
-            var xData = json.x.split(",");
-            var yData = json.y.split(",");
+            var zdData = json['zd'].split(",");
+            var xdData = json['xd'].split(",");
             var std_province_option = {
                 title:[
                     {
-                        text:"各省标准制修订数（单位：个）",
+                        text:"各省最近一年（2016年）标准制修订数（单位：个）",
                         left:"center",
                         textStyle:{
                             color:"#fff",
                             fontSize:"14"
-                        }},
+                        }
+                    }
                 ],
                 legend: {
-                    data:['制定','修订']
+                    data:['制定','修订'],
+                    x: 'right',
+                    textStyle: {
+                        color: '#fff'
+                    }
                 },
                 grid: [
                     {x: '8%', y: '7%', width: '85%', height: '80%'}
@@ -118,7 +150,12 @@ function initProvinceSelects(domId) {
                 },
                 xAxis: [
                     {
-                        data:xData,
+                        data:[
+                            '北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江',
+                            '上海','江苏','浙江','安徽','福建','江西','山东','河南',
+                            '湖北','湖南','广东','广西','海南','重庆','四川','贵州',
+                            '云南','西藏','陕西','甘肃','青海','宁夏','新疆'
+                        ],
                         axisLabel: {
                             show:true,
                             rotate:30,
@@ -127,8 +164,8 @@ function initProvinceSelects(domId) {
                                 color:'#fff'
                             }
                         },
-                        type:'category',
-                    },
+                        type:'category'
+                    }
                 ],
                 yAxis: [
                     {
@@ -147,13 +184,13 @@ function initProvinceSelects(domId) {
                         stack: 'heap',
                         xAxisIndex: 0,
                         yAxisIndex: 0,
-                        barWidth:'20%',
+                        barWidth:'45%',
                         itemStyle:{
                             normal:{
                                 color:'#ffff66'
                             }
                          },
-                        data: yData
+                        data: zdData
                     },
                     {
                         name: '修订',
@@ -161,13 +198,13 @@ function initProvinceSelects(domId) {
                         stack: 'heap',
                         xAxisIndex: 0,
                         yAxisIndex: 0,
-                        barWidth:'20%',
+                        barWidth:'45%',
                         itemStyle:{
                             normal:{
                                 color:'#ff6666'
                             }
                         },
-                        data: yData
+                        data: xdData
                     },
 
                 ]
@@ -179,260 +216,131 @@ function initProvinceSelects(domId) {
     });
 
 
-}*/
-
-function drawLineChart(domId) {
-    $.ajax({
-        type: "POST",//为post请求
-        url: "/basis/findTotalStandardForAllProvinces.action",
-        async: false,
-        error: function(data){//请求失败之后的操作
-            return;
-        },
-        success: function(data){//请求成功之后的操作
-            var json = JSON.parse(data); //json字符串转为json对象
-            var zdData = json.zd;
-            var xdData = json.xd;
-            var dataMap = {};
-
-            dataMap.dataPI = dataFormatter(zdData);
-
-            dataMap.dataSI = dataFormatter(xdData);
-
-            option = {
-                baseOption: {
-                    timeline: {
-                        // y: 0,
-                        axisType: 'category',
-                        // realtime: false,
-                        // loop: false,
-                        autoPlay: true,
-                        // currentIndex: 2,
-                        playInterval: 3000,
-                        // controlStyle: {
-                        //     position: 'left'
-                        // },
-                        data: [
-                            '2012-01-01','2013-01-01','2014-01-01', '2015-01-01', '2016-01-01'
-                        ],
-                        label: {
-                            textStyle: {
-                                "color": "#fff"
-                            },
-                            formatter : function(s) {
-                                return (new Date(s)).getFullYear();
-                            }
-                        },
-                        itemStyle: {//轴线上点的样式
-                            color: '#fff'
-                        },
-                        controlStyle:{//控制按钮的样式和左右箭头的样式
-                            normal: {
-                                "borderColor": "#fff"
-                            }
-                        },
-                        lineStyle: {//轴线的样式
-                            color: '#fff'
-                        }
-                    },
-                    tooltip: {
-                    },
-                    legend: {
-                        x: 'right',
-                        data: ['制定', '修订'],
-                        textStyle: {
-                            color: '#fff'
-                        }
-
-                    },
-                    calculable : true,
-                    grid: {
-                        top: 80,
-                        bottom: 100,
-                        tooltip: {
-                            trigger: 'axis',
-                            axisPointer: {
-                                type: 'shadow',
-                                label: {
-                                    show: true,
-                                    formatter: function (params) {
-                                        return params.value.replace('\n', '');
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    xAxis: [
-                        {
-                            type:'category',
-                            axisLabel:{
-                                show:true,
-                                rotate:30,
-                                interval:0,
-                                textStyle:{
-                                    color:'#fff'
-                                }
-                             },
-                            data:[
-                                '北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江',
-                                '上海','江苏','浙江','安徽','福建','江西','山东','河南',
-                                '湖北','湖南','广东','广西','海南','重庆','四川','贵州',
-                                '云南','西藏','陕西','甘肃','青海','宁夏','新疆'
-                            ],
-                            splitLine: {show: false}
-                        }
-                    ],
-                    yAxis: [
-                        {
-                            type: 'value',
-                            name: '数量（单位：个）',
-                            nameTextStyle:{
-                                color: '#fff'
-                            },
-                            axisLabel:{
-                                show: true,
-                                textStyle:{
-                                    color:'#fff'
-                                }
-                            }
-
-                        }
-                    ],
-                    series: [
-                        {
-                            name: '制定',
-                            type: 'bar',
-                            stack: 'heap',
-                            itemStyle: {
-                                normal:{
-                                    color: '#fff666'
-                                }
-                            }
-                        },
-                        {
-                            name: '修订',
-                            type: 'bar',
-                            stack: 'heap',
-                            itemStyle: {
-                                normal:{
-                                    color: '#ff6666'
-                                }
-                            }
-                        }
-                    ]
-                },
-                options: [
-                    {
-                        title: {
-                            text: '2012年各省标准制修订数',
-                            left:"center",
-                            textStyle:{
-                                color:"#fff",
-                                fontSize:"14"
-                            }
-                        },
-                        series: [
-
-                            {data: dataMap.dataPI['2012']},
-                            {data: dataMap.dataSI['2012']},
-
-                        ]
-                    },
-                    {
-                        title : {
-                            text: '2013年各省标准制修订数',
-                            left:"center",
-                            textStyle:{
-                                color:"#fff",
-                                fontSize:"14"
-                            }
-                        },
-                        series : [
-
-                            {data: dataMap.dataPI['2013']},
-                            {data: dataMap.dataSI['2013']},
-
-                        ]
-                    },
-                    {
-                        title : {
-                            text: '2014年各省标准制修订数',
-                            left:"center",
-                            textStyle:{
-                                color:"#fff",
-                                fontSize:"14"
-                            }
-                        },
-                        series : [
-
-                            {data: dataMap.dataPI['2014']},
-                            {data: dataMap.dataSI['2014']},
-
-                        ]
-                    },
-                    {
-                        title : {
-                            text: '2015年各省标准制修订数',
-                            left:"center",
-                            textStyle:{
-                                color:"#fff",
-                                fontSize:"14"
-                            }
-                        },
-                        series : [
-
-                            {data: dataMap.dataPI['2015']},
-                            {data: dataMap.dataSI['2015']},
-
-                        ]
-                    },
-                    {
-                        title : {
-                            text: '2016年各省标准制修订数',
-                            left:"center",
-                            textStyle:{
-                                color:"#fff",
-                                fontSize:"14"
-                            }
-                        },
-                        series : [
-
-                            {data: dataMap.dataPI['2016']},
-                            {data: dataMap.dataSI['2016']},
-
-                        ]
-                    }
-
-                ]
-            };
-
-            var std_chart_province = echarts.init(document.getElementById(domId));
-            std_chart_province.setOption(option);
-        }
-    });
-
 }
 
-
-function dataFormatter(arr) {
-    var pList = ['北京','天津','河北','山西','内蒙古','辽宁','吉林','黑龙江','上海','江苏','浙江','安徽','福建','江西','山东','河南','湖北','湖南','广东','广西','海南','重庆','四川','贵州','云南','西藏','陕西','甘肃','青海','宁夏','新疆'];
-    var temp;
-    var index = 0;
-    var obj = {};
-    for (var year = 2012; year <= 2016; year++) {
-        temp = arr[index][year];
-        var tempArr = [];
-        for (var i = 0, l = temp.length; i < l; i++) {
-            var element = {
-                name : pList[i],
-                value : temp[i]
-            }
-            tempArr.push(element);
-        }
-        obj[year] = tempArr;
-
-        index++;
+/**
+ * 查询之后显示的条形图
+ * @param domId
+ * @param data
+ */
+function drawLineChartByParams(domId, data) {
+    var province = data['province'];
+    var method = [];
+    if(data['method'] == 'zxd'){
+        method = ['制定', '修订'];
     }
-    return obj;
+    else{
+        method = ['强制', '推荐'];
+    }
+
+    var std_province_option = {
+        title:[
+            {
+                text:"省份标准数（单位：个）",
+                left:"center",
+                textStyle:{
+                    color:"#fff",
+                    fontSize:"14"
+                }
+            }
+        ],
+        legend: {
+            data: method,
+            x: 'right',
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        grid: [
+            {x: '8%', y: '7%', width: '85%', height: '80%'}
+        ],
+        tooltip: {
+            formatter: '{b} ({c})'
+        },
+        xAxis: [
+            {
+                data: province,
+                axisLabel: {
+                    show:true,
+                    rotate:30,
+                    interval:0,
+                    textStyle:{
+                        color:'#fff'
+                    }
+                },
+                type:'category'
+            }
+        ],
+        yAxis: [
+            {
+                type:'value',
+                axisLabel: {
+                    show:true,
+                    textStyle:{
+                        color:'#fff'
+                    }
+                }
+            }
+        ],
+        series: dataFormatter(data)
+    };
+
+    var std_chart_province = echarts.init(document.getElementById(domId));
+    std_chart_province.setOption(std_province_option);
+}
+
+/**
+ * 数据格式化
+ * @param data
+ * @returns {null}
+ */
+function dataFormatter(data) {
+    var result = [];
+    var zdData = data['zd'];
+    var xdData = data['xd'];
+    var yearList = data['year'];
+
+    var method = [];
+    if(data['method'] == 'zxd'){
+        method = ['制定', '修订'];
+    }
+    else{
+        method = ['强制', '推荐'];
+    }
+
+    for (var i = 0; i < yearList.length; i++) {
+        var year = yearList[i];
+        var zdSeries = {
+            name: method[0],
+            type: 'bar',
+            stack: year,
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            itemStyle:{
+                normal:{
+                    color:'#ffff66'
+                }
+            },
+            data: zdData[i][year]
+        };
+        var xdSeries = {
+            name: method[1],
+            type: 'bar',
+            stack: year,
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            itemStyle:{
+                normal:{
+                    color:'#ff6666'
+                }
+            },
+            data: xdData[i][year]
+        };
+
+        result.push(zdSeries);
+        result.push(xdSeries);
+    }
+
+    return result;
 }
 

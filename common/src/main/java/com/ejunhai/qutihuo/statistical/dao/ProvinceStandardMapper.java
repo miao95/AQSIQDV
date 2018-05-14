@@ -38,6 +38,13 @@ public interface ProvinceStandardMapper {
     List<ProvinceStandard> readProvinceStatistics();
 
     /**
+     * 获取全国统计最近一年2016年的ProvinceStandard
+     *
+     * @return ProvinceStandard对象数组
+     */
+    List<ProvinceStandard> readRecentNationalStatistics(Integer year);
+
+    /**
      * 获取某一年的ProvinceStandard
      *
      * @return ProvinceStandard对象数组

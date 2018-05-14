@@ -233,4 +233,9 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 	public List<ProvinceStandard> findByParams(String province, Integer year) {
 		return provinceStandardMapper.findByParams(province, year);
 	}
+
+	@Override
+	public List<ProvinceStandard> readRecentNationalStatistics(Integer year) {
+		return provinceStandardMapper.readRecentNationalStatistics(year);
+	}
 }

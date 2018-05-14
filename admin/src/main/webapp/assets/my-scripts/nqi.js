@@ -4,6 +4,7 @@ $(function () {
     initProvinceSelects("area_name");
 
     drawLineChart("c1_stddiv_province");
+    drawPieChart("c1_stddiv_zxd", "c1_stddiv_xz");
 
 });
 
@@ -39,6 +40,12 @@ function queryStandard(){
         success: function(data){//请求成功之后的操作
             var json = JSON.parse(data); //json字符串转为json对象
 
+            //先删除饼图，并将条形图的宽度扩大
+            $('#c1_stddiv_content .r_out').remove();
+            $('#c1_stddiv_province').css('margin-top', '20px');
+            $('#c1_stddiv_province').css('margin-left', '0px');
+            $('#c1_stddiv_province').css('width', '100%');
+
             //echarts绘图
             drawLineChartByParams("c1_stddiv_province", json);
 
@@ -52,7 +59,7 @@ function queryStandard(){
 
 //查询最近一年的
 function queryAll() {
-    drawLineChart("c1_stddiv_province");
+    //drawLineChart("c1_stddiv_province");
 
     $('.selectpicker').selectpicker('val', "");
     $("#myModal").modal('hide');
@@ -127,7 +134,7 @@ function drawLineChart(domId) {
             var std_province_option = {
                 title:[
                     {
-                        text:"各省最近一年（2016年）标准制修订数（单位：个）",
+                        text:"各省2016年标准制修订数（单位：个）",
                         left:"center",
                         textStyle:{
                             color:"#fff",
@@ -136,7 +143,7 @@ function drawLineChart(domId) {
                     }
                 ],
                 legend: {
-                    data:['制定','修订'],
+                    data:['制订','修订'],
                     x: 'right',
                     textStyle: {
                         color: '#fff'
@@ -179,7 +186,7 @@ function drawLineChart(domId) {
                 ],
                 series: [
                     {
-                        name: '制定',
+                        name: '制订',
                         type: 'bar',
                         stack: 'heap',
                         xAxisIndex: 0,
@@ -227,7 +234,7 @@ function drawLineChartByParams(domId, data) {
     var province = data['province'];
     var method = [];
     if(data['method'] == 'zxd'){
-        method = ['制定', '修订'];
+        method = ['制订', '修订'];
     }
     else{
         method = ['强制', '推荐'];
@@ -302,7 +309,7 @@ function dataFormatter(data) {
 
     var method = [];
     if(data['method'] == 'zxd'){
-        method = ['制定', '修订'];
+        method = ['制订', '修订'];
     }
     else{
         method = ['强制', '推荐'];
@@ -342,5 +349,105 @@ function dataFormatter(data) {
     }
 
     return result;
+}
+
+/**
+ * 画饼图，两个饼图
+ * @param pieId1
+ * @param pieId2
+ */
+function drawPieChart(pieId1, pieId2){
+    $.ajax({
+        type: "POST",//为post请求
+        url: "/basis/readRecentProvinceStatistics.action",
+        async: false,
+        error: function(data){//请求失败之后的操作
+            return;
+        },
+        success: function(data){//请求成功之后的操作
+            var json = JSON.parse(data); //json字符串转为json对象
+            var zxdData = json['zxd'];
+            var xzData = json['xz'];
+            var std_zxd_option = {
+                tooltip: {
+                    show:false
+                },
+                color:['rgb(4,143,35)','rgb(167,140,0)'],
+                legend: {
+                    show:false,
+                },
+                series: [
+                    {
+                        name:'按制、修订分',
+                        type:'pie',
+                        radius: ['70%', '100%'],
+                        avoidLabelOverlap: true,
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '20',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:zxdData
+                    }
+                ]
+            };
+
+            var std_qztj_option = {
+                tooltip: {
+                    show:false
+                },
+                color:['rgb(4,143,35)','rgb(167,140,0)'],
+                legend: {
+                    show:false,
+                },
+                series: [
+                    {
+                        name:'按性质分',
+                        type:'pie',
+                        radius: ['70%', '100%'],
+                        avoidLabelOverlap: true,
+                        label: {
+                            normal: {
+                                show: false,
+                                position: 'center'
+                            },
+                            emphasis: {
+                                show: true,
+                                textStyle: {
+                                    fontSize: '20',
+                                    fontWeight: 'bold'
+                                }
+                            }
+                        },
+                        labelLine: {
+                            normal: {
+                                show: false
+                            }
+                        },
+                        data:xzData
+                    }
+                ]
+            }
+
+            var std_chart = echarts.init(document.getElementById("c1_stddiv_zxd"));
+            std_chart.setOption(std_zxd_option);
+            var std_chart_xz = echarts.init(document.getElementById("c1_stddiv_xz"));
+            std_chart_xz.setOption(std_qztj_option);
+        }
+    });
+
 }
 

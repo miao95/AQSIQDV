@@ -42,6 +42,13 @@
         WHERE province='全国总计'
     </select>
 
+    <select id="readRecentNationalStatistics" resultMap="ProvinceStandardMapper" resultType="com.ejunhai.qutihuo.statistical.model.ProvinceStandard">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM provincestandardinfo
+        WHERE province='全国总计' AND YEAR = #{year}
+    </select>
+
     <select id="readProvinceStatistics" resultMap="ProvinceStandardMapper" resultType="com.ejunhai.qutihuo.statistical.model.ProvinceStandard">
         SELECT
         <include refid="Base_Column_List" />

@@ -7,6 +7,7 @@ import com.ejunhai.qutihuo.utils.MyStringUtil;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +26,19 @@ public class BasisController extends BaseController {
     private ProvinceStandardService provinceStandardService;
 
     @RequestMapping("/nqi")
-    public String nqiPage(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+    public String nqiPage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+        List<ProvinceStandard> pojoList = provinceStandardService.readRecentNationalStatistics(2016);
+
+        if(pojoList != null && pojoList.size() > 0) {
+            ProvinceStandard pojo = pojoList.get(0);
+
+            model.addAttribute("zd", pojo.getBnd_zxd_zd());
+            model.addAttribute("xd", pojo.getBnd_zxd_xd());
+            model.addAttribute("tj", pojo.getBnd_xz_tj());
+            model.addAttribute("qz", pojo.getBnd_xz_qz());
+
+        }
+
         return "basis/nqi";
     }
 
@@ -125,6 +138,49 @@ public class BasisController extends BaseController {
     }
 
 
+    @RequestMapping("/readRecentProvinceStatistics")
+    @ResponseBody
+    public Map readRecentProvinceStatistics(){
+        List<ProvinceStandard> pojoList = provinceStandardService.readRecentNationalStatistics(2016);
+
+        if(pojoList != null && pojoList.size() > 0){
+            ProvinceStandard pojo = pojoList.get(0);
+
+            Map map = new HashMap();
+            List result = new ArrayList();
+
+            Map zdMap = new HashMap();
+            zdMap.put("name", "制订");
+            zdMap.put("value", pojo.getBnd_zxd_zd());
+            result.add(zdMap);
+
+            Map xdMap = new HashMap();
+            xdMap.put("name", "修订");
+            xdMap.put("value", pojo.getBnd_zxd_xd());
+            result.add(xdMap);
+
+            map.put("zxd", result);
+
+            result = new ArrayList();
+
+            Map tjMap = new HashMap();
+            tjMap.put("name", "推荐");
+            tjMap.put("value", pojo.getBnd_xz_tj());
+            result.add(tjMap);
+
+            Map qzMap = new HashMap();
+            qzMap.put("name", "强制");
+            qzMap.put("value", pojo.getBnd_xz_qz());
+            result.add(qzMap);
+
+            map.put("xz", result);
+
+            return map;
+
+        }
+
+        return null;
+    }
 
 
 }

@@ -33,4 +33,11 @@ public interface ProvinceStandardService {
 	 */
 	public List<ProvinceStandard> findByParams(String province, Integer year);
 
+	/**
+	 * 查询全国统计情况
+	 * @param year
+	 * @return
+	 */
+	public List<ProvinceStandard> readRecentNationalStatistics(Integer year);
+
 }

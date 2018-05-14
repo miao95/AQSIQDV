@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/assets/css/bootstrap-select.min.css">
 <link rel="stylesheet" href="/assets/css/my-style.css">
 <style type="text/css">
-  .r_out {width:120px; height:120px; border:2px solid #d9d9d9; background:#fff; box-shadow:3px 3px 5px #bfbfbf; -webkit-box-shadow:3px 3px 5px #bfbfbf; -moz-box-shadow:3px 3px 5px #bfbfbf; -ms-box-shadow:3px 3px 5px #bfbfbf; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; display:inline-block; margin-right:90px; position:relative;}
+  .r_out {width:120px; height:120px; border:2px solid #d9d9d9; background:#fff; box-shadow:3px 3px 5px #bfbfbf; -webkit-box-shadow:3px 3px 5px #bfbfbf; -moz-box-shadow:3px 3px 5px #bfbfbf; -ms-box-shadow:3px 3px 5px #bfbfbf; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; display:inline-block; margin-right:50px; position:relative;}
   .r_out p {position:absolute; /**bottom:-50px;*/ color:#fff; text-align:center; margin:0 auto; width:100%; font-size:14px; line-height:1.5; font-weight:bold;}
 
   .r_in {width:120px; height:120px; border:10px solid #fff; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; overflow:hidden; position:relative;}
@@ -51,8 +51,31 @@
             <li><a href="">Settings</a></li>
           </ul>
         </div>
-        <div id="c1_stddiv_content" class="robin_circle" style="margin: 6px 0px 18px 20px;">
-          <div id="c1_stddiv_province" style="margin-top:20px;height:300px;width:100%">
+        <div id="c1_stddiv_content" class="robin_circle" style="margin: 60px 0px 18px 20px;">
+          <div class="r_out">
+            <div class="r_in" id="c1_stddiv_zxd">
+            </div>
+            <p>按制、修订分</p><br>
+            <div class="alert alert-success alert-lost">
+              制订：${zd.toString()}
+            </div>
+            <div class="alert alert-warning alert-lost">
+              修订：${xd.toString()}
+            </div>
+          </div>
+          <div class="r_out">
+            <div class="r_in" id="c1_stddiv_xz">
+
+            </div>
+            <p>按性质分</p><br>
+            <div class="alert alert-success alert-lost" >
+              推荐：${tj.toString()}
+            </div>
+            <div class="alert alert-warning alert-lost" >
+              强制：${qz.toString()}
+            </div>
+          </div>
+          <div id="c1_stddiv_province" style="margin-top:-240px;margin-left:320px;height:300px;width:72%">
           </div>
         </div>
 
@@ -122,7 +145,7 @@
             <div class="col-sm-9 my-select-bg">
               <select id="method_name" name="methodName" class="selectpicker" data-live-search="true"
                        data-width="100%" title="请选择维度（最少选择一个维度）">
-                <option value="zxd">按制定、修订</option>
+                <option value="zxd">按制订、修订</option>
                 <option value="xz">按推荐、强制</option>
               </select>
             </div>
@@ -131,8 +154,8 @@
         </form>
       </div>
       <div class="modal-footer" style="text-align: right;">
+        <button type="button" class="btn btn-default" onclick="queryAll()" style="font-size: 15px;">关闭</button>
         <button type="button" class="btn btn-primary" onclick="queryStandard()" style="font-size: 15px;">查询</button>
-        <button type="button" class="btn btn-default" onclick="queryAll()" style="font-size: 15px;">查询最近</button>
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal -->

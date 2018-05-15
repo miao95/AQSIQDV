@@ -1,7 +1,9 @@
 package com.ejunhai.qutihuo.controller;
 
 import com.ejunhai.qutihuo.common.base.BaseController;
+import com.ejunhai.qutihuo.statistical.model.Measurement;
 import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
+import com.ejunhai.qutihuo.statistical.service.MeasurementService;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
 import com.ejunhai.qutihuo.utils.MyStringUtil;
 import com.google.gson.Gson;
@@ -24,6 +26,8 @@ import java.util.*;
 public class BasisController extends BaseController {
     @Resource
     private ProvinceStandardService provinceStandardService;
+    @Resource
+    private MeasurementService measurementService;
 
     @RequestMapping("/nqi")
     public String nqiPage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
@@ -180,6 +184,37 @@ public class BasisController extends BaseController {
         }
 
         return null;
+    }
+
+    @RequestMapping("showMeteringLawManagement")
+    @ResponseBody
+    public Map showMeteringLawManagement(
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "province", required = false) String province){
+
+        String[] provinceList = province.split(",");
+        Integer[] data1 = new Integer[provinceList.length];
+        Integer[] data2 = new Integer[provinceList.length];
+        for (int i = 0; i < provinceList.length; i++) {
+            List<Measurement> pojoList = measurementService.findByParams(provinceList[i], 2016);
+            if(pojoList != null && pojoList.size() > 0){
+                Measurement pojo = pojoList.get(0);
+                if(type.equals("div_m_std")){//计量标准
+                    data1[i] = pojo.getMs_shgy();
+                    data2[i] = pojo.getMs_sqjlbz();
+                }
+                else if(type.equals("authorization")){//计量授权
+                    data1[i] = pojo.getJlsq_yfszjljdjsjg();
+                    data2[i] = pojo.getJlsq_yfsqjljdjg();
+                }
+            }
+        }
+
+        Map map = new HashMap();
+        map.put("data1", data1);
+        map.put("data2", data2);
+
+        return map;
     }
 
 

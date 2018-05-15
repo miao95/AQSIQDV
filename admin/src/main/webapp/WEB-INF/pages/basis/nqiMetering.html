@@ -29,6 +29,24 @@
       </ul>
     </div>
   </div>
+  <div class="row" style="margin-top:10px" >
+    <div class='col-md-2' style="width: 100%">
+      <div class='col-md-6' style="width: 80px">
+        <div style="margin-left:25px;margin-top:7px">年份:</div>
+      </div>
+      <div class='col-md-6'>
+        <select class="selectpicker" name="yearName" id="year_name" multiple
+        data-actions-box="true" data-width="300" title="请选择年份" onchange="yearSelectOnChange(this)">
+          <option value="2016">2016年</option>
+          <option value="2015">2015年</option>
+          <option value="2014">2014年</option>
+          <option value="2013">2013年</option>
+          <option value="2012">2012年</option>
+        </select>
+      </div>
+    </div>
+    <br />
+  </div>
   <div class="row">
     <div class="tab-content" style="min-height: 260px;">
       <div id="fwq" class="tab-pane active">
@@ -59,10 +77,11 @@
 </@override>
 
 <@override name="custom-script">
-<script type="text/javascript" src="/assets/Scripts/china.js"></script>
-<script type="text/javascript" src="/assets/Scripts/meteringlaw.js"></script>
+<!--<script type="text/javascript" src="/assets/Scripts/china.js"></script>-->
+<!--<script type="text/javascript" src="/assets/Scripts/meteringlaw.js"></script>-->
+<script type="text/javascript" src="/assets/my-scripts/nqiMetering.js"></script>
 <script type="text/javascript">
-    var chart_m_legal = echarts.init(document.getElementById('div_m_legal'));
+    /*var chart_m_legal = echarts.init(document.getElementById('div_m_legal'));
     chart_m_legal.setOption(metering_std_option);
     function showMeteringLawManagement(id){
         var chart_m_legal = echarts.init(document.getElementById('div_m_legal'));
@@ -72,8 +91,8 @@
             chart_m_legal.setOption(metering_auth_option);
         }
 
-    }
-    $(document).ready(function(){
+    }*/
+   /* $(document).ready(function(){
         $(".c1").animate({
             height: "70%"
         },1000);
@@ -90,21 +109,20 @@
             height: "13%"
         },1000)
         //$('#container1').hotSpot();
-    });
+    });*/
     // 基于准备好的dom，初始化echarts实例
 
-    // 基于准备好的dom，初始化echarts实例
-    var chart_metering_inspection = echarts.init(document.getElementById('div_metering_inspection'));
-    chart_metering_inspection.setOption(option_metering_inspection);
+    // 基于准备好的dom，初始化echarts实例,计量仪器检定情况
+   /* var chart_metering_inspection = echarts.init(document.getElementById('div_metering_inspection'));
+    chart_metering_inspection.setOption(option_metering_inspection);*/
+
+    //导航栏相关设置
     $('.accordion').find('a').each(function () {
         if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
             $(this).parent().addClass('active');
             $(this).parent().parent().addClass('open');
             $(this).parent().parent().parent().addClass('open');
         }
-        //else {
-        //$(this).parent().parent().parent().removeClass('open'); // this.className = 'active';
-        //}
     });
 </script>
 </@override>

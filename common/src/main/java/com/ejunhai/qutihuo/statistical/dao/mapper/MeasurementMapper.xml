@@ -63,4 +63,14 @@
         FROM measurelegalmanagement
         ORDER BY YEAR ASC
     </select>
+
+    <select id="findByParams" resultMap="MeasurementMapper" resultType="com.ejunhai.qutihuo.statistical.model.Measurement">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM measurelegalmanagement
+        <where>
+            <if test="province != null and province !=''"> and province=#{province} </if>
+            <if test="year != null and year !=''"> and year = #{year} </if>
+        </where>
+    </select>
 </mapper>

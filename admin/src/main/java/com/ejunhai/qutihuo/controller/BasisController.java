@@ -218,4 +218,60 @@ public class BasisController extends BaseController {
     }
 
 
+    @RequestMapping("showMeteringLawManagementByYears")
+    @ResponseBody
+    public Map showMeteringLawManagementByYears(
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "years", required = false) String years){
+        String[] provinces = {"广东省","山东省","四川省","河北省","江苏省","黑龙江省",
+                "内蒙古自治区","浙江省","河南省","辽宁省","安徽省","山西省","湖北省","陕西省","湖南省",
+                "  国家质检总局","福建省","新疆维吾尔自治区","吉林省","广西壮族自治区","江西省","北京市",
+                "贵州省","甘肃省","重庆市","云南省","天津市","海南省","上海市","青海省","宁夏回族自治区","西藏自治区","  中国计量院"};
+
+
+        String[] yearList = years.split(",");
+        List zdList = new ArrayList();//存储“计量标准第1维度”的数据
+        List xdList = new ArrayList();//存储“计量标准第2维度”的数据
+        for (int i = 0; i < yearList.length; i++) {
+            Map zdMap = new HashMap();
+            Map xdMap = new HashMap();
+            List list1 = new ArrayList();
+            List list2 = new ArrayList();
+            int year = Integer.parseInt(yearList[i]);
+            for (int j = 0; j < provinces.length; j++) {
+                List<Measurement> pojoList = measurementService.findByParams(provinces[j], year);
+
+                if(pojoList != null && pojoList.size() > 0){
+                    Measurement pojo = pojoList.get(0);
+                    if(type.equals("div_m_std")){//计量标准
+                        list1.add(pojo.getMs_shgy());
+                        list2.add(pojo.getMs_sqjlbz());
+                    }
+                    else if(type.equals("authorization")){//计量授权
+                        list1.add(pojo.getJlsq_yfszjljdjsjg());
+                        list2.add(pojo.getJlsq_yfsqjljdjg());
+                    }
+
+                }
+            }
+
+
+            zdMap.put(year, list1);
+            xdMap.put(year, list2);
+
+            zdList.add(zdMap);
+            xdList.add(xdMap);
+
+        }
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("zd", zdList);
+        map.put("xd", xdList);
+        map.put("province", provinces);
+        map.put("year", yearList);
+
+        return map;
+    }
+
+
 }

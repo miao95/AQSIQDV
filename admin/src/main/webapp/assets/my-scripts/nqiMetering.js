@@ -11,7 +11,22 @@ $(function () {
  * @param obj
  */
 function yearSelectOnChange(obj) {
-    alert($(obj).val());
+    $.ajax({
+        type: "POST",//为post请求
+        url: "/basis/showMeteringLawManagementByYears.action",
+        data: {
+            type: $('#metering-law-type').val(),
+            years: $(obj).val().join(",")
+        },
+        async: false,
+        error: function(data){//请求失败之后的操作
+            return;
+        },
+        success: function(data){//请求成功之后的操作
+            var json = JSON.parse(data); //json字符串转为json对象
+            drawChartByYears(json);
+        }
+    });
 }
 
 /**
@@ -115,6 +130,8 @@ function showMeteringLawManagement(type){
 
             //清空年份下拉菜单
             $('.selectpicker').selectpicker('val', "");
+
+            $('#metering-law-type').val(type);//保存已选的类型
 
         }
     });
@@ -241,6 +258,169 @@ function generateData(dataall) {
     }
 
     return datatemp;
+}
+
+/**
+ * 随选择时间画条形图
+ * @param data
+ */
+function drawChartByYears(json) {
+    var type = $('#metering-law-type').val();
+    var yearList = json['year'];
+    var label = [];
+    for (var i = 0; i < yearList.length; i++) {
+        if(type == 'div_m_std'){
+            label[2*i] = yearList[i] + '年' + '建立在依法设置计量检定机构的社会公用计量标准';
+            label[2*i + 1] = yearList[i] + '年' + '依法授权的社会公用计量标准';
+        }
+        else if(type == 'authorization'){
+            label[2*i] = yearList[i] + '年' + '依法设置的计量检定技术机构';
+            label[2*i + 1] = yearList[i] + '年' + '依法授权建立的计量检定机构';
+        }
+    }
+
+    var data = dataFormatter(json);
+
+    var option = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        color:['#81ff38','#ff7438'],
+        legend: {
+            data: label,
+            textStyle:{
+                color:['#81ff38','#ff7438']
+            }
+        },
+        grid: {
+            left: '3%',
+            top:'12%',
+            right: '4%',
+            bottom: '17%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data : json['province'],
+                splitLine:{show:false},
+                axisTick:{
+                    lineStyle:{color:'#fff'}
+                },
+                axisLabel:{
+                    textStyle:{color:'#fff'},
+                    rotate:30,
+                    interval:0,
+                }
+            }
+        ],
+        yAxis: [
+            {
+                type : 'value',
+                axisLabel: {
+                    textStyle:{color:'#fff'},
+                    /*formatter: function (a) {
+                        a = +a;
+                        return isFinite(a)
+                            ? echarts.format.addCommas(+a / 1000)
+                            : '';
+                    }*/
+                }
+            }
+        ],
+        dataZoom: [
+            {
+                show: true,
+                start: 0,
+                end: 12,
+                textStyle: {
+                    color:'#fff'
+                }
+            },
+            {
+                type: 'inside',
+                start: 94,
+                end: 100
+            },
+            {
+                show: true,
+                yAxisIndex: 0,
+                filterMode: 'empty',
+                width: 30,
+                height: '80%',
+                showDataShadow: false,
+                left: '96%',
+                textStyle: {
+                    color:'#fff'
+                }
+            }
+        ],
+        series :data
+    };
+
+    var chart_m_legal = echarts.init(document.getElementById('div_m_legal'));
+    chart_m_legal.setOption(option);
+}
+
+/**
+ * 数据格式化
+ * @param data
+ * @returns {null}
+ */
+function dataFormatter(data) {
+    var result = [];
+    var zdData = data['zd'];
+    var xdData = data['xd'];
+    var yearList = data['year'];
+
+    var type = $('#metering-law-type').val();
+    var label = [];
+    if(type == 'div_m_std'){
+        label[0] = '建立在依法设置计量检定机构的社会公用计量标准';
+        label[1] = '依法授权的社会公用计量标准';
+    }
+    else if(type == 'authorization'){
+        label[0] = '依法设置的计量检定技术机构';
+        label[1] = '依法授权建立的计量检定机构';
+    }
+
+    for (var i = 0; i < yearList.length; i++) {
+        var year = yearList[i];
+        var zdSeries = {
+            name: year + '年' + label[0],
+            type: 'bar',
+            //stack: year,
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            itemStyle:{
+                normal:{
+                    color:'#ffff66'
+                }
+            },
+            data: zdData[i][year]
+        };
+        var xdSeries = {
+            name: year + '年' + label[1],
+            type: 'bar',
+            //stack: year,
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            itemStyle:{
+                normal:{
+                    color:'#ff6666'
+                }
+            },
+            data: xdData[i][year]
+        };
+
+        result.push(zdSeries);
+        result.push(xdSeries);
+    }
+
+    return result;
 }
 
 

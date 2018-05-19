@@ -21,6 +21,33 @@
         <result column="ZZXLJLQJ_XLXKZ_ADD" property="zzxljlqj_xlxkz_add" jdbcType="INTEGER" />
         <result column="ZZXLJLQJ_XLXKZ_REDUCE" property="zzxljlqj_xlxkz_reduce" jdbcType="INTEGER" />
         <result column="ZZXLJLQJ_XLXKZ_all" property="zzxljlqj_xlxkz_all" jdbcType="INTEGER" />
+        <result column="JDJC_FZXJCQJ" property="jdjc_fzxjcqj" jdbcType="INTEGER" />
+        <result column="JDJC_FZXHGQJ" property="jdjc_fzxhgqj" jdbcType="INTEGER" />
+        <result column="JDJC_XNJCCC" property="jdjc_xnjccc" jdbcType="INTEGER" />
+        <result column="JDJC_XNJCHG" property="jdjc_xnjchg" jdbcType="INTEGER" />
+        <result column="QZJD_YQJ" property="qzjd_yqj" jdbcType="INTEGER" />
+        <result column="QZJD_YQJXB" property="qzjd_yqjxb" jdbcType="INTEGER" />
+        <result column="QZJD_YQJZB" property="qzjd_yqjzb" jdbcType="INTEGER" />
+        <result column="QZJD_JDSMYJS" property="qzjd_jdsmyjs" jdbcType="INTEGER" />
+        <result column="QZJD_JDSAQFH" property="qzjd_jdsaqfh" jdbcType="INTEGER" />
+        <result column="QZJD_JDSYLWS" property="qzjd_jdsylws" jdbcType="INTEGER" />
+        <result column="QZJD_JDSHJJC" property="qzjd_jdshjjc" jdbcType="INTEGER" />
+        <result column="JLJDY_SZJDJG" property="jljdy_szjdjg" jdbcType="INTEGER" />
+        <result column="JLJDY_SQJDJG" property="jljdy_sqjdjg" jdbcType="INTEGER" />
+        <result column="JLJDY_SQQTDW" property="jljdy_sqqtdw" jdbcType="INTEGER" />
+        <result column="JLJDY_QSYDW" property="jljdy_qsydw" jdbcType="INTEGER" />
+        <result column="CCDLBZ_CCPC" property="ccdlbz_ccpc" jdbcType="INTEGER" />
+        <result column="CCDLBZ_HGPC" property="ccdlbz_hgpc" jdbcType="INTEGER" />
+        <result column="SHGZJLZ_XJ" property="shgzjlz_xj" jdbcType="INTEGER" />
+        <result column="SHGZJLZ_LJ" property="shgzjlz_lj" jdbcType="INTEGER" />
+        <result column="SHGZJLZ_CZL_year" property="shgzjlz_czl_year" jdbcType="INTEGER" />
+        <result column="SHGZJLZ_CZL_all" property="shgzjlz_czl_all" jdbcType="INTEGER" />
+        <result column="SHGZJLZ_QT_year" property="shgzjlz_qt_year" jdbcType="INTEGER" />
+        <result column="SHGZJLZ_QT_all" property="shgzjlz_qt_all" jdbcType="INTEGER" />
+        <result column="DLBZSPSCQY_CBZQY_year" property="dlbzspscqy_cbzqy_year" jdbcType="INTEGER" />
+        <result column="DLBZSPSCQY_CBZQY_all" property="dlbzspscqy_cbzqy_all" jdbcType="INTEGER" />
+        <result column="DLBZSPSCQY_CBZCP_year" property="dlbzspscqy_cbzcp_year" jdbcType="INTEGER" />
+        <result column="DLBZSPSCQY_CBZCP_all" property="dlbzspscqy_cbzcp_all" jdbcType="INTEGER" />
         <result column="YEAR" property="year" jdbcType="INTEGER" />
         <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
     </resultMap>
@@ -45,6 +72,33 @@
         ZZXLJLQJ_XLXKZ_ADD,
         ZZXLJLQJ_XLXKZ_REDUCE,
         ZZXLJLQJ_XLXKZ_all,
+        JDJC_FZXJCQJ,
+        JDJC_FZXHGQJ,
+        JDJC_XNJCCC,
+        JDJC_XNJCHG,
+        QZJD_YQJ,
+        QZJD_YQJXB,
+        QZJD_YQJZB,
+        QZJD_JDSMYJS,
+        QZJD_JDSAQFH,
+        QZJD_JDSYLWS,
+        QZJD_JDSHJJC,
+        JLJDY_SZJDJG,
+        JLJDY_SQJDJG,
+        JLJDY_SQQTDW,
+        JLJDY_QSYDW,
+        CCDLBZ_CCPC,
+        CCDLBZ_HGPC,
+        SHGZJLZ_XJ,
+        SHGZJLZ_LJ,
+        SHGZJLZ_CZL_year,
+        SHGZJLZ_CZL_all,
+        SHGZJLZ_QT_year,
+        SHGZJLZ_QT_all,
+        DLBZSPSCQY_CBZQY_year,
+        DLBZSPSCQY_CBZQY_all,
+        DLBZSPSCQY_CBZCP_year,
+        DLBZSPSCQY_CBZCP_all,
         YEAR,
         PROVINCE
     </sql>

@@ -195,6 +195,8 @@ public class BasisController extends BaseController {
         String[] provinceList = province.split(",");
         Integer[] data1 = new Integer[provinceList.length];
         Integer[] data2 = new Integer[provinceList.length];
+        Integer[] data3 = new Integer[provinceList.length];
+        Integer[] data4 = new Integer[provinceList.length];
         for (int i = 0; i < provinceList.length; i++) {
             List<Measurement> pojoList = measurementService.findByParams(provinceList[i], 2016);
             if(pojoList != null && pojoList.size() > 0){
@@ -202,17 +204,73 @@ public class BasisController extends BaseController {
                 if(type.equals("div_m_std")){//计量标准
                     data1[i] = pojo.getMs_shgy();
                     data2[i] = pojo.getMs_sqjlbz();
+                    data3[i] = pojo.getMs_zxjdgzjlbz();
+                    data4[i] = pojo.getMs_zgjlbz();
                 }
                 else if(type.equals("authorization")){//计量授权
                     data1[i] = pojo.getJlsq_yfszjljdjsjg();
                     data2[i] = pojo.getJlsq_yfsqjljdjg();
+                    data3[i] = pojo.getJlsq_qtcdzxsqjdrwjg() + pojo.getJlsq_qtcdzxsqjdrwxm();
+                    data4[i] = pojo.getJlsq_sqcdjlqjxspjjg() + pojo.getJlsq_sqcdjlqjxspjxm();
+                }
+                else if (type.equals("new_product")){
+                    data1[i] = pojo.getJlqjxcp_xspzzs_year();
+                }
+                else if(type.equals("make_modify")){
+                    data1[i] = pojo.getZzxljlqj_zzxkz_add();
+                    data2[i] = pojo.getZzxljlqj_xlxkz_add();
+                }
+                else if (type.equals("supervise_check")){
+                    data1[i] = pojo.getJdjc_fzxjcqj();
+                    data2[i] = pojo.getJdjc_fzxhgqj();
+                    data3[i] = pojo.getJdjc_xnjccc();
+                    data4[i] = pojo.getJdjc_xnjchg();
+                }
+                else if(type.equals("compulsory_inspection")){
+                    //do something;
+                }
+                else if(type.equals("check_person")){
+                    data1[i] = pojo.getJljdy_szjdjg();
+                    data2[i] = pojo.getJljdy_sqjdjg();
+                    data3[i] = pojo.getJljdy_sqqtdw();
+                    data4[i] = pojo.getJljdy_qsydw();
+                }
+                else if(type.equals("product_weight")){
+                    data1[i] = pojo.getCcdlbz_ccpc();
+                    data2[i] = pojo.getCcdlbz_hgpc();
+                }
+                else if(type.equals("socail_fair")){
+                    data1[i] = pojo.getShgzjlz_xj();
+                    data2[i] = pojo.getShgzjlz_czl_year();
+                    data3[i] = pojo.getShgzjlz_qt_year();
+                }
+                else if(type.equals("assurance_capability")){
+                    data1[i] = pojo.getDlbzspscqy_cbzqy_year();
+                    data2[i] = pojo.getDlbzspscqy_cbzcp_year();
                 }
             }
         }
 
         Map map = new HashMap();
-        map.put("data1", data1);
-        map.put("data2", data2);
+
+        if (type.equals("new_product")){
+            map.put("data1", data1);
+        }
+        else if(type.equals("make_modify")){
+            map.put("data1", data1);
+            map.put("data2", data2);
+        }
+        else if(type.equals("socail_fair")){
+            map.put("data1", data1);
+            map.put("data2", data2);
+            map.put("data3", data3);
+        }
+        else{
+            map.put("data1", data1);
+            map.put("data2", data2);
+            map.put("data3", data3);
+            map.put("data4", data4);
+        }
 
         return map;
     }

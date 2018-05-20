@@ -97,6 +97,24 @@
 <hr class="whiter" />
 <h4 class="page-title">计量仪器检定情况</h4>
 <div class="block-area">
+    <div class="row" style="margin-top:10px" >
+        <div class='col-md-2' style="width: 100%">
+            <div class='col-md-6' style="width: 80px">
+                <div style="margin-left:25px;margin-top:7px">年份:</div>
+            </div>
+            <div class='col-md-6'>
+                <select class="selectpicker" name="yearNameInspection" id="year_name_inspection"
+                        data-width="300" title="请选择年份" onchange="yearSelectInspectionOnChange(this)">
+                    <option value="2016">2016年</option>
+                    <option value="2015">2015年</option>
+                    <option value="2014">2014年</option>
+                    <option value="2013">2013年</option>
+                    <option value="2012">2012年</option>
+                </select>
+            </div>
+        </div>
+        <br />
+    </div>
   <!--  Recent Postings -->
   <div class="row" style="margin-top:8px">
     <div id="div_metering_inspection" style="width:100%;height:500px">

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejunhai.qutihuo.statistical.dao.MetricInstrumentMapper" >
+    <resultMap id="MetricInstrumentMapper" type="com.ejunhai.qutihuo.statistical.model.MetricInstrument" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="YEAR" property="year" jdbcType="INTEGER" />
+        <result column="CD" property="cd" jdbcType="INTEGER" />
+        <result column="WD" property="wd" jdbcType="INTEGER" />
+        <result column="LX" property="lx" jdbcType="INTEGER" />
+        <result column="LX_HQ" property="lx_hq" jdbcType="INTEGER" />
+        <result column="DC" property="dc" jdbcType="INTEGER" />
+        <result column="GX" property="gx" jdbcType="INTEGER" />
+        <result column="SX" property="sx" jdbcType="INTEGER" />
+        <result column="HX" property="hx" jdbcType="INTEGER" />
+        <result column="DLFS" property="dlfs" jdbcType="INTEGER" />
+        <result column="WXD" property="wxd" jdbcType="INTEGER" />
+        <result column="SJPL" property="sjpl" jdbcType="INTEGER" />
+        <result column="QT" property="qt" jdbcType="INTEGER" />
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        ID,
+        YEAR,
+        CD,
+        WD,
+        LX,
+        LX_HQ,
+        DC,
+        GX,
+        SX,
+        HX,
+        DLFS,
+        WXD,
+        SJPL,
+        QT,
+        PROVINCE
+    </sql>
+    
+    <select id="read" resultMap="MetricInstrumentMapper" resultType="com.ejunhai.qutihuo.statistical.model.MetricInstrument">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM metricinstrumentverificationinfo
+    </select>
+
+    <select id="readNationalStatistics" resultMap="MetricInstrumentMapper" resultType="com.ejunhai.qutihuo.statistical.model.MetricInstrument">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM metricinstrumentverificationinfo
+        WHERE province='全国总计'
+    </select>
+
+    <select id="readByYear" parameterType="Integer" resultMap="MetricInstrumentMapper" resultType="com.ejunhai.qutihuo.statistical.model.MetricInstrument">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM metricinstrumentverificationinfo
+        WHERE YEAR=#{year}
+    </select>
+
+    <select id="getDistinctYear" resultType="Integer">
+        SELECT
+        DISTINCT YEAR
+        FROM metricinstrumentverificationinfo
+        ORDER BY YEAR ASC
+    </select>
+
+    <select id="findByParams" resultMap="MetricInstrumentMapper" resultType="com.ejunhai.qutihuo.statistical.model.MetricInstrument">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM metricinstrumentverificationinfo
+        <where>
+            <if test="province != null and province !=''"> and province=#{province} </if>
+            <if test="year != null and year !=''"> and year = #{year} </if>
+        </where>
+    </select>
+    
+</mapper>

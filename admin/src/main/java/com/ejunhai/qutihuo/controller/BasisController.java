@@ -2,8 +2,10 @@ package com.ejunhai.qutihuo.controller;
 
 import com.ejunhai.qutihuo.common.base.BaseController;
 import com.ejunhai.qutihuo.statistical.model.Measurement;
+import com.ejunhai.qutihuo.statistical.model.MetricInstrument;
 import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
 import com.ejunhai.qutihuo.statistical.service.MeasurementService;
+import com.ejunhai.qutihuo.statistical.service.MetricInstrumentService;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
 import com.ejunhai.qutihuo.utils.MyStringUtil;
 import com.google.gson.Gson;
@@ -28,6 +30,8 @@ public class BasisController extends BaseController {
     private ProvinceStandardService provinceStandardService;
     @Resource
     private MeasurementService measurementService;
+    @Resource
+    private MetricInstrumentService metricInstrumentService;
 
     @RequestMapping("/nqi")
     public String nqiPage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
@@ -415,6 +419,74 @@ public class BasisController extends BaseController {
         map.put("year", yearList);
 
         return map;
+    }
+
+    @RequestMapping("showMeteringInspection")
+    @ResponseBody
+    public List showMeteringInspection(
+            @RequestParam(value = "year", required = false) Integer year){
+        List list = new ArrayList();
+        String[] provinceList = {"  中国计量院","北京市","天津市","河北省","山西省","内蒙古自治区","辽宁省","吉林省","黑龙江省","上海市",
+                "江苏省","浙江省","安徽省","福建省","江西省","山东省","河南省","湖北省","湖南省","广东省","广西壮族自治区","海南省",
+                "重庆市","四川省","贵州省","云南省","西藏自治区","陕西省","甘肃省","青海省","宁夏回族自治区","新疆维吾尔自治区"};
+
+        String[] features = {"长度","温度","力学","衡器","电磁","光学","声学","化学","电离辐射","无线电","时间频率","其他"};
+        for (int i = 0; i < features.length; i++) {
+            String feature = features[i];
+            Integer[] data = new Integer[provinceList.length];
+            for (int j = 0; j < provinceList.length; j++) {
+                List<MetricInstrument> pojoList = metricInstrumentService.findByParams(provinceList[j], year);
+                if(pojoList != null && pojoList.size() > 0){
+                    MetricInstrument pojo = pojoList.get(0);
+                    switch (feature){
+                        case "长度":
+                            data[j] = pojo.getCd();
+                            break;
+                        case "温度":
+                            data[j] = pojo.getWd();
+                            break;
+                        case "力学":
+                            data[j] = pojo.getLx();
+                            break;
+                        case "衡器":
+                            data[j] = pojo.getLx_hq();
+                            break;
+                        case "电磁":
+                            data[j] = pojo.getDc();
+                            break;
+                        case "光学":
+                            data[j] = pojo.getGx();
+                            break;
+                        case "声学":
+                            data[j] = pojo.getSx();
+                            break;
+                        case "化学":
+                            data[j] = pojo.getHx();
+                            break;
+                        case "电离辐射":
+                            data[j] = pojo.getDlfs();
+                            break;
+                        case "无线电" :
+                            data[j] = pojo.getWxd();
+                            break;
+                        case "时间频率":
+                            data[j] = pojo.getSjpl();
+                            break;
+                        case  "其他":
+                            data[j] = pojo.getQt();
+                            break;
+                        default:
+                            data[j] = 0;
+                            break;
+                    }
+
+                }
+            }
+
+            list.add(data);
+        }
+
+        return list;
     }
 
 

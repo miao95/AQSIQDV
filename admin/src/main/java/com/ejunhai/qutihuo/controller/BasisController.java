@@ -256,7 +256,7 @@ public class BasisController extends BaseController {
         if (type.equals("new_product")){
             map.put("data1", data1);
         }
-        else if(type.equals("make_modify")){
+        else if(type.equals("make_modify") || type.equals("product_weight") || type.equals("assurance_capability")){
             map.put("data1", data1);
             map.put("data2", data2);
         }
@@ -290,11 +290,17 @@ public class BasisController extends BaseController {
         String[] yearList = years.split(",");
         List zdList = new ArrayList();//存储“计量标准第1维度”的数据
         List xdList = new ArrayList();//存储“计量标准第2维度”的数据
+        List vdList = new ArrayList();//存储“计量标准第3维度”的数据
+        List wdList = new ArrayList();//存储“计量标准第4维度”的数据
         for (int i = 0; i < yearList.length; i++) {
             Map zdMap = new HashMap();
             Map xdMap = new HashMap();
+            Map vdMap = new HashMap();
+            Map wdMap = new HashMap();
             List list1 = new ArrayList();
             List list2 = new ArrayList();
+            List list3 = new ArrayList();
+            List list4 = new ArrayList();
             int year = Integer.parseInt(yearList[i]);
             for (int j = 0; j < provinces.length; j++) {
                 List<Measurement> pojoList = measurementService.findByParams(provinces[j], year);
@@ -304,27 +310,107 @@ public class BasisController extends BaseController {
                     if(type.equals("div_m_std")){//计量标准
                         list1.add(pojo.getMs_shgy());
                         list2.add(pojo.getMs_sqjlbz());
+                        list3.add(pojo.getMs_zxjdgzjlbz());
+                        list4.add(pojo.getMs_zgjlbz());
                     }
                     else if(type.equals("authorization")){//计量授权
                         list1.add(pojo.getJlsq_yfszjljdjsjg());
                         list2.add(pojo.getJlsq_yfsqjljdjg());
+                        list3.add(pojo.getJlsq_qtcdzxsqjdrwjg() + pojo.getJlsq_qtcdzxsqjdrwxm());
+                        list4.add(pojo.getJlsq_sqcdjlqjxspjjg() + pojo.getJlsq_sqcdjlqjxspjxm());
+                    }
+                    else if (type.equals("new_product")){
+                        list1.add(pojo.getJlqjxcp_xspzzs_year());
+                    }
+                    else if(type.equals("make_modify")){
+                        list1.add(pojo.getZzxljlqj_zzxkz_add());
+                        list2.add(pojo.getZzxljlqj_xlxkz_add());
+                    }
+                    else if (type.equals("supervise_check")){
+                        list1.add(pojo.getJdjc_fzxjcqj());
+                        list2.add(pojo.getJdjc_fzxhgqj());
+                        list3.add(pojo.getJdjc_xnjccc());
+                        list4.add(pojo.getJdjc_xnjchg());
+                    }
+                    else if(type.equals("compulsory_inspection")){
+                        //do something;
+                    }
+                    else if(type.equals("check_person")){
+                        list1.add(pojo.getJljdy_szjdjg());
+                        list2.add(pojo.getJljdy_sqjdjg());
+                        list3.add(pojo.getJljdy_sqqtdw());
+                        list4.add(pojo.getJljdy_qsydw());
+                    }
+                    else if(type.equals("product_weight")){
+                        list1.add(pojo.getCcdlbz_ccpc());
+                        list2.add(pojo.getCcdlbz_hgpc());
+                    }
+                    else if(type.equals("socail_fair")){
+                        list1.add(pojo.getShgzjlz_xj());
+                        list2.add(pojo.getShgzjlz_czl_year());
+                        list3.add(pojo.getShgzjlz_qt_year());
+                    }
+                    else if(type.equals("assurance_capability")){
+                        list1.add(pojo.getDlbzspscqy_cbzqy_year());
+                        list2.add(pojo.getDlbzspscqy_cbzcp_year());
                     }
 
                 }
             }
 
+            if (type.equals("new_product")){
+                zdMap.put(year, list1);
+                zdList.add(zdMap);
+            }
+            else if(type.equals("make_modify") || type.equals("product_weight") || type.equals("assurance_capability")){
+                zdMap.put(year, list1);
+                xdMap.put(year, list2);
 
-            zdMap.put(year, list1);
-            xdMap.put(year, list2);
+                zdList.add(zdMap);
+                xdList.add(xdMap);
+            }
+            else if(type.equals("socail_fair")){
+                zdMap.put(year, list1);
+                xdMap.put(year, list2);
+                vdMap.put(year, list3);
 
-            zdList.add(zdMap);
-            xdList.add(xdMap);
+                zdList.add(zdMap);
+                xdList.add(xdMap);
+                vdList.add(vdMap);
+            }
+            else{
+                zdMap.put(year, list1);
+                xdMap.put(year, list2);
+                vdMap.put(year, list3);
+                wdMap.put(year, list4);
+
+                zdList.add(zdMap);
+                xdList.add(xdMap);
+                vdList.add(vdMap);
+                wdList.add(wdMap);
+            }
 
         }
 
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("zd", zdList);
-        map.put("xd", xdList);
+        if (type.equals("new_product")){
+            map.put("data1", zdList);
+        }
+        else if(type.equals("make_modify") || type.equals("product_weight") || type.equals("assurance_capability")){
+            map.put("data1", zdList);
+            map.put("data2", xdList);
+        }
+        else if(type.equals("socail_fair")){
+            map.put("data1", zdList);
+            map.put("data2", xdList);
+            map.put("data3", vdList);
+        }
+        else{
+            map.put("data1", zdList);
+            map.put("data2", xdList);
+            map.put("data3", vdList);
+            map.put("data4", wdList);
+        }
         map.put("province", provinces);
         map.put("year", yearList);
 

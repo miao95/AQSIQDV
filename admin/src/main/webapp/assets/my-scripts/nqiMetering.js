@@ -55,9 +55,6 @@ function showMeteringLawManagement(type){
         success: function(data){//请求成功之后的操作
             var json = JSON.parse(data); //json字符串转为json对象
 
-            var data1 = json['data1'];
-            var data2 = json['data2'];
-
             var option = {
                 tooltip : {
                     trigger: 'axis',
@@ -65,11 +62,11 @@ function showMeteringLawManagement(type){
                         type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
                     }
                 },
-                color:['#81ff38','#ff7438', '#31d0e9', '#ed902c'],
+                color:['#81ff38','#ff7438', '#31d0e9', '#ff6666'],
                 legend: {
                     data: label,
                     textStyle:{
-                        color:['#81ff38','#ff7438', '#31d0e9', '#ed902c']
+                        color:['#81ff38','#ff7438', '#31d0e9', '#ff6666']
                     }
                 },
                 grid: {
@@ -102,7 +99,7 @@ function showMeteringLawManagement(type){
                         }
                     }
                 ],
-                series : dataFormatInit(json)
+                series : dataFormatInit(type, json)
             };
 
             var chart_m_legal = echarts.init(document.getElementById('div_m_legal'));
@@ -121,10 +118,10 @@ function showMeteringLawManagement(type){
 /**
  * 初始切换tab页时的数据格式化
  * @param json
+ * @param type
  */
-function dataFormatInit(json) {
+function dataFormatInit(type, json) {
     var data = [];
-    var type = $('#metering-law-type').val();
     var label = labelFormat(type);
     for(var i = 0; i < label.length; i++){
         var p = 'data' + (i + 1);
@@ -383,76 +380,17 @@ function dataFormatter(data) {
 
     for (var i = 0; i < yearList.length; i++) {
         var year = yearList[i];
-        var zdData = data['zd'];
-        var zdSeries = {
-            name: year + '年' + label[0],
-            type: 'bar',
-            //stack: year,
-            xAxisIndex: 0,
-            yAxisIndex: 0,
-            /*itemStyle:{
-                normal:{
-                    color:'#ffff66'
-                }
-            },*/
-            data: zdData[i][year]
-        };
-        result.push(zdSeries);
-
-        if(type != 'new_product'){
-            var xdData = data['xd'];
-            var xdSeries = {
-                name: year + '年' + label[1],
+        for (var j = 0; j < label.length; j++) {
+            var seriesData = data['data' + (j + 1)];
+            var seriesItem = {
+                name: year + '年' + label[j],
                 type: 'bar',
-                //stack: year,
                 xAxisIndex: 0,
                 yAxisIndex: 0,
-               /* itemStyle:{
-                    normal:{
-                        color:'#ff6666'
-                    }
-                },*/
-                data: xdData[i][year]
+                data: seriesData[i][year]
             };
 
-            result.push(xdSeries);
-        }
-        else if(type != 'new_product' || type != 'make_modify' || type != 'product_weight' || type != 'assurance_capability'){
-            var vdData = data['vd'];
-            var vdSeries = {
-                name: year + '年' + label[2],
-                type: 'bar',
-                //stack: year,
-                xAxisIndex: 0,
-                yAxisIndex: 0,
-                /*itemStyle:{
-                    normal:{
-                        color:'#ff6666'
-                    }
-                },*/
-                data: vdData[i][year]
-            };
-
-            result.push(vdSeries);
-        }
-        else if(type != 'new_product' || type != 'make_modify' || type != 'product_weight' || type != 'assurance_capability' ||
-                    type != 'socail_fair'){
-            var wdData = data['wd'];
-            var wdSeries = {
-                name: year + '年' + label[3],
-                type: 'bar',
-                //stack: year,
-                xAxisIndex: 0,
-                yAxisIndex: 0,
-                /*itemStyle:{
-                    normal:{
-                        color:'#ff6666'
-                    }
-                },*/
-                data: wdData[i][year]
-            };
-
-            result.push(wdSeries);
+            result.push(seriesItem);
         }
 
     }

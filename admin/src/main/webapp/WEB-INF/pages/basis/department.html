@@ -1,0 +1,111 @@
+<@override name="page-content">
+<!-- Breadcrumb -->
+<ol class="breadcrumb hidden-xs">
+  <li><a href="indexl.html">首页</a></li>
+  <li><a href="#">质量基础</a></li>
+  <li  class="active">检验检测</li>
+</ol>
+<div  class="block-area">
+  <div class="row">
+    <div class="col-md-12">
+      <!--特种设备定期检验-->
+      <div class="tile" style="height: 420px">
+        <h2 class="tile-title" style="font-size: 15px">特种设备定期检验汇总</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu pull-right text-right">
+            <li><a class="tile-info-toggle" href="">Chart Information</a></li>
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div class="col-md-12">
+          <!-- Main Chart -->
+          <div class="tile">
+
+            <div class='col-md-4' style="float:left;margin-top:10px">
+
+              <div class='col-md-2'>
+                <select id="specialequipmentyearselect" disabled="true" class="select">
+                  <option>2017年</option>
+                  <option>2016年</option>
+                  <option>2015年</option>
+                  <option selected>2014年</option>
+                </select>
+              </div>
+            </div>
+            <div id="div_specialequipmentinspection" style="float:left;width:90%;height:350px"></div>
+          </div>
+        </div><!-- col -->
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <!--特种设备定期检验-->
+      <div class="tile" style="height: 400px">
+        <h2 class="tile-title" style="font-size: 15px">纤维检验</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu pull-right text-right">
+            <li><a class="tile-info-toggle" href="">Chart Information</a></li>
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <ul class="nav nav-tabs col-md-12" style="margin: 0px;padding: 0px">
+          <li class=" col-md-3" style="margin: 0px;padding: 0px" ><a data-toggle="tab">●纤维检验情况</a></li>
+          <li class="col-md-3" style="margin: 0px;padding: 0px"><a data-toggle="tab">●检验量和标准制作情况</a></li>
+        </ul>
+        <div class="col-md-12" style="margin: 0px;padding: 0px">
+
+          <div class="col-md-8" style=" height: 270px;">
+            <div class="row" style="margin-top:15px;margin-left:-120px">
+              <div class='col-md-6'>
+                <div class='col-md-4'>
+                  <button class="btn btn-default pull-right">年份:</button>
+                </div>
+                <div class='col-md-2'>
+                  <select id="specialequipmentyearselect" class="select">
+                    <option>2017年</option>
+                    <option>2016年</option>
+                    <option>2015年</option>
+                    <option>2014年</option>
+                  </select>
+                </div>
+              </div>
+
+            </div>
+            <div id="fiberinspectiondiv" class="col-md-12" style=" height: 350px;"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</@override>
+
+<@override name="custom-script">
+<script type="text/javascript" src="/assets/Scripts/nqi_iq.js"></script>
+
+<script type="text/javascript">
+    var specialeqt_chart = echarts.init(document.getElementById("div_specialequipmentinspection"));
+    specialeqt_chart.setOption(option_specialequipmentinspection);
+    $('.accordion').find('a').each(function () {
+
+        if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
+            $(this).parent().addClass('active');
+            $(this).parent().parent().addClass('open');
+            $(this).parent().parent().parent().addClass('open');
+
+            $(this).parent().parent().parent().parent().addClass('open');
+            $(this).parent().parent().parent().parent().parent().addClass('open');
+        }
+        // else {
+        //     $(this).parent().parent().parent().removeClass('open'); // this.className = 'active';
+        // }
+    });
+</script>
+</@override>
+<@extends name="/common/base.html"/>

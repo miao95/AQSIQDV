@@ -22,6 +22,31 @@ $(function() {
   }
 
   var accordion = new Accordion($('#accordion'), false);
+
+  //二级子菜单下拉
+  var Submenu = function(el, multiple) {
+        this.el = el || {};
+        this.multiple = multiple || false;
+
+        // Variables privadas
+        var links = this.el.find('.sublink');
+        // Evento
+        links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+    }
+
+    Submenu.prototype.dropdown = function(e) {
+        var $el = e.data.el;
+        $this = $(this),
+        $next = $this.next();
+
+        $next.slideToggle();
+        $this.parent().toggleClass('open');
+        if (!e.data.multiple) {
+            $el.find('.sub-submenu').not($next).slideUp().parent().removeClass('open');
+        };
+    }
+
+    var submenu = new Submenu($('#accordion'), false);
 });
 
 

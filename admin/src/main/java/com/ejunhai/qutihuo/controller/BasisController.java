@@ -60,6 +60,11 @@ public class BasisController extends BaseController {
         return "basis/nqiMetering";
     }
 
+    @RequestMapping("/supply/department")
+    public String departmentPage(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return "basis/department";
+    }
+
     @RequestMapping("/findStandardByParams")
     @ResponseBody
     public Map findStandardByParams(@RequestParam(value = "yearName", required =false) String yearName,

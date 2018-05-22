@@ -14,17 +14,20 @@
             </div>
             <ul class="submenu">
                 <#list item.childMenus as secondChild >
-                    <li class="<#if menuRouteMap[secondChild.id?string]??>active</#if>  <#if menuRouteMap[secondChild.id?string]??&& secondChild.actionType==1>open</#if>">
+                    <li class="<#if menuRouteMap[secondChild.id?string]??>active</#if>  <#if menuRouteMap[secondChild.id?string]??&& secondChild.actionType==1>open</#if>"
+                            <#if menuRouteMap[secondChild.id?string]??&& secondChild.actionType==1>style="background-color: transparent;"</#if>>
                         <#if secondChild.actionType==2 >
                             <a href="${secondChild.url}">${secondChild.actionName}</a>
                         <#else>
-                        <div class="link">
-                            <i class="${secondChild.iconCss}"></i>${secondChild.actionName}<i class="fa fa-chevron-down"></i>
+                        <div class="sublink">
+                            <!--<i class="${secondChild.iconCss}"></i>-->
+                            ${secondChild.actionName}
+                            <!--<i class="fa fa-chevron-down"></i>-->
                         </div>
-                        <ul class="submenu">
+                        <ul class="sub-submenu">
                             <#list secondChild.childMenus as thirdChild >
                             <li class="<#if menuRouteMap[thirdChild.id?string]??>active</#if>">
-                                <a href="${thirdChild.url}">${thirdChild.actionName}</a>
+                                <a href="${thirdChild.url}" style="padding-left: 62px;">${thirdChild.actionName}</a>
                             </li>
                             </#list>
                         </ul>

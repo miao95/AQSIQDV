@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-md-12">
       <!--特种设备定期检验-->
-      <div class="tile" style="height: 420px">
+      <div class="tile" style="height: 500px">
         <h2 class="tile-title" style="font-size: 15px">特种设备定期检验汇总</h2>
         <div class="tile-config dropdown">
           <a data-toggle="dropdown" href="" class="tile-menu"></a>
@@ -20,21 +20,24 @@
           </ul>
         </div>
         <div class="col-md-12">
+          <!-- Year combobox -->
+          <div class='col-md-2' style="width: 100%;padding: 20px 0px 20px 0px">
+            <div class='col-md-6' style="width: 80px">
+              <div style="margin-left:25px;margin-top:7px">年份:</div>
+            </div>
+            <div class='col-md-6'>
+              <select class="selectpicker" name="yearNameInspection" id="year_name_inspection"
+                      data-width="300" title="请选择年份" onchange="yearSelectInspectionOnChange(this)">
+                <option value="2014">2014年</option>
+                <option value="2013">2013年</option>
+                <option value="2012">2012年</option>
+              </select>
+            </div>
+          </div>
+
           <!-- Main Chart -->
           <div class="tile">
-
-            <div class='col-md-4' style="float:left;margin-top:10px">
-
-              <div class='col-md-2'>
-                <select id="specialequipmentyearselect" disabled="true" class="select">
-                  <option>2017年</option>
-                  <option>2016年</option>
-                  <option>2015年</option>
-                  <option selected>2014年</option>
-                </select>
-              </div>
-            </div>
-            <div id="div_specialequipmentinspection" style="float:left;width:90%;height:350px"></div>
+            <div id="div_specialequipmentinspection" style="float:left;width:100%;height:400px"></div>
           </div>
         </div><!-- col -->
       </div>
@@ -59,13 +62,13 @@
         <div class="col-md-12" style="margin: 0px;padding: 0px">
 
           <div class="col-md-8" style=" height: 270px;">
-            <div class="row" style="margin-top:15px;margin-left:-120px">
+            <div class="row" style="margin-top:15px;">
               <div class='col-md-6'>
                 <div class='col-md-4'>
                   <button class="btn btn-default pull-right">年份:</button>
                 </div>
                 <div class='col-md-2'>
-                  <select id="specialequipmentyearselect" class="select">
+                  <select id="specialequipmentyearselect1" class="select">
                     <option>2017年</option>
                     <option>2016年</option>
                     <option>2015年</option>
@@ -87,11 +90,11 @@
 </@override>
 
 <@override name="custom-script">
-<script type="text/javascript" src="/assets/Scripts/nqi_iq.js"></script>
+<script type="text/javascript" src="/assets/my-scripts/nqi_iq.js"></script>
 
 <script type="text/javascript">
-    var specialeqt_chart = echarts.init(document.getElementById("div_specialequipmentinspection"));
-    specialeqt_chart.setOption(option_specialequipmentinspection);
+    /*var specialeqt_chart = echarts.init(document.getElementById("div_specialequipmentinspection"));
+    specialeqt_chart.setOption(option_specialequipmentinspection);*/
     $('.accordion').find('a').each(function () {
 
         if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {

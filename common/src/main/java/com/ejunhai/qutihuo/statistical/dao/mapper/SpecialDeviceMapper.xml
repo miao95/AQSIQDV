@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejunhai.qutihuo.statistical.dao.SpecialDeviceMapper" >
+    <resultMap id="SpecialDeviceMapper" type="com.ejunhai.qutihuo.statistical.model.SpecialDevice" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="ZHDJL" property="zhdjl" jdbcType="DECIMAL" />
+        <result column="GL_YJS" property="gl_yjs" jdbcType="INTEGER" />
+        <result column="GL_SJS" property="gl_sjs" jdbcType="INTEGER" />
+        <result column="GL_DJL" property="gl_djl" jdbcType="DECIMAL" />
+        <result column="YLRQ_YJS" property="ylrq_yjs" jdbcType="INTEGER" />
+        <result column="YLRQ_SJS" property="ylrq_sjs" jdbcType="INTEGER" />
+        <result column="YLRQ_DJL" property="ylrq_djl" jdbcType="DECIMAL" />
+        <result column="QP_YJS" property="ylgd_yjs" jdbcType="INTEGER" />
+        <result column="QP_SJS" property="ylgd_sjs" jdbcType="INTEGER" />
+        <result column="QP_DJL" property="ylgd_djl" jdbcType="DECIMAL" />
+        <result column="YLGD_YJS" property="qp_yjs" jdbcType="INTEGER" />
+        <result column="YLGD_SJS" property="qp_sjs" jdbcType="INTEGER" />
+        <result column="YLGD_DJL" property="qp_djl" jdbcType="DECIMAL" />
+        <result column="DT_YJS" property="dt_yjs" jdbcType="INTEGER" />
+        <result column="DT_SJS" property="dt_sjs" jdbcType="INTEGER" />
+        <result column="DT_DJL" property="dt_djl" jdbcType="DECIMAL" />
+        <result column="QZJX_YJS" property="qzjx_yjs" jdbcType="INTEGER" />
+        <result column="QZJX_SJS" property="qzjx_sjs" jdbcType="INTEGER" />
+        <result column="QZJX_DJL" property="qzjx_djl" jdbcType="DECIMAL" />
+        <result column="KYSD_YJS" property="kysd_yjs" jdbcType="INTEGER" />
+        <result column="KYSD_SJS" property="kysd_sjs" jdbcType="INTEGER" />
+        <result column="KYSD_DJL" property="kysd_djl" jdbcType="DECIMAL" />
+        <result column="DXYLSS_YJS" property="dxylss_yjs" jdbcType="INTEGER" />
+        <result column="DXYLSS_SJS" property="dxylss_sjs" jdbcType="INTEGER" />
+        <result column="DXYLSS_DJL" property="dxylss_djl" jdbcType="DECIMAL" />
+        <result column="CNJDCL_YJS" property="cnjdcl_yjs" jdbcType="INTEGER" />
+        <result column="CNJDCL_SJS" property="cnjdcl_sjs" jdbcType="INTEGER" />
+        <result column="CNJDCL_DJL" property="cnjdcl_djl" jdbcType="DECIMAL" />
+        <result column="YEAR" property="year" jdbcType="INTEGER" />
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        ID,
+        ZHDJL,
+        GL_YJS,
+        GL_SJS,
+        GL_DJL,
+        YLRQ_YJS,
+        YLRQ_SJS,
+        YLRQ_DJL,
+        QP_YJS,
+        QP_SJS,
+        QP_DJL,
+        YLGD_YJS,
+        YLGD_SJS,
+        YLGD_DJL,
+        DT_YJS,
+        DT_SJS,
+        DT_DJL,
+        QZJX_YJS,
+        QZJX_SJS,
+        QZJX_DJL,
+        KYSD_YJS,
+        KYSD_SJS,
+        KYSD_DJL,
+        DXYLSS_YJS,
+        DXYLSS_SJS,
+        DXYLSS_DJL,
+        CNJDCL_YJS,
+        CNJDCL_SJS,
+        CNJDCL_DJL,
+        YEAR,
+        PROVINCE
+    </sql>
+
+    <select id="findByParams" resultMap="SpecialDeviceMapper" resultType="com.ejunhai.qutihuo.statistical.model.SpecialDevice">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM specialdeviceinspectioninfo
+        <where>
+            <if test="province != null and province !=''"> and province like CONCAT('%',#{province},'%') </if>
+            <if test="year != null and year !=''"> and year = #{year} </if>
+        </where>
+    </select>
+</mapper>

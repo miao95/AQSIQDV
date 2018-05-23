@@ -4,9 +4,11 @@ import com.ejunhai.qutihuo.common.base.BaseController;
 import com.ejunhai.qutihuo.statistical.model.Measurement;
 import com.ejunhai.qutihuo.statistical.model.MetricInstrument;
 import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
+import com.ejunhai.qutihuo.statistical.model.SpecialDevice;
 import com.ejunhai.qutihuo.statistical.service.MeasurementService;
 import com.ejunhai.qutihuo.statistical.service.MetricInstrumentService;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
+import com.ejunhai.qutihuo.statistical.service.SpecialDeviceService;
 import com.ejunhai.qutihuo.utils.MyStringUtil;
 import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
@@ -32,6 +34,8 @@ public class BasisController extends BaseController {
     private MeasurementService measurementService;
     @Resource
     private MetricInstrumentService metricInstrumentService;
+    @Resource
+    private SpecialDeviceService specialDeviceService;
 
     @RequestMapping("/nqi")
     public String nqiPage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
@@ -482,6 +486,66 @@ public class BasisController extends BaseController {
                             break;
                         default:
                             data[j] = 0;
+                            break;
+                    }
+
+                }
+            }
+
+            list.add(data);
+        }
+
+        return list;
+    }
+
+
+    @RequestMapping("showSpecialDeviceInspection")
+    @ResponseBody
+    public List showSpecialDeviceInspection(
+            @RequestParam(value = "year", required = false) Integer year){
+        List list = new ArrayList();
+
+        String[] provinceList = {"北京","天津","河北","山西","内蒙古","辽宁","吉林","黑龙江","上海","江苏","浙江","安徽","福建","江西","山东","河南","湖北",
+                "湖南","广东","广西","海南","重庆","四川","贵州","云南","西藏","陕西","甘肃","青海","宁夏","新疆"};
+        String[] features = {"锅炉","压力容器","压力管道","气瓶","电梯","起重机械","客运索道","大型游乐设施","场内机动车辆"};
+
+        for (int i = 0; i < features.length; i++) {
+            String feature = features[i];
+            Double[] data = new Double[provinceList.length];
+            for (int j = 0; j < provinceList.length; j++) {
+                List<SpecialDevice> pojoList = specialDeviceService.findByParams(provinceList[j], year);
+                if(pojoList != null && pojoList.size() > 0){
+                    SpecialDevice pojo = pojoList.get(0);
+                    switch (feature){
+                        case "锅炉":
+                            data[j] = pojo.getGl_djl().doubleValue();
+                            break;
+                        case "压力容器":
+                            data[j] = pojo.getYlrq_djl().doubleValue();
+                            break;
+                        case "压力管道":
+                            data[j] = pojo.getYlgd_djl().doubleValue();
+                            break;
+                        case "气瓶":
+                            data[j] = pojo.getQp_djl().doubleValue();
+                            break;
+                        case "电梯":
+                            data[j] = pojo.getDt_djl().doubleValue();
+                            break;
+                        case "起重机械":
+                            data[j] = pojo.getQzjx_djl().doubleValue();
+                            break;
+                        case "客运索道":
+                            data[j] = pojo.getKysd_djl().doubleValue();
+                            break;
+                        case "大型游乐设施":
+                            data[j] = pojo.getDxylss_djl().doubleValue();
+                            break;
+                        case "场内机动车辆":
+                            data[j] = pojo.getCnjdcl_djl().doubleValue();
+                            break;
+                        default:
+                            data[j] = 0.0;
                             break;
                     }
 

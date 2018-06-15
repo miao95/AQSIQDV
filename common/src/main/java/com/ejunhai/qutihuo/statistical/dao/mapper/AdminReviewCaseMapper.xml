@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejunhai.qutihuo.statistical.dao.AdminReviewCaseMapper" >
+    <resultMap id="AdminReviewCaseMapper" type="com.ejunhai.qutihuo.statistical.model.AdminReviewCase" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="SQJZ" property="sqjz" jdbcType="INTEGER" />
+        <result column="BQXS" property="bqxs" jdbcType="INTEGER" />
+        <result column="SL" property="sl" jdbcType="INTEGER" />
+        <result column="SQR_COUNT" property="sqr_count" jdbcType="INTEGER" />
+        <result column="BSQR_XZZF" property="bsqr_xzzf" jdbcType="INTEGER" />
+        <result column="BSQR_XJZFDBM" property="bsqr_xjzfdbm" jdbcType="INTEGER" />
+        <result column="BSQR_XJZF" property="bsqr_xjzf" jdbcType="INTEGER" />
+        <result column="BSQR_DJZFDBM" property="bsqr_djzfdbm" jdbcType="INTEGER" />
+        <result column="BSQR_DJZF" property="bsqr_djzf" jdbcType="INTEGER" />
+        <result column="BSQR_SJZFDBM" property="bsqr_sjzfdbm" jdbcType="INTEGER" />
+        <result column="BSQR_SJZF" property="bsqr_sjzf" jdbcType="INTEGER" />
+        <result column="BSQR_QT" property="bsqr_qt" jdbcType="INTEGER" />
+        <result column="FYJG_XJZFDBM" property="fyjg_xjzfdbm" jdbcType="INTEGER" />
+        <result column="FYJG_XJZF" property="fyjg_xjzf" jdbcType="INTEGER" />
+        <result column="FYJG_DJZFDBM" property="fyjg_djzfdbm" jdbcType="INTEGER" />
+        <result column="FYJG_DJZF" property="fyjg_djzf" jdbcType="INTEGER" />
+        <result column="FYJG_SJZFDBM" property="fyjg_sjzfdbm" jdbcType="INTEGER" />
+        <result column="FYJG_SJZF" property="fyjg_sjzf" jdbcType="INTEGER" />
+        <result column="SQFYSX_JL" property="sqfysx_jl" jdbcType="INTEGER" />
+        <result column="SQFYSX_MS" property="sqfysx_ms" jdbcType="INTEGER" />
+        <result column="SQFYSX_FK" property="sqfysx_fk" jdbcType="INTEGER" />
+        <result column="SQFYSX_XZCF_QT" property="sqfysx_xzcf_qt" jdbcType="INTEGER" />
+        <result column="SQFYSX_RS" property="sqfysx_rs" jdbcType="INTEGER" />
+        <result column="SQFYSX_CC" property="sqfysx_cc" jdbcType="INTEGER" />
+        <result column="SQFYSX_XZZS" property="sqfysx_xzzs" jdbcType="INTEGER" />
+        <result column="SQFYSX_XZXK" property="sqfysx_xzxk" jdbcType="INTEGER" />
+        <result column="SQFYSX_XZQQ" property="sqfysx_xzqq" jdbcType="INTEGER" />
+        <result column="SQFYSX_XZQR" property="sqfysx_xzqr" jdbcType="INTEGER" />
+        <result column="SQFYSX_XXGK" property="sqfysx_xxgk" jdbcType="INTEGER" />
+        <result column="SQFYSX_XZBZW" property="sqfysx_xzbzw" jdbcType="INTEGER" />
+        <result column="SQFYSX_QT" property="sqfysx_qt" jdbcType="INTEGER" />
+        <result column="YSJ_COUNT" property="ysj_count" jdbcType="INTEGER" />
+        <result column="YSJ_BH" property="ysj_bh" jdbcType="INTEGER" />
+        <result column="YSJ_WC" property="ysj_wc" jdbcType="INTEGER" />
+        <result column="YSJ_QRWF" property="ysj_qrwf" jdbcType="INTEGER" />
+        <result column="YSJ_CX" property="ysj_cx" jdbcType="INTEGER" />
+        <result column="YSJ_BG" property="ysj_bg" jdbcType="INTEGER" />
+        <result column="YSJ_ZLLX" property="ysj_zllx" jdbcType="INTEGER" />
+        <result column="YSJ_TJ" property="ysj_tj" jdbcType="INTEGER" />
+        <result column="YSJ_ZZ_HJXY" property="ysj_zz_hjxy" jdbcType="INTEGER" />
+        <result column="YSJ_ZZ_ZYCHSQ" property="ysj_zz_zychsq" jdbcType="INTEGER" />
+        <result column="YSJ_ZZ_GBHCHSQ" property="ysj_zz_gbhchsq" jdbcType="INTEGER" />
+        <result column="YSJ_ZZ_QT" property="ysj_zz_qt" jdbcType="INTEGER" />
+        <result column="YSJ_QT" property="ysj_qt" jdbcType="INTEGER" />
+        <result column="WSJ" property="wsj" jdbcType="INTEGER" />
+        <result column="XZPC_COUNT" property="xzpc_count" jdbcType="INTEGER" />
+        <result column="XZPC_MONEY" property="xzpc_money" jdbcType="INTEGER" />
+        <result column="YEAR" property="year" jdbcType="INTEGER" />
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        ID,
+        SQJZ,
+        BQXS,
+        SL,
+        SQR_COUNT,
+        BSQR_XZZF,
+        BSQR_XJZFDBM,
+        BSQR_XJZF,
+        BSQR_DJZFDBM,
+        BSQR_DJZF,
+        BSQR_SJZFDBM,
+        BSQR_SJZF,
+        BSQR_QT,
+        FYJG_XJZFDBM,
+        FYJG_XJZF,
+        FYJG_DJZFDBM,
+        FYJG_DJZF,
+        FYJG_SJZFDBM,
+        FYJG_SJZF,
+        SQFYSX_JL,
+        SQFYSX_MS,
+        SQFYSX_FK,
+        SQFYSX_XZCF_QT,
+        SQFYSX_RS,
+        SQFYSX_CC,
+        SQFYSX_XZZS,
+        SQFYSX_XZXK,
+        SQFYSX_XZQQ,
+        SQFYSX_XZQR,
+        SQFYSX_XXGK,
+        SQFYSX_XZBZW,
+        SQFYSX_QT,
+        YSJ_COUNT,
+        YSJ_BH,
+        YSJ_WC,
+        YSJ_QRWF,
+        YSJ_CX,
+        YSJ_BG,
+        YSJ_ZLLX,
+        YSJ_TJ,
+        YSJ_ZZ_HJXY,
+        YSJ_ZZ_ZYCHSQ,
+        YSJ_ZZ_GBHCHSQ,
+        YSJ_ZZ_QT,
+        YSJ_QT,
+        WSJ,
+        XZPC_COUNT,
+        XZPC_MONEY,
+        YEAR,
+        PROVINCE
+    </sql>
+
+    <select id="findByParams" resultMap="AdminReviewCaseMapper" resultType="com.ejunhai.qutihuo.statistical.model.AdminReviewCase">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM adminreviewcaseinfo
+        <where>
+            <if test="province != null and province !=''"> and province=#{province} </if>
+            <if test="year != null and year !=''"> and year = #{year} </if>
+        </where>
+    </select>
+</mapper>

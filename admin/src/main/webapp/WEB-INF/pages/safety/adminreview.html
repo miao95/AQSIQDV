@@ -1,0 +1,269 @@
+<@override name="custom-css">
+<style type="text/css">
+  .r_out {width:120px; height:120px; border:2px solid #d9d9d9; background:#fff; box-shadow:3px 3px 5px #bfbfbf; -webkit-box-shadow:3px 3px 5px #bfbfbf; -moz-box-shadow:3px 3px 5px #bfbfbf; -ms-box-shadow:3px 3px 5px #bfbfbf; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; display:inline-block; margin:20px 70px; position:relative;}
+  .r_out p {position:absolute; /**bottom:-50px;*/ color:#fff; text-align:center; margin:0 auto; width:100%; font-size:14px; line-height:1.5; font-weight:bold;}
+
+  .r_in {width:120px; height:120px; border:10px solid #fff; border-radius:50%; -webkit-border-radius:50%; -moz-border-radius:50%; -ms_border-radius:50%; overflow:hidden; position:relative;}
+  .r_c {width:120px; height:120px; position:absolute; bottom:0; left:0; height:0;}
+  .c1 {background:#fbad4c;}
+  .c2 {background:#fff143;}
+  .c3 {background:#c9dd22;}
+  .c4 {background:#00e079;}
+  .c5 {background:#0eb83a;}
+  .r_num {color:#404040; font-size:23px; line-height:1.5; font-weight:bold; position:absolute; top:50%; margin-top:-25px; text-align:center; width:100%;}
+
+  .alert-lost{
+    padding:5px;
+    margin-top:10px;
+    margin-bottom:-8px;
+    font-size:14px;
+  }
+
+</style>
+</@override>
+
+<@override name="page-content">
+<!-- Breadcrumb -->
+<ol class="breadcrumb hidden-xs">
+  <li><a href="index.jhtml">首页</a></li>
+  <li  class="active">质量安全</li>
+</ol>
+
+<h4 class="page-title">行政复议案件</h4>
+
+
+<div class="block-area">
+
+  <div class="row" style="margin-top:10px;margin-bottom:10px;" >
+    <div class='col-md-2' style="width: 30%">
+      <div class='col-md-6' style="width: 80px">
+        <div style="margin-left:25px;margin-top:7px">年份:</div>
+      </div>
+      <div class='col-md-6'>
+        <select class="selectpicker" name="yearName" id="year_name"
+                data-width="200" title="请选择年份" onchange="yearSelectOnChange(this)">
+          <option value="2016">2016年</option>
+          <option value="2015">2015年</option>
+          <option value="2014">2014年</option>
+          <option value="2013">2013年</option>
+          <option value="2012">2012年</option>
+        </select>
+      </div>
+    </div>
+
+    <div class='col-md-2' style="width: 30%">
+      <div class='col-md-6' style="width: 80px">
+        <div style="margin-left:25px;margin-top:7px">省份:</div>
+      </div>
+      <div class='col-md-6'>
+        <select class="selectpicker" name="provinceName" id="province_name"
+                data-width="200" title="请选择省份" onchange="yearSelectOnChange(this)">
+          <option value="2016">2016年</option>
+          <option value="2015">2015年</option>
+          <option value="2014">2014年</option>
+          <option value="2013">2013年</option>
+          <option value="2012">2012年</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!--  Main Chart -->
+  <div class="row" style="margin-top:0px">
+    <div class="col-md-12">
+      <!--概览-->
+      <div class="tile" style="height: 350px">
+        <h2 class="tile-title" style="font-size: 15px">概览</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu pull-right text-right">
+            <li><a class="tile-info-toggle" href="">Chart Information</a></li>
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div class="col-md-12">
+          <!-- Main Chart -->
+            <div class="robin_circle" style="margin: 20px 0px 18px 20px;">
+              <div class="r_out">
+                <div class="r_in">
+                  <div class="r_c c1"></div>
+                  <div class="r_num">${sqjz}</div>
+                </div>
+                <p>上期结转</p><br>
+                <div class="alert alert-success alert-lost">
+                  全国：${sqjz.toString()}
+                </div>
+                <div class="alert alert-warning alert-lost">
+                  全国：${sqjz.toString()}
+                </div>
+              </div>
+              <div class="r_out">
+                <div class="r_in">
+                  <div class="r_c c2"></div>
+                  <div class="r_num">${bqxs}</div>
+                </div>
+                <p>本期新收</p><br>
+                <div class="alert alert-success alert-lost" >
+                  全国：${bqxs.toString()}
+                </div>
+                <div class="alert alert-warning alert-lost" >
+                  全国：${bqxs.toString()}
+                </div>
+              </div>
+              <div class="r_out">
+                <div class="r_in">
+                  <div class="r_c c3"></div>
+                  <div class="r_num">${sl}</div>
+                </div>
+                <p>受理</p><br>
+                <div class="alert alert-success alert-lost" >
+                  全国：${sl.toString()}
+                </div>
+                <div class="alert alert-warning alert-lost" >
+                  全国：${sl.toString()}
+                </div>
+
+              </div>
+              <div class="r_out">
+                <div class="r_in">
+                  <div class="r_c c4"></div>
+                  <div class="r_num">${sqr_count}</div>
+                </div>
+                <p>申请人总数</p><br>
+                <div class="alert alert-success alert-lost">
+                  全国：${sqr_count.toString()}
+                </div>
+                <div class="alert alert-warning alert-lost" >
+                  全国：${sqr_count.toString()}
+                </div>
+
+              </div>
+
+            </div>
+        </div><!-- col -->
+      </div>
+    </div>
+
+    <!-- col-md-6占50%，col-md-4占1/3-->
+    <div class="col-md-4">
+      <div class="tile">
+        <h2 class="tile-title">被申请人</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_imp_bio" style="width: 100%;height:400px;"></div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="tile">
+        <h2 class="tile-title">复议机关</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_exp_consumer" style="width: 100%;height:400px;"></div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="tile">
+        <h2 class="tile-title">申请复议事项</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_detain1" style="width: 100%;height:400px;"></div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="tile">
+        <h2 class="tile-title">已审结</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_detain2" style="width: 100%;height:400px;"></div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="tile">
+        <h2 class="tile-title">未审结</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu animated pull-right text-right">
+            <li><a href="">Refresh</a></li>
+            <li><a href="">Settings</a></li>
+          </ul>
+        </div>
+        <div id="div_detain3" style="width: 100%;height:400px;"></div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="tile">
+        <h2 class="tile-title">行政赔偿</h2>
+        <div class="tile-config dropdown">
+          <a data-toggle="dropdown" href="" class="tile-menu"></a>
+          <ul class="dropdown-menu pull-right text-right">
+            <li id="todo-refresh"><a href="">Refresh</a></li>
+            <li id="todo-clear"><a href="">Clear All</a></li>
+          </ul>
+        </div>
+        <div id="div_detain4" style="width: 100%;height:400px;"></div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="clearfix"></div>
+  <div class="clearfix"></div>
+</div>
+</@override>
+
+<@override name="custom-script">
+<script type="text/javascript" src="/assets/my-scripts/adminReview.js"></script>
+<script type="text/javascript">
+
+  //水滴图
+  $(document).ready(function () {
+          $(".c1").animate({
+              height: "100%"
+          },1000);
+          $(".c2").animate({
+              height: "100%"
+          },1000);
+          $(".c3").animate({
+              height: "100%"
+          },1000);
+          $(".c4").animate({
+              height: "100%"
+          },1000)
+  });
+
+    $('.accordion').find('a').each(function () {
+        if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
+            $(this).parent().addClass('active');
+            $(this).parent().parent().addClass('open');
+            $(this).parent().parent().parent().addClass('open');
+        }
+    });
+</script>
+</@override>
+<@extends name="/common/base.html"/>

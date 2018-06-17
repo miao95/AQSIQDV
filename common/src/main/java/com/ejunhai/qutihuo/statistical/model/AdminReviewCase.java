@@ -104,32 +104,32 @@ public class AdminReviewCase implements Comparable{
     private Integer fyjg_sjzf;
 
     /**
-     * 申请复议事项--拘留
+     * 申请复议事项--行政处罚--拘留
      */
     private Integer sqfysx_jl;
 
     /**
-     * 申请复议事项--没收
+     * 申请复议事项--行政处罚--没收
      */
     private Integer sqfysx_ms;
 
     /**
-     * 申请复议事项--罚款
+     * 申请复议事项--行政处罚--罚款
      */
     private Integer sqfysx_fk;
 
     /**
-     * 申请复议事项--其他
+     * 申请复议事项--行政处罚--其他
      */
     private Integer sqfysx_xzcf_qt;
 
     /**
-     * 申请复议事项--对人身的强制措施
+     * 申请复议事项--行政强制措施--对人身的强制措施
      */
     private Integer sqfysx_rs;
 
     /**
-     * 申请复议事项--对财产的强制措施
+     * 申请复议事项--行政强制措施--对财产的强制措施
      */
     private Integer sqfysx_cc;
 

@@ -58,9 +58,9 @@ function loadData(province, year) {
             showBsqrPieChart(json['bsqr']);
             showFyjgPieChart(json['fyjg']);
             showSqfysxPieChart(json['sqfysx']);
-            /*showSqfysxPieChart(json['ysj']);
-            showSqfysxPieChart(json['wsj']);
-            showSqfysxPieChart(json['xzpc']);*/
+            showYsjPieChart(json['ysj']);
+            showWsjPieChart(province, year, json['wsj']);
+            showXzpcPieChart(json['xzpc']);
         }
     });
 }
@@ -94,11 +94,6 @@ function showGlPieChart(province, year, data1, data2) {
  */
 function showBsqrPieChart(data) {
     var bsqr = ['乡镇政府','县级政府的部门','县级政府','地(市)级的部门','地(市)级政府','省级政府的部门','省部级行政机关','其他'];
-    var fyjg = ['县级政府的部门','县级政府','地(市)级的部门','地(市)级政府','省级政府的部门','省部级行政机关'];
-    var sqfysx = ['行政处罚--拘留','行政处罚--没收','行政处罚--罚款','行政处罚--其他','行政强制措施--对人身的强制措施','行政强制措施--对财产的强制措施', '行政征收','行政许可','行政确权','行政确认','信息公开','行政不作为', '其他'];
-    var ysj = ['总计','驳回','维持','确认违法','撤销','变更', '责令履行','调解','终止--和解协议','终止--自愿撤回申请','终止--被申请人改变后撤回申请','终止--其他', '其他'];
-    var wsj = ['未审结'];
-    var xzpc = ['件数', '赔偿金额（元）'];
 
     var option = {
         tooltip : {
@@ -364,11 +359,11 @@ function showSqfysxPieChart(data) {
                     r0: '48%',
                     r: '60%',
                     label: {},
-                   /* itemStyle: {
-                        //shadowBlur: 2,
-                        //borderWidth: 6,
-                        borderColor: '#42ced1',
-                    }*/
+                    /* itemStyle: {
+                         //shadowBlur: 2,
+                         //borderWidth: 6,
+                         borderColor: '#42ced1',
+                     }*/
                 }, {
                     r0: '60%',
                     r: '70%',
@@ -397,6 +392,227 @@ function showSqfysxPieChart(data) {
     chart_dom.setOption(option);
 
 }
+
+/**
+ * 已审结饼图
+ * @param data
+ */
+function showYsjPieChart(data) {
+    var zz = ['和解协议','自愿撤回申请','被申请人改变后撤回申请','其他'];
+    var ysj = ['总计','驳回','维持','确认违法','撤销','变更', '责令履行','调解','终止', '其他'];
+    var json = [];
+    for (var i = 0; i < 8; i++){
+        json[i] = data[i];
+    }
+    json[8] = data[8] + data[9] + data[10] + data[11];
+    json[9] = data[12];
+
+    //旭日形状
+    var data1 = [];
+    var children = [];
+    for(var i = 0; i < 10; i++){
+        children[i] = [];
+    }
+    for(var i = 0; i < 4; i++){
+        var child = {
+            name: zz[i],
+            value: 1,
+            label: {
+                position: 'inside',
+                rotate: 'tangential'
+            }
+        }
+        children[8].push(child);
+    }
+
+    for (var i = 0; i < ysj.length; ++i) {
+        data1.push({
+            value: 4,
+            name: ysj[i],
+            label: {
+                position: 'inside',
+                rotate: 'tangential'
+            },
+            children: children[i]
+        });
+    }
+
+
+
+    var option = {
+        tooltip: {
+            show: false
+        },
+        title:[],
+        color:['#8fc31f','#f35833','#00ccff','#ffcc00', '#3498DB','#228B22','#C0392B', '#FFFF00'],
+        animationDuration:2000,
+        label:{
+            normal:{
+                textStyle:{
+                    fontSize:14
+                }
+            },
+            emphasis:{
+                textStyle:{
+                    fontSize:14
+                }
+            }
+        },
+        series : [
+            {
+                name: '已审结',
+                type: 'pie',
+                radius : '50%',
+                roseType: 'area',
+                tooltip : {
+                    show: true,
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+
+                },
+                zlevel: 2,
+                center: ['50%', '50%'],
+                data: generateData(ysj, json),
+                itemStyle: {
+                    normal: {
+                        label:{
+                            show: true,
+                            //position:'inside',
+                            formatter: '{b} \n{c} ({d}%)'
+                        }
+                    },
+                    labelLine :{show:true},
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+
+            },
+            {
+                type: 'sunburst',
+                nodeClick: false,
+                levels: [{}, {
+                    r0: '48%',
+                    r: '60%',
+                    label: {},
+                    /* itemStyle: {
+                         //shadowBlur: 2,
+                         //borderWidth: 6,
+                         borderColor: '#42ced1',
+                     }*/
+                }, {
+                    r0: '60%',
+                    r: '70%',
+                    label: {},
+                    /*itemStyle: {
+                        //borderWidth: 6,
+                        borderColor: '#42b0d1',
+                        opacity: 0.8
+                    }*/
+                }, {
+                    r0: '70%',
+                    r: '76%',
+
+                    /*itemStyle: {
+                        borderWidth: 6,
+                        borderColor: '#22bfb1',
+                        opacity: 0.6
+                    }*/
+                }],
+                data: data1
+            }
+        ]
+    };
+
+    var chart_dom = echarts.init(document.getElementById('div_ysj'));
+    chart_dom.setOption(option);
+
+}
+
+/**
+ * 未审结
+ * @param province
+ * @param year
+ * @param data
+ */
+function showWsjPieChart(province, year, data) {
+    province = province == '全国总计' ? '全国' : province;
+    $(".c5").next().text(data[0]);
+    $(".c5").parent().next().next().next().text(province + ":" + data[0]);
+    $(".c5").parent().next().next().next().next().text("全国:" + data[1]);
+    var percent = (data[0] / data[1]).toFixed(2) * 100 + "%";
+    $(".c5").animate({
+        height: percent
+    },1000);
+
+}
+
+/**
+ * 行政赔偿条形图
+ * @param data
+ */
+function showXzpcPieChart(data) {
+    var xzpc = ['件数', '赔偿金额（元）'];
+
+    var option = {
+        color: ['#3398DB', '#D53A35'],
+        /*title: {
+            text: '',
+            textStyle: {
+                //color: '#fff'
+            }
+        },*/
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#ffffff'
+                }
+            }
+        },
+        legend: {
+            data: xzpc,
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        xAxis: [{
+            type: 'category',
+            data: xzpc,
+            axisPointer: {
+                type: 'shadow'
+            },
+            axisLine: {
+                lineStyle: {
+                    color: '#ffffff'
+                }
+            }
+
+        }],
+        yAxis: [{
+            type: 'value',
+            axisLine: {
+                lineStyle: {
+                    color: '#ffffff'
+                }
+            }
+
+        }],
+        series: [{
+            //name: xzpc,
+            type: 'bar',
+            barWidth: '30%',
+            data: data
+        }]
+    };
+
+    var chart_dom = echarts.init(document.getElementById('div_xzpc'));
+    chart_dom.setOption(option);
+}
+
 
 /**
  * 格式化数据

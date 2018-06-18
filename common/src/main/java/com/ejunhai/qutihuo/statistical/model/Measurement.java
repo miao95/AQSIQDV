@@ -3,8 +3,8 @@ package com.ejunhai.qutihuo.statistical.model;
 /**
  * 地方标准信息表
  *
- * @author Leo
- * @date 2017-12-06 21:18:30
+ * @author Liu Miao
+ * @date 2018-06-16 21:18:30
  */
 public class Measurement implements Comparable{
 

@@ -62,6 +62,18 @@ public class SafetyController extends BaseController {
         return adminReviewCaseService.getDistinctProvince();
     }
 
+    @RequestMapping("/lawAndEdu/getDistinctYear")
+    @ResponseBody
+    public List<Integer> getDistinctYearForLawAndEdu(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return adminReviewCaseService.getDistinctYear();
+    }
+
+    @RequestMapping("/lawAndEdu/getDistinctProvince")
+    @ResponseBody
+    public List<String> getDistinctProvinceForLawAndEdu(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return adminReviewCaseService.getDistinctProvince();
+    }
+
     @RequestMapping("/loadData")
     @ResponseBody
     public Map loadData(

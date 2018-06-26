@@ -31,5 +31,14 @@ public class MetricInstrumentServiceImpl implements MetricInstrumentService {
 		return metricInstrumentMapper.findByParams(province, year);
 	}
 
+	@Override
+	public List<Integer> getDistinctYear() {
+		return metricInstrumentMapper.getDistinctYear();
+	}
+
+    @Override
+    public List<String> getDistinctProvince() {
+        return metricInstrumentMapper.getDistinctProvince();
+    }
 
 }

@@ -44,6 +44,24 @@ public class SafetyController extends BaseController {
         return "safety/adminreview";
     }
 
+    @RequestMapping("/lawandedu")
+    public String lawAndEduPage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
+
+        return "safety/lawandedu";
+    }
+
+    @RequestMapping("/adminReview/getDistinctYear")
+    @ResponseBody
+    public List<Integer> getDistinctYearForAdminReview(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return adminReviewCaseService.getDistinctYear();
+    }
+
+    @RequestMapping("/adminReview/getDistinctProvince")
+    @ResponseBody
+    public List<String> getDistinctProvinceForAdminReview(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return adminReviewCaseService.getDistinctProvince();
+    }
+
     @RequestMapping("/loadData")
     @ResponseBody
     public Map loadData(

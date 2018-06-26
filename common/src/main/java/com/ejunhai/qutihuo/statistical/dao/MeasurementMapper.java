@@ -22,6 +22,13 @@ public interface MeasurementMapper {
     List<Integer> getDistinctYear();
 
     /**
+     * 获取所有包含的省份
+     *
+     * @return 省份数组
+     */
+    List<String> getDistinctProvince();
+
+    /**
      * 根据省份和年份获取
      *
      * @param province

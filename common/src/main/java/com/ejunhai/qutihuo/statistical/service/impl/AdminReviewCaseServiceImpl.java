@@ -24,4 +24,14 @@ public class AdminReviewCaseServiceImpl implements AdminReviewCaseService {
     public List<AdminReviewCase> findByParams(String province, Integer year) {
         return adminReviewCaseMapper.findByParams(province, year);
     }
+
+    @Override
+    public List<Integer> getDistinctYear() {
+        return adminReviewCaseMapper.getDistinctYear();
+    }
+
+    @Override
+    public List<String> getDistinctProvince() {
+        return adminReviewCaseMapper.getDistinctProvince();
+    }
 }

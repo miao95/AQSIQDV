@@ -1,31 +1,9 @@
 $(function () {
     //js初始化方法
 
-    initTimeSelects("year");
     initProvinceSelects("province");
     loadData("全国总计", 2016);
-})
-
-//初始化日期下拉列表
-function initTimeSelects(domId){
-    $.ajax({
-        type: "POST",//请求方式
-        url: "/safety/adminReview/getDistinctYear.action",
-        async: false,
-        error: function(data){//请求失败之后的操作
-            return;
-        },
-        success: function(result){
-            var data = JSON.parse(result);
-            $.each(data, function (i, item) {
-                var selected = i == 0 ? "selected" : "";
-                $("#" + domId).append(" <option value=\"" + item + "\" " + selected + ">" + item + "年" + "</option>");
-            });
-            $("#" + domId).selectpicker('refresh');
-        }
-    });
-
-}
+});
 
 /**
  * 省份下拉框
@@ -34,14 +12,14 @@ function initTimeSelects(domId){
 function initProvinceSelects(domId) {
     $.ajax({
         type: "POST",//请求方式
-        url: "/safety/adminReview/getDistinctProvince.action",//地址，就是json文件的请求路径
+        url: "/assets/json/province.json",//地址，就是json文件的请求路径
         dataType: "json",//数据类型可以为 text xml json  script  jsonp
         success: function(result){
 
             $("#" + domId).append(" <option value=\"全国总计\" selected>" + "全国" + "</option>");
 
             $.each(result, function (i, item) {
-                $("#" + domId).append(" <option value=\"" + item + "\">" + item + "</option>");
+                $("#" + domId).append(" <option value=\"" + item.name + "\">" + item.name + "</option>");
             });
             $("#" + domId).selectpicker('refresh');
         }

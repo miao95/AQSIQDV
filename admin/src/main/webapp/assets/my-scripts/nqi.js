@@ -93,15 +93,53 @@ function getYearList(n) {
 }
 
 //初始化日期下拉列表
-function initTimeSelects(domId){
+/*function initTimeSelects(domId){
     var data = getYearList(5);
     $.each(data, function (i, item) {
         $("#" + domId).append(" <option value=\"" + item + "\">" + item + "年" + "</option>");
     });
     $("#" + domId).selectpicker('refresh');
+}*/
+
+//初始化日期下拉列表
+function initTimeSelects(domId){
+    $.ajax({
+        type: "POST",//请求方式
+        url: "/basis/nqi/getDistinctYear.action",
+        async: false,
+        error: function(data){//请求失败之后的操作
+            return;
+        },
+        success: function(result){
+            var data = JSON.parse(result);
+            $.each(data, function (i, item) {
+                $("#" + domId).append(" <option value=\"" + item + "\">" + item + "年" + "</option>");
+            });
+            $("#" + domId).selectpicker('refresh');
+        }
+    });
+
 }
 
 function initProvinceSelects(domId) {
+    $.ajax({
+        type: "POST",//请求方式
+        url: "/basis/nqi/getDistinctProvince.action",
+        async: false,
+        error: function(data){//请求失败之后的操作
+            return;
+        },
+        success: function(result){
+            var data = JSON.parse(result);
+            $.each(data, function (i, item) {
+                $("#" + domId).append(" <option value=\"" + item + "\">" + item + "</option>");
+            });
+            $("#" + domId).selectpicker('refresh');
+        }
+    });
+}
+
+/*function initProvinceSelects(domId) {
     $.ajax({
         type: "POST",//请求方式
         url: "/assets/json/province.json",//地址，就是json文件的请求路径
@@ -113,7 +151,7 @@ function initProvinceSelects(domId) {
             $("#" + domId).selectpicker('refresh');
         }
     });
-}
+}*/
 
 /**
  * 条形图，显示最近一年全部省份总体制修订数量

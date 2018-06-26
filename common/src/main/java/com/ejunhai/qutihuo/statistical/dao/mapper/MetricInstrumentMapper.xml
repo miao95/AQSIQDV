@@ -61,7 +61,15 @@
         SELECT
         DISTINCT YEAR
         FROM metricinstrumentverificationinfo
-        ORDER BY YEAR ASC
+        ORDER BY YEAR DESC
+    </select>
+
+    <select id="getDistinctProvince" resultType="String">
+        SELECT
+        DISTINCT PROVINCE
+        FROM metricinstrumentverificationinfo
+        WHERE province NOT IN ('全国总计','地方单位合计', '  地方单位合计')
+        ORDER BY PROVINCE ASC
     </select>
 
     <select id="findByParams" resultMap="MetricInstrumentMapper" resultType="com.ejunhai.qutihuo.statistical.model.MetricInstrument">

@@ -107,6 +107,21 @@
         PROVINCE
     </sql>
 
+    <select id="getDistinctProvince" resultType="String">
+        SELECT
+        DISTINCT PROVINCE
+        FROM adminreviewcaseinfo
+        WHERE province NOT IN ('全国总计','地方单位合计', '  地方单位合计')
+        ORDER BY PROVINCE ASC
+    </select>
+
+    <select id="getDistinctYear" resultType="Integer">
+        SELECT
+        DISTINCT YEAR
+        FROM adminreviewcaseinfo
+        ORDER BY YEAR DESC
+    </select>
+
     <select id="findByParams" resultMap="AdminReviewCaseMapper" resultType="com.ejunhai.qutihuo.statistical.model.AdminReviewCase">
         SELECT
         <include refid="Base_Column_List" />

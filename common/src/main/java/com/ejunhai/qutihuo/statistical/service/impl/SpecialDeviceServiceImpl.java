@@ -26,4 +26,14 @@ public class SpecialDeviceServiceImpl implements SpecialDeviceService {
     public List<SpecialDevice> findByParams(String province, Integer year) {
         return specialDeviceMapper.findByParams(province, year);
     }
+
+    @Override
+    public List<Integer> getDistinctYear() {
+        return specialDeviceMapper.getDistinctYear();
+    }
+
+    @Override
+    public List<String> getDistinctProvince() {
+        return specialDeviceMapper.getDistinctProvince();
+    }
 }

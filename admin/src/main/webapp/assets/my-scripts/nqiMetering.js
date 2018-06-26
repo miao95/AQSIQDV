@@ -1,10 +1,37 @@
 $(function () {
     //js初始化方法
+    initTimeSelects("year_name", "/basis/law/getDistinctYear.action");
+    initTimeSelects("year_name_inspection", "/basis/inspection/getDistinctYear.action");
 
     showMeteringLawManagement('div_m_std');
     showMeteringInspection(2016);
 
 });
+
+
+/**
+ * 初始化年份下拉列表
+ * @param domId
+ * @param url
+ */
+function initTimeSelects(domId, url){
+    $.ajax({
+        type: "POST",//请求方式
+        url: url,
+        async: false,
+        error: function(data){//请求失败之后的操作
+            return;
+        },
+        success: function(result){
+            var data = JSON.parse(result);
+            $.each(data, function (i, item) {
+                $("#" + domId).append(" <option value=\"" + item + "\">" + item + "年" + "</option>");
+            });
+            $("#" + domId).selectpicker('refresh');
+        }
+    });
+
+}
 
 /**
  * 年份选择改变时
@@ -34,10 +61,10 @@ function yearSelectOnChange(obj) {
  * @param type
  */
 function showMeteringLawManagement(type){
-    var province = ['广东省','山东省','四川省','河北省','江苏省','黑龙江省',
+    /*var province = ['广东省','山东省','四川省','河北省','江苏省','黑龙江省',
         '内蒙古自治区','浙江省','河南省','辽宁省','安徽省','山西省','湖北省','陕西省','湖南省',
         '  国家质检总局','福建省','新疆维吾尔自治区','吉林省','广西壮族自治区','江西省','北京市',
-        '贵州省','甘肃省','重庆市','云南省','天津市','海南省','上海市','青海省','宁夏回族自治区','西藏自治区','  中国计量院'];
+        '贵州省','甘肃省','重庆市','云南省','天津市','海南省','上海市','青海省','宁夏回族自治区','西藏自治区','  中国计量院'];*/
 
     var label = labelFormat(type);
 
@@ -45,8 +72,7 @@ function showMeteringLawManagement(type){
         type: "POST",//为post请求
         url: "/basis/showMeteringLawManagement.action",
         data: {
-            type: type,
-            province: province.join(",")
+            type: type
         },
         async: false,
         error: function(data){//请求失败之后的操作
@@ -79,7 +105,7 @@ function showMeteringLawManagement(type){
                 xAxis : [
                     {
                         type : 'category',
-                        data : province,
+                        data : json['province'],
                         splitLine:{show:false},
                         axisTick:{
                             lineStyle:{color:'#fff'}
@@ -150,8 +176,8 @@ function yearSelectInspectionOnChange(obj) {
  * 画计量仪器检定情况
  */
 function showMeteringInspection(year) {
-    var provinces = ['中国计量院','北京市','天津市','河北省','山西省','内蒙古自治区','辽宁省','吉林省','黑龙江省','上海市','江苏省','浙江省','安徽省','福建省','江西省','山东省','河南省','湖北省','湖南省','广东省','广西壮族自治区','海南省','重庆市','四川省','贵州省','云南省','西藏自治区','陕西省','甘肃省','青海省','宁夏回族自治区','新疆维吾尔自治区'];
-    var features = ['长度','温度','力学','衡器','电磁','光学','声学','化学','电离辐射','无线电','时间频率','其他'];
+    //var provinces = ['中国计量院','北京市','天津市','河北省','山西省','内蒙古自治区','辽宁省','吉林省','黑龙江省','上海市','江苏省','浙江省','安徽省','福建省','江西省','山东省','河南省','湖北省','湖南省','广东省','广西壮族自治区','海南省','重庆市','四川省','贵州省','云南省','西藏自治区','陕西省','甘肃省','青海省','宁夏回族自治区','新疆维吾尔自治区'];
+    //var features = ['长度','温度','力学','衡器','电磁','光学','声学','化学','电离辐射','无线电','时间频率','其他'];
 
     $.ajax({
         type: "POST",//为post请求
@@ -165,9 +191,11 @@ function showMeteringInspection(year) {
         },
         success: function(data){//请求成功之后的操作
             var dataall = JSON.parse(data); //json字符串转为json对象
-            var data = [];
+            var provinces = dataall['province'];
+            var features = dataall['features'];
 
-            data = generateData(dataall);
+            var data = [];
+            data = generateData(dataall['list']);
             data = data.map(function (item) {
                 return [item[1], item[0], item[2] || '-'];
             });

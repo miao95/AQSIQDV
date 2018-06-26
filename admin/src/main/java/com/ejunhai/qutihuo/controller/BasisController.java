@@ -69,6 +69,36 @@ public class BasisController extends BaseController {
         return "basis/department";
     }
 
+    @RequestMapping("/nqi/getDistinctYear")
+    @ResponseBody
+    public List<Integer> getDistinctYearForNqi(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return provinceStandardService.getDistinctYear();
+    }
+
+    @RequestMapping("/nqi/getDistinctProvince")
+    @ResponseBody
+    public List<String> getDistinctProvinceForNqi(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return provinceStandardService.getDistinctProvince();
+    }
+
+    @RequestMapping("/law/getDistinctYear")
+    @ResponseBody
+    public List<Integer> getDistinctProvinceForLaw(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return measurementService.getDistinctYear();
+    }
+
+    @RequestMapping("/inspection/getDistinctYear")
+    @ResponseBody
+    public List<Integer> getDistinctProvinceForInspection(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return metricInstrumentService.getDistinctYear();
+    }
+
+    @RequestMapping("/special/getDistinctYear")
+    @ResponseBody
+    public List<Integer> getDistinctProvinceForspecial(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return specialDeviceService.getDistinctYear();
+    }
+
     @RequestMapping("/findStandardByParams")
     @ResponseBody
     public Map findStandardByParams(@RequestParam(value = "yearName", required =false) String yearName,
@@ -78,7 +108,7 @@ public class BasisController extends BaseController {
         String[] provinces = areaName.split(",");
         String[] yearList = yearName.split(",");
 
-        yearList = MyStringUtil.removeArrayElement(yearList, "2015");
+        //yearList = MyStringUtil.removeArrayElement(yearList, "2015");
 
         List zdList = new ArrayList();//存储“制定”的数据
         List xdList = new ArrayList();//存储“修订”的数据
@@ -201,11 +231,10 @@ public class BasisController extends BaseController {
 
     @RequestMapping("showMeteringLawManagement")
     @ResponseBody
-    public Map showMeteringLawManagement(
-            @RequestParam(value = "type", required = false) String type,
-            @RequestParam(value = "province", required = false) String province){
+    public Map showMeteringLawManagement(@RequestParam(value = "type", required = false) String type){
+        List<String> provinceL = measurementService.getDistinctProvince();
 
-        String[] provinceList = province.split(",");
+        String[] provinceList = provinceL.toArray(new String[provinceL.size()]);
         Integer[] data1 = new Integer[provinceList.length];
         Integer[] data2 = new Integer[provinceList.length];
         Integer[] data3 = new Integer[provinceList.length];
@@ -265,6 +294,7 @@ public class BasisController extends BaseController {
         }
 
         Map map = new HashMap();
+        map.put("province", provinceList);
 
         if (type.equals("new_product")){
             map.put("data1", data1);
@@ -294,11 +324,8 @@ public class BasisController extends BaseController {
     public Map showMeteringLawManagementByYears(
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "years", required = false) String years){
-        String[] provinces = {"广东省","山东省","四川省","河北省","江苏省","黑龙江省",
-                "内蒙古自治区","浙江省","河南省","辽宁省","安徽省","山西省","湖北省","陕西省","湖南省",
-                "  国家质检总局","福建省","新疆维吾尔自治区","吉林省","广西壮族自治区","江西省","北京市",
-                "贵州省","甘肃省","重庆市","云南省","天津市","海南省","上海市","青海省","宁夏回族自治区","西藏自治区","  中国计量院"};
-
+        List<String> provinceL = measurementService.getDistinctProvince();
+        String[] provinces = provinceL.toArray(new String[provinceL.size()]);
 
         String[] yearList = years.split(",");
         List zdList = new ArrayList();//存储“计量标准第1维度”的数据
@@ -432,12 +459,12 @@ public class BasisController extends BaseController {
 
     @RequestMapping("showMeteringInspection")
     @ResponseBody
-    public List showMeteringInspection(
+    public Map showMeteringInspection(
             @RequestParam(value = "year", required = false) Integer year){
         List list = new ArrayList();
-        String[] provinceList = {"  中国计量院","北京市","天津市","河北省","山西省","内蒙古自治区","辽宁省","吉林省","黑龙江省","上海市",
-                "江苏省","浙江省","安徽省","福建省","江西省","山东省","河南省","湖北省","湖南省","广东省","广西壮族自治区","海南省",
-                "重庆市","四川省","贵州省","云南省","西藏自治区","陕西省","甘肃省","青海省","宁夏回族自治区","新疆维吾尔自治区"};
+
+        List<String> provinceL = metricInstrumentService.getDistinctProvince();
+        String[] provinceList = provinceL.toArray(new String[provinceL.size()]);
 
         String[] features = {"长度","温度","力学","衡器","电磁","光学","声学","化学","电离辐射","无线电","时间频率","其他"};
         for (int i = 0; i < features.length; i++) {
@@ -495,18 +522,23 @@ public class BasisController extends BaseController {
             list.add(data);
         }
 
-        return list;
+        Map map = new HashMap();
+        map.put("province", provinceList);
+        map.put("features", features);
+        map.put("list", list);
+
+        return map;
     }
 
 
     @RequestMapping("showSpecialDeviceInspection")
     @ResponseBody
-    public List showSpecialDeviceInspection(
+    public Map showSpecialDeviceInspection(
             @RequestParam(value = "year", required = false) Integer year){
         List list = new ArrayList();
 
-        String[] provinceList = {"北京","天津","河北","山西","内蒙古","辽宁","吉林","黑龙江","上海","江苏","浙江","安徽","福建","江西","山东","河南","湖北",
-                "湖南","广东","广西","海南","重庆","四川","贵州","云南","西藏","陕西","甘肃","青海","宁夏","新疆"};
+        List<String> provinceL = specialDeviceService.getDistinctProvince();
+        String[] provinceList = provinceL.toArray(new String[provinceL.size()]);
         String[] features = {"锅炉","压力容器","压力管道","气瓶","电梯","起重机械","客运索道","大型游乐设施","场内机动车辆"};
 
         for (int i = 0; i < features.length; i++) {
@@ -555,7 +587,12 @@ public class BasisController extends BaseController {
             list.add(data);
         }
 
-        return list;
+        Map map = new HashMap();
+        map.put("province", provinceList);
+        map.put("features", features);
+        map.put("list", list);
+
+        return map;
     }
 
 

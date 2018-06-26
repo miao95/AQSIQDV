@@ -238,4 +238,14 @@ public class ProvincestandardServiceImpl implements ProvinceStandardService {
 	public List<ProvinceStandard> readRecentNationalStatistics(Integer year) {
 		return provinceStandardMapper.readRecentNationalStatistics(year);
 	}
+
+	@Override
+	public List<Integer> getDistinctYear() {
+		return provinceStandardMapper.getDistinctYear();
+	}
+
+	@Override
+	public List<String> getDistinctProvince() {
+		return provinceStandardMapper.getDistinctProvince();
+	}
 }

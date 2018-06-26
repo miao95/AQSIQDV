@@ -63,11 +63,19 @@
         WHERE YEAR=#{year}
     </select>
 
+    <select id="getDistinctProvince" resultType="String">
+        SELECT
+        DISTINCT PROVINCE
+        FROM provincestandardinfo
+        WHERE province NOT IN ('全国总计','地方单位合计', '  地方单位合计')
+        ORDER BY PROVINCE ASC
+    </select>
+
     <select id="getDistinctYear" resultType="Integer">
         SELECT
         DISTINCT YEAR
         FROM provincestandardinfo
-        ORDER BY YEAR ASC
+        ORDER BY YEAR DESC
     </select>
 
     <select id="findByParams" resultMap="ProvinceStandardMapper" resultType="com.ejunhai.qutihuo.statistical.model.ProvinceStandard">

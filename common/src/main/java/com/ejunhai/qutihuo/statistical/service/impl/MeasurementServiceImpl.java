@@ -49,8 +49,6 @@ public class MeasurementServiceImpl implements MeasurementService{
         return measurementDto;
     }
 
-
-
     List<String> timeLineData(List<Integer> years){
         List<String> result = new ArrayList<String>();
         for(Integer year:years){
@@ -197,4 +195,16 @@ public class MeasurementServiceImpl implements MeasurementService{
     public List<Measurement> findByParams(String province, Integer year) {
         return measurementMapper.findByParams(province, year);
     }
+
+    @Override
+    public List<Integer> getDistinctYear() {
+        return measurementMapper.getDistinctYear();
+    }
+
+    @Override
+    public List<String> getDistinctProvince() {
+        return measurementMapper.getDistinctProvince();
+    }
+
+
 }

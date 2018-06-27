@@ -2,7 +2,9 @@ package com.ejunhai.qutihuo.controller;
 
 import com.ejunhai.qutihuo.common.base.BaseController;
 import com.ejunhai.qutihuo.statistical.model.AdminReviewCase;
+import com.ejunhai.qutihuo.statistical.model.LawAndEdu;
 import com.ejunhai.qutihuo.statistical.service.AdminReviewCaseService;
+import com.ejunhai.qutihuo.statistical.service.LawAndEduService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -14,6 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +26,8 @@ import java.util.Map;
 public class SafetyController extends BaseController {
     @Resource
     private AdminReviewCaseService adminReviewCaseService;
+    @Resource
+    private LawAndEduService lawAndEduService;
 
     @RequestMapping("/safeguard")
     public String safetyPage(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
@@ -65,13 +70,13 @@ public class SafetyController extends BaseController {
     @RequestMapping("/lawAndEdu/getDistinctYear")
     @ResponseBody
     public List<Integer> getDistinctYearForLawAndEdu(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
-        return adminReviewCaseService.getDistinctYear();
+        return lawAndEduService.getDistinctYear();
     }
 
     @RequestMapping("/lawAndEdu/getDistinctProvince")
     @ResponseBody
     public List<String> getDistinctProvinceForLawAndEdu(HttpServletRequest request, HttpServletResponse response, ModelMap modelMap) throws IOException {
-        return adminReviewCaseService.getDistinctProvince();
+        return lawAndEduService.getDistinctProvince();
     }
 
     @RequestMapping("/loadData")
@@ -108,6 +113,43 @@ public class SafetyController extends BaseController {
         }
 
         return map;
+    }
+
+    @RequestMapping("/lawAndEdu/loadDataByProvince")
+    @ResponseBody
+    public Map loadDataByProvinceForLawAndEdu(
+            @RequestParam(value = "province", required = false) String province){
+        Map mapResult = new HashMap();
+        List<Integer> yearList = lawAndEduService.getDistinctYear();
+        List<Integer> emptyYear = new ArrayList<>();
+        if(yearList != null && yearList.size() > 0){
+            for (int i = 0; i < yearList.size(); i++) {
+                List<LawAndEdu> pojoList = lawAndEduService.findByParams(province, yearList.get(i));
+                if(pojoList != null && pojoList.size() > 0){
+                    Map map = new HashMap();
+                    LawAndEdu pojo = pojoList.get(0);
+
+                    map.put("pfpxhd", new int[]{pojo.getPfpxhd_gbpx_c(), pojo.getPfpxhd_gbpx_r(), pojo.getPfpxhd_qypf_c(),
+                            pojo.getPfpxhd_qypf_r(), pojo.getPfpxhd_sqpf_c(), pojo.getPfpxhd_sqpf_r()});
+                    //map.put("bycl", new int[]{pojo.getBycl_jc(), pojo.getBycl_hb(), pojo.getBycl_xccl(), pojo.getBycl_qt()});
+                    map.put("jdzxfqk", new int[]{pojo.getJdzxfqk_flpx(), pojo.getJdzxfqk_sk()});
+                    //map.put("fzjg", new int[]{pojo.getFzjg()});
+                    //map.put("zzry", new int[]{pojo.getZzry_cnt(), pojo.getZzry_bk(), pojo.getZzry_ls()});
+
+                    mapResult.put(yearList.get(i), map);
+                }
+                else {
+                    emptyYear.add(yearList.get(i));
+                }
+            }
+            if(emptyYear != null && emptyYear.size() > 0){
+                yearList.removeAll(emptyYear);
+            }
+
+            mapResult.put("year", yearList);
+        }
+
+        return mapResult;
     }
 
 

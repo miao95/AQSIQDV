@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejunhai.qutihuo.statistical.dao.LawAndEduMapper" >
+    <resultMap id="LawAndEduMapper" type="com.ejunhai.qutihuo.statistical.model.LawAndEdu" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="PFPXHD_GBPX_C" property="pfpxhd_gbpx_c" jdbcType="INTEGER" />
+        <result column="PFPXHD_GBPX_R" property="pfpxhd_gbpx_r" jdbcType="INTEGER" />
+        <result column="PFPXHD_QYPF_C" property="pfpxhd_qypf_c" jdbcType="INTEGER" />
+        <result column="PFPXHD_QYPF_R" property="pfpxhd_qypf_r" jdbcType="INTEGER" />
+        <result column="PFPXHD_SQPF_C" property="pfpxhd_sqpf_c" jdbcType="INTEGER" />
+        <result column="PFPXHD_SQPF_R" property="pfpxhd_sqpf_r" jdbcType="INTEGER" />
+        <result column="BYCL_JC" property="bycl_jc" jdbcType="INTEGER" />
+        <result column="BYCL_HB" property="bycl_hb" jdbcType="INTEGER" />
+        <result column="BYCL_XCCL" property="bycl_xccl" jdbcType="INTEGER" />
+        <result column="BYCL_QT" property="bycl_qt" jdbcType="INTEGER" />
+        <result column="JDZXFQK_FLPX" property="jdzxfqk_flpx" jdbcType="INTEGER" />
+        <result column="JDZXFQK_SK" property="jdzxfqk_sk" jdbcType="INTEGER" />
+        <result column="FZJG" property="fzjg" jdbcType="INTEGER" />
+        <result column="ZZRY_CNT" property="zzry_cnt" jdbcType="INTEGER" />
+        <result column="ZZRY_BK" property="zzry_bk" jdbcType="INTEGER" />
+        <result column="ZZRY_LS" property="zzry_ls" jdbcType="INTEGER" />
+        <result column="YEAR" property="year" jdbcType="INTEGER" />
+        <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <sql id="Base_Column_List" >
+        ID,
+        PFPXHD_GBPX_C,
+        PFPXHD_GBPX_R,
+        PFPXHD_QYPF_C,
+        PFPXHD_QYPF_R,
+        PFPXHD_SQPF_C,
+        PFPXHD_SQPF_R,
+        BYCL_JC,
+        BYCL_HB,
+        BYCL_XCCL,
+        BYCL_QT,
+        JDZXFQK_FLPX,
+        JDZXFQK_SK,
+        FZJG,
+        ZZRY_CNT,
+        ZZRY_BK,
+        ZZRY_LS,
+        YEAR,
+        PROVINCE
+    </sql>
+
+    <select id="getDistinctProvince" resultType="String">
+        SELECT
+        DISTINCT PROVINCE
+        FROM lawandedu
+        WHERE province NOT IN ('全国总计','地方单位合计', '  地方单位合计')
+        AND trim(province) != ''
+        ORDER BY PROVINCE ASC
+    </select>
+
+    <select id="getDistinctYear" resultType="Integer">
+        SELECT
+        DISTINCT YEAR
+        FROM lawandedu
+        ORDER BY YEAR DESC
+    </select>
+
+    <select id="findByParams" resultMap="LawAndEduMapper" resultType="com.ejunhai.qutihuo.statistical.model.LawAndEdu">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM lawandedu
+        <where>
+            <if test="province != null and province !=''"> and province=#{province} </if>
+            <if test="year != null and year !=''"> and year = #{year} </if>
+        </where>
+    </select>
+</mapper>

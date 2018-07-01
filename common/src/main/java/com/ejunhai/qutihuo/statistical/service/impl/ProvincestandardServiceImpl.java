@@ -4,14 +4,13 @@ import com.ejunhai.qutihuo.statistical.dao.ProvinceStandardMapper;
 import com.ejunhai.qutihuo.statistical.dto.StandardReviseDto;
 import com.ejunhai.qutihuo.statistical.model.ProvinceStandard;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
-import com.sun.xml.internal.ws.util.QNameMap;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
 import java.util.*;
-
 /**
- * SystemUser Service 实现类
+ *
+ * SystemUser Service 接口的实现类
  * 
  * @author parcel
  * 

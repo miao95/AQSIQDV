@@ -1,6 +1,5 @@
 package com.ejunhai.qutihuo.statistical.service;
 
-import com.ejunhai.qutihuo.statistical.model.AdminReviewCase;
 import com.ejunhai.qutihuo.statistical.model.LawAndEdu;
 
 import java.util.List;
@@ -28,4 +27,11 @@ public interface LawAndEduService {
      * @return 省份数组
      */
     public List<String> getDistinctProvince();
+
+    /**
+     *  将省份改为echartss识别的形式
+     *
+     * @return 省份名字
+     */
+    public String provinceForShort( String province);
 }

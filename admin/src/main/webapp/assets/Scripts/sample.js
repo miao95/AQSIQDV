@@ -593,20 +593,20 @@ option_sample5 = {
             },
     grid: {
         height: 530,
-        width: 8,
+        width: 500,
         right: 180,
         top:0
     },
     xAxis: {
         type: 'category',
         data: [],
-        splitNumber: 1,
+        splitNumber: 10,
         show: false
     },
     yAxis: {
         position: 'right',
         min: 0,
-        max: 20,
+        max: 300,
         splitNumber: 20,
         inverse: true,
         axisLabel: {
@@ -692,7 +692,42 @@ option_sample5 = {
                     shadowBlur: 10
                 }
             },
-            data: [20]
+            data:[
+                { name: '北京', value: 95 },
+                { name: '天津', value: 96.3 },
+                { name: '上海', value: 92.4 },
+                { name: '重庆', value: 91.8 },
+                { name: '河北', value: 92.5 },
+                { name: '河南', value: 92.8 },
+                { name: '云南', value: 95.2 },
+                { name: '辽宁', value: 93.6 },
+                { name: '黑龙江', value: 97.3 },
+                { name: '湖南', value: 88.6 },
+                { name: '安徽', value: 94 },
+                { name: '山东', value: 94.6 },
+                { name: '新疆', value: 89.8 },
+                { name: '江苏', value: 90.7 },
+                { name: '浙江', value: 93.4 },
+                { name: '江西', value: 83.3 },
+                { name: '湖北', value: 92.9 },
+                { name: '广西', value: 91.2 },
+                { name: '甘肃', value: 93.4 },
+                { name: '山西', value: 92.4 },
+                { name: '内蒙古', value: 95.8 },
+                { name: '陕西', value: 90.4 },
+                { name: '吉林', value: 96.6 },
+                { name: '福建', value: 93.3 },
+                { name: '贵州', value: 91.7 },
+                { name: '广东', value: 86.4 },
+                { name: '青海', value: 83.9 },
+                { name: '西藏', value: 0 },
+                { name: '四川', value: 91.1 },
+                { name: '宁夏', value: 97.3 },
+                { name: '海南', value: 98 },
+                { name: '台湾', value: 0 },
+                { name: '香港', value: 0 },
+                { name: '澳门', value: 0 }
+            ],
         }
     ]
 };

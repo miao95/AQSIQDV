@@ -99,6 +99,69 @@ public class BasisController extends BaseController {
         return specialDeviceService.getDistinctYear();
     }
 
+    //added by wugang on 2018-6-25 begin  机构与人员信息
+    @RequestMapping("/supply/organdhr")
+    public String organdhrPage(HttpServletResponse request, HttpServletResponse response, ModelMap modelMap) throws IOException {
+        return "basis/supply/organdhr";
+    }
+
+    //读取人员与信息所有的年份
+    @RequestMapping("/getYearAllForORGandHR")
+    @ResponseBody
+    public List<String> getYearAllForORGandHR(){
+        return organdHRService.getYearAll();
+    }
+
+    //读取人员与信息所有的省份
+    @RequestMapping("/getProvinceAllForORGandHR")
+    @ResponseBody
+    public List<String> getProvinceAllForORGandHR(){
+        return organdHRService.getProvinceAll();
+    }
+
+    //读取人员与机构详细信息
+    @RequestMapping("/getGOVandProvinceInfo")
+    @ResponseBody
+    public Map<String, Object> getGOVandProvinceInfo(Integer year, String province) {
+        Map<String, Object> objMap = new HashMap<String,Object>();
+        List<OrgandHR>  listOrgandHR = organdHRService.getByYearProvince(province,year);
+        objMap.put("ID",listOrgandHR.get(0).getId());
+        objMap.put("ORG_ADMIN",listOrgandHR.get(0).getOrg_admin());
+        objMap.put("ORG_NONADMIN",listOrgandHR.get(0).getOrg_nonadmin());
+        objMap.put("Emp_BZ_Count",listOrgandHR.get(0).getEmp_bz_count());
+        objMap.put("Emp_ZZ_Count",listOrgandHR.get(0).getEmp_zz_count());
+        objMap.put("Emp_XZ_BZ_Count",listOrgandHR.get(0).getEmp_xz_bz_count());
+        objMap.put("Emp_XZ_ZZ_Count",listOrgandHR.get(0).getEmp_xz_zz_count());
+        objMap.put("Emp_XZ_WH_BS",listOrgandHR.get(0).getEmp_xz_wh_bs());
+        objMap.put("Emp_XZ_WH_SS",listOrgandHR.get(0).getEmp_xz_wh_ss());
+        objMap.put("Emp_XZ_WH_BK",listOrgandHR.get(0).getEmp_xz_wh_bk());
+        objMap.put("Emp_XZ_WH_ZK",listOrgandHR.get(0).getEmp_xz_wh_zk());
+        objMap.put("Emp_XZ_WH_GZ",listOrgandHR.get(0).getEmp_xz_wh_gz());
+        objMap.put("Emp_XZ_XZ_GWY",listOrgandHR.get(0).getEmp_xz_xz_gwy());
+        objMap.put("Emp_XZ_XZ_AQRY",listOrgandHR.get(0).getEmp_xz_xz_aqry());
+        objMap.put("Emp_SY_BZ_Count",listOrgandHR.get(0).getEmp_sy_bz_count());
+        objMap.put("Emp_SY_ZZ_Count",listOrgandHR.get(0).getEmp_sy_zz_count());
+        objMap.put("Emp_SY_ZC_GJ",listOrgandHR.get(0).getEmp_sy_zc_gj());
+        objMap.put("Emp_SY_ZC_ZJ",listOrgandHR.get(0).getEmp_sy_zc_zj());
+        objMap.put("Emp_SY_ZC_CJ",listOrgandHR.get(0).getEmp_sy_zc_cj());
+        objMap.put("Emp_SY_WH_BS",listOrgandHR.get(0).getEmp_sy_wh_bs());
+        objMap.put("Emp_SY_WH_SS",listOrgandHR.get(0).getEmp_sy_wh_ss());
+        objMap.put("Emp_SY_WH_BK",listOrgandHR.get(0).getEmp_sy_wh_bk());
+        objMap.put("Emp_SY_WH_ZK",listOrgandHR.get(0).getEmp_sy_wh_zk());
+        objMap.put("Emp_SY_WH_GZ",listOrgandHR.get(0).getEmp_sy_wh_gz());
+        objMap.put("Emp_SY_XZ_GL",listOrgandHR.get(0).getEmp_sy_xz_gl());
+        objMap.put("Emp_SY_XZ_ZYJS",listOrgandHR.get(0).getEmp_sy_xz_zyjs());
+        objMap.put("Emp_SY_XZ_GR",listOrgandHR.get(0).getEmp_sy_xz_gr());
+        objMap.put("Emp_Other",listOrgandHR.get(0).getEmp_other());
+        objMap.put("Emp_Retired",listOrgandHR.get(0).getEmp_retired());
+        objMap.put("Province",listOrgandHR.get(0).getProvince());
+        objMap.put("YEAR",listOrgandHR.get(0).getYear());
+        return objMap;
+    }
+
+    //added by wugang on 2018-6-25 end
+
+
     @RequestMapping("/findStandardByParams")
     @ResponseBody
     public Map findStandardByParams(@RequestParam(value = "yearName", required =false) String yearName,

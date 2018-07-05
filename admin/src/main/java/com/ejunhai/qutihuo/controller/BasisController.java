@@ -18,7 +18,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.ejunhai.qutihuo.statistical.service.OrgandHRService;
+import com.ejunhai.qutihuo.statistical.model.OrgandHR;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +37,8 @@ public class BasisController extends BaseController {
     private MetricInstrumentService metricInstrumentService;
     @Resource
     private SpecialDeviceService specialDeviceService;
+    @Resource
+    private OrgandHRService organdHRService;
 
     @RequestMapping("/nqi")
     public String nqiPage(HttpServletRequest request, HttpServletResponse response, Model model) throws IOException {
@@ -194,17 +197,12 @@ public class BasisController extends BaseController {
                         list1.add(pojo.getBnd_xz_qz()); //强制
                         list2.add(pojo.getBnd_xz_tj()); //推荐
                     }
-
                 }
             }
-
-
             zdMap.put(year, list1);
             xdMap.put(year, list2);
-
             zdList.add(zdMap);
             xdList.add(xdMap);
-
         }
 
         Map<String, Object> map = new HashMap<String, Object>();

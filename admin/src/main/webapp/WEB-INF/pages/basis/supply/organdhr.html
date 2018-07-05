@@ -1,0 +1,143 @@
+<@override name="page-content">
+<!-- Breadcrumb -->
+    <ol class="breadcrumb hidden-xs" style="float:left">
+        <li><a href="indexl.html">首页</a></li>
+        <li><a href="#">质量基础</a></li>
+        <li ><a href="#">保障能力</a></li>
+        <li  class="active">机构与人员</li>
+    </ol>
+    <h4 class="page-title">&nbsp;</h4>
+    <div  class="block-area">
+        <div id="div_select">
+            <div class="row" style="margin-top:10px;">
+                <div class='col-md-1'>
+                    <div style="margin-left:79px;margin-top:7px">年份:</div>
+                </div>
+                <div class='col-md-1'>
+                    <select id="cmb_year" name="cmb_year" class="select">
+                    </select>
+                </div>
+                <div class='col-md-1'>
+                    <div style="margin-left:89px;margin-top:7px">地区:</div>
+                </div>
+                <div class='col-md-1'>
+                    <select id="cmb_province" name="cmb_province" class="select">
+                    </select>
+                </div>
+
+                <div class="col-md-1" style="margin-left: 90px;">
+                    <input type="button" class="btn btn-default" value="查询" onclick="queryData();">
+                </div>
+
+            </div>
+        </div>
+        <h4 class="page-title">&nbsp;</h4>
+
+        <div id="c1_stddiv_content" class="robin_circle" style="margin: 6px 0px 18px 20px;">
+            <div id="div_national_cnt">
+                <div id="div_org_cnt_all" style="margin-left:50px;width:400px; height:200px">
+                </div>
+                <div style="margin:0 0 0  80px;width:400px; height:20px;fontSize:16px;font-weight:bold" id="div_title_org"></div>
+            </div>
+            <div id="div_province_cnt" style="margin-top:-220px; margin-left:600px">
+                <div id="div_org_cnt_province" style="width:400px; height:200px">
+
+                </div>
+                <div style="margin:0 0 0 20px;width:400px; height:20px;fontSize:16px;font-weight:bold">地方单位总计</div>
+            </div>
+            <div id="div_hr_info" style="margin-top:-220px; margin-left:900px">
+                <div id="div_hr_all" style="width:400px; height:200px">
+
+                </div>
+                <div style="margin:0 0 0 120px;width:400px; height:20px;fontSize:16px;font-weight:bold" id="div_title_emp"></div>
+            </div>
+        </div>
+
+        <hr class="whiter" />
+        <h4 class="page-title">人员信息</h4>
+        <div class="row" style="margin-top:8px">
+            <div class="col-md-6">
+                <div class="tile" style="margin-left:3px;height: 780px">
+                    <h2 class="tile-title" style="font-size: 15px">行政人员信息</h2>
+                    <div class="tile-config dropdown">
+                        <a data-toggle="dropdown" href="" class="tile-menu"></a>
+                        <ul class="dropdown-menu pull-right text-right">
+                            <li id="todo-add"><a href="">Add New</a></li>
+                            <li id="todo-refresh"><a href="">Refresh</a></li>
+                            <li id="todo-clear"><a href="">Clear All</a></li>
+                        </ul>
+                    </div>
+                    <div class="p-10">
+                        <div style="margin-top:16px; margin-left:30px;font-size:11pt" id="div_admin_bzinfo"></div>
+                        <div id="div_admin_bz" class="main-chart" style="height: 50px;margin-top:10px;margin-left:15px">
+
+                        </div>
+                        <div style="margin-top:16px; margin-left:30px;font-size:11pt">按文化程度分</div>
+                        <div id="div_admin_edu" class="main-chart" style="height: 250px;margin-top:10px;margin-left:15px">
+
+                        </div>
+                        <div style="margin-top:16px; margin-left:30px;font-size:11pt">按工作性质分</div>
+                        <div id="div_admin_xz" class="main-chart" style="height: 250px;margin-top:10px;margin-left:15px">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="tile" style="height: 780px">
+                    <h2 class="tile-title" style="font-size: 15px">事业人员信息</h2>
+                    <div class="tile-config dropdown">
+                        <a data-toggle="dropdown" href="" class="tile-menu"></a>
+                        <ul class="dropdown-menu pull-right text-right">
+                            <li id="todo-add"><a href="">Add New</a></li>
+                            <li id="todo-refresh"><a href="">Refresh</a></li>
+                            <li id="todo-clear"><a href="">Clear All</a></li>
+                        </ul>
+                    </div>
+                    <div class="p-10">
+                        <div style="margin-top:16px; margin-left:30px;font-size:11pt" id="div_company_bzinfo"></div>
+                        <div id="div_company_bz" class="main-chart" style="height: 50px;margin-top:10px;margin-left:15px">
+
+                        </div>
+                        <div style="margin-top:16px; margin-left:30px;font-size:11pt">按文化程度分</div>
+                        <div id="div_company_edu" class="main-chart" style="height: 250px;margin-top:10px;margin-left:15px">
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6" style="backgroundColor:#ffffff;">
+                                <div id="div_company_xz" class="main-chart" style="height: 350px;margin-top:10px;margin-left:15px">
+
+                                </div>
+                            </div>
+                            <div class="col-md-6"  style="backgroundColor:#ffffff;">
+                                <div id="div_company_zc" class="main-chart" style="height: 350px;margin-top:10px;margin-left:15px">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</@override>
+<@override name="custom-script">
+    <script type="text/javascript" src="/assets/Scripts/echarts.min-4.x.js"></script>
+    <script type="text/javascript" src="/assets/my-scripts/organdhr.js"></script>
+    <script type="text/javascript">
+
+        $('.accordion').find('a').each(function () {
+            if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
+                $(this).parent().addClass('active');
+                $(this).parent().parent().addClass('open');
+                $(this).parent().parent().parent().addClass('open');
+            }
+            // else {
+            //     $(this).parent().parent().parent().removeClass('open'); // this.className = 'active';
+            // }
+        });
+
+    </script>
+</@override>
+<@extends name="/common/base.html"/>

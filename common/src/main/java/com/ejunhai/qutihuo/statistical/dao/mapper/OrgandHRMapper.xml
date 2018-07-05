@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ejunhai.qutihuo.statistical.dao.OrgandHRMapper" >
+    <resultMap id="OrgandHRMapper" type="com.ejunhai.qutihuo.statistical.model.OrgandHR" >
+        <id column="ID" property="id" jdbcType="VARCHAR" />
+        <result column="ORG_ADMIN" property="org_admin" jdbcType="INTEGER" />
+        <result column="ORG_NONADMIN" property="org_nonadmin" jdbcType="INTEGER" />
+        <result column="Emp_BZ_Count" property="emp_bz_count" jdbcType="INTEGER" />
+        <result column="Emp_ZZ_Count" property="emp_zz_count" jdbcType="INTEGER" />
+        <result column="Emp_XZ_BZ_Count" property="emp_xz_bz_count" jdbcType="INTEGER" />
+        <result column="Emp_XZ_ZZ_Count" property="emp_xz_zz_count" jdbcType="INTEGER" />
+        <result column="Emp_XZ_WH_BS" property="emp_xz_wh_bs" jdbcType="INTEGER" />
+        <result column="Emp_XZ_WH_SS" property="emp_xz_wh_ss" jdbcType="INTEGER" />
+        <result column="Emp_XZ_WH_BK" property="emp_xz_wh_bk" jdbcType="INTEGER" />
+        <result column="Emp_XZ_WH_ZK" property="emp_xz_wh_zk" jdbcType="INTEGER" />
+        <result column="Emp_XZ_WH_gz" property="emp_xz_wh_gz" jdbcType="INTEGER" />
+        <result column="Emp_XZ_XZ_GWY" property="emp_xz_xz_gwy" jdbcType="INTEGER" />
+        <result column="Emp_XZ_XZ_AQRY" property="emp_xz_xz_aqry" jdbcType="INTEGER" />
+        <result column="Emp_SY_ZZ_Count" property="emp_sy_zz_count" jdbcType="INTEGER" />
+        <result column="Emp_SY_BZ_Count" property="emp_sy_bz_count" jdbcType="INTEGER" />
+        <result column="Emp_SY_ZC_GJ" property="emp_sy_zc_gj" jdbcType="INTEGER" />
+        <result column="Emp_SY_ZC_ZJ" property="emp_sy_zc_zj" jdbcType="INTEGER" />
+        <result column="Emp_SY_ZC_CJ" property="emp_sy_zc_cj" jdbcType="INTEGER" />
+        <result column="Emp_SY_WH_BS" property="emp_sy_wh_bs" jdbcType="INTEGER" />
+        <result column="Emp_SY_WH_SS" property="emp_sy_wh_ss" jdbcType="INTEGER" />
+        <result column="Emp_SY_WH_BK" property="emp_sy_wh_bk" jdbcType="INTEGER" />
+        <result column="Emp_SY_WH_ZK" property="emp_sy_wh_zk" jdbcType="INTEGER" />
+        <result column="Emp_SY_WH_GZ" property="emp_sy_wh_gz" jdbcType="INTEGER" />
+        <result column="Emp_SY_XZ_GL" property="emp_sy_xz_gl" jdbcType="INTEGER" />
+        <result column="Emp_SY_XZ_ZYJS" property="emp_sy_xz_zyjs" jdbcType="INTEGER" />
+        <result column="Emp_SY_XZ_GR" property="emp_sy_xz_gr" jdbcType="INTEGER" />
+        <result column="Emp_Other" property="emp_other" jdbcType="INTEGER" />
+        <result column="Emp_Retired" property="emp_retired" jdbcType="INTEGER" />
+        <result column="YEAR" property="year" jdbcType="INTEGER" />
+        <result column="Province" property="province" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        ID,
+        ORG_ADMIN,
+        ORG_NONADMIN,
+        Emp_BZ_Count,
+        Emp_ZZ_Count,
+        Emp_XZ_BZ_Count,
+        Emp_XZ_ZZ_Count,
+        Emp_XZ_WH_BS,
+        Emp_XZ_WH_SS,
+        Emp_XZ_WH_BK,
+        Emp_XZ_WH_ZK,
+        Emp_XZ_WH_GZ,
+        Emp_XZ_XZ_GWY,
+        Emp_XZ_XZ_AQRY,
+        Emp_SY_BZ_Count,
+        Emp_SY_ZZ_Count,
+        Emp_SY_ZC_GJ,
+        Emp_SY_ZC_ZJ,
+        Emp_SY_ZC_CJ,
+        Emp_SY_WH_BS,
+        Emp_SY_WH_SS,
+        Emp_SY_WH_BK,
+        Emp_SY_WH_ZK,
+        Emp_SY_WH_GZ,
+        Emp_SY_XZ_GL,
+        Emp_SY_XZ_ZYJS,
+        Emp_SY_XZ_GR,
+        Emp_Other,
+        Emp_Retired,
+        Province,
+        YEAR
+
+    </sql>
+
+    <select id="getByYearProvince" resultMap="OrgandHRMapper" resultType="com.ejunhai.qutihuo.statistical.model.OrgandHR">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM organdemployee where province= #{province} and year = #{year}
+
+    </select>
+
+    <select id="getYearAll" resultType="java.lang.String">
+      SELECT DISTINCT YEAR FROM organdemployee order by YEAR DESC
+    </select>
+    <select id="getProvinceAll" resultType="java.lang.String">
+      select distinct province from organdemployee where province not  like '%小计%' and province not like '%合计%' order by ORG_ADMIN DESC;
+    </select>
+
+</mapper>

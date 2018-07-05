@@ -4,7 +4,7 @@ $(function () {
     initTimeSelects("year_name_inspection", "/basis/inspection/getDistinctYear.action");
 
     showMeteringLawManagement('div_m_std');
-    showMeteringInspection(2016);
+    showMeteringInspection();
 
 });
 

@@ -118,13 +118,19 @@ public class SafetyController extends BaseController {
     @RequestMapping("/lawAndEdu/loadDataByProvinceAndYear")
     @ResponseBody
     public Map loadDataByProvinceForLawAndEdu(
-            @RequestParam(value = "province", required = false) String province,
+            @RequestParam(value = "province", required = false, defaultValue = "全国总计") String province,
             @RequestParam(value = "year", required = false) Integer year) {
         Map mapResult = new HashMap();
 
         List<Integer> yearList = new ArrayList<>();
+        List<Integer> allYears = lawAndEduService.getDistinctYear();
+        if (allYears == null && allYears.size() == 0) {
+            return null;
+        }
         if (year == null) {
-            yearList = lawAndEduService.getDistinctYear();
+            yearList = allYears;
+        } else if (year == 0) {
+            yearList.add(allYears.get(0));
         } else {
             yearList.add(year);
         }
@@ -150,7 +156,7 @@ public class SafetyController extends BaseController {
                             String proviceName = lawAndEduService.provinceForShort(pojoFzjg.getProvince());
                             if (proviceName.equals("全国总计")) {
                                 map.put("fzjgzs", pojoFzjg.getFzjg());
-                            } else if(!proviceName.equals("全国总计")&&!proviceName.equals("地方单位合计")){
+                            } else if (!proviceName.equals("全国总计") && !proviceName.equals("地方单位合计")) {
                                 mapFzjg.put("name", proviceName);
                                 mapFzjg.put("value", pojoFzjg.getFzjg());
                                 fzjgList.add(mapFzjg);
@@ -172,6 +178,7 @@ public class SafetyController extends BaseController {
             }
 
             mapResult.put("year", yearList);
+            mapResult.put("latestYear", allYears.get(0));
         }
 
         return mapResult;

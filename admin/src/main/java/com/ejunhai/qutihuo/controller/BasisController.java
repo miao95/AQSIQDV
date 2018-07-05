@@ -10,7 +10,6 @@ import com.ejunhai.qutihuo.statistical.service.MetricInstrumentService;
 import com.ejunhai.qutihuo.statistical.service.ProvinceStandardService;
 import com.ejunhai.qutihuo.statistical.service.SpecialDeviceService;
 import com.ejunhai.qutihuo.utils.MyStringUtil;
-import com.google.gson.Gson;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,10 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("basis")
@@ -462,6 +464,11 @@ public class BasisController extends BaseController {
     public Map showMeteringInspection(
             @RequestParam(value = "year", required = false) Integer year){
         List list = new ArrayList();
+        //初始化时候获取最新的一年
+        List<Integer> allYears = metricInstrumentService.getDistinctYear();
+        if(year==null&&allYears!=null&&allYears.size()!=0){
+            year = allYears.get(0);
+        }
 
         List<String> provinceL = metricInstrumentService.getDistinctProvince();
         String[] provinceList = provinceL.toArray(new String[provinceL.size()]);
@@ -536,7 +543,12 @@ public class BasisController extends BaseController {
     public Map showSpecialDeviceInspection(
             @RequestParam(value = "year", required = false) Integer year){
         List list = new ArrayList();
+        //初始化时候获取最新的一年
+        List<Integer> allYears = specialDeviceService.getDistinctYear();
+        if(year==null&&allYears!=null&&allYears.size()!=0){
+            year = allYears.get(0);
 
+        }
         List<String> provinceL = specialDeviceService.getDistinctProvince();
         String[] provinceList = provinceL.toArray(new String[provinceL.size()]);
         String[] features = {"锅炉","压力容器","压力管道","气瓶","电梯","起重机械","客运索道","大型游乐设施","场内机动车辆"};

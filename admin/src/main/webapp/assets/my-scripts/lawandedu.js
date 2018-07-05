@@ -3,8 +3,8 @@ $(function () {
 
     initProvinceSelects("province");
     initTimeSelects("year");
-    loadDataByProvince("全国总计");
-    loadDataByProvinceAndYear(2016, "全国总计");
+    loadDataByProvince();
+    loadDataByProvinceAndYear(0);
 });
 
 //初始化日期下拉列表
@@ -117,6 +117,9 @@ function loadDataByProvinceAndYear(year, province) {
         },
         success: function (data) {//请求成功之后的操作
             var json = JSON.parse(data); //json字符串转为json对象
+            if(year==0){
+                year = json['latestYear'];
+            }
             showByclPieChart(json[year]);
             showZzryPieChart(json[year]);
             showFzjgMap(year, json[year]);

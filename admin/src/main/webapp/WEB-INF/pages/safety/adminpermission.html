@@ -1,0 +1,206 @@
+<@override name="custom-css">
+<style type="text/css">
+    .r_out {
+        width: 120px;
+        height: 120px;
+        border: 2px solid #d9d9d9;
+        background: #fff;
+        box-shadow: 3px 3px 5px #bfbfbf;
+        -webkit-box-shadow: 3px 3px 5px #bfbfbf;
+        -moz-box-shadow: 3px 3px 5px #bfbfbf;
+        -ms-box-shadow: 3px 3px 5px #bfbfbf;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms_border-radius: 50%;
+        display: inline-block;
+        margin: 20px 70px;
+        position: relative;
+    }
+
+    .r_out p {
+        position: absolute; /**bottom:-50px;*/
+        color: #fff;
+        text-align: center;
+        margin: 0 auto;
+        width: 100%;
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: bold;
+    }
+
+    .r_in {
+        width: 120px;
+        height: 120px;
+        border: 10px solid #fff;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms_border-radius: 50%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .r_c {
+        width: 120px;
+        height: 120px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 0;
+    }
+
+    .c1 {
+        background: #fbad4c;
+    }
+
+    .c2 {
+        background: #fff143;
+    }
+
+    .c3 {
+        background: #c9dd22;
+    }
+
+    .c4 {
+        background: #00e079;
+    }
+
+    .c5 {
+        background: #0eb83a;
+    }
+
+    .r_num {
+        color: #404040;
+        font-size: 23px;
+        line-height: 1.5;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        margin-top: -25px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .alert-lost {
+        padding: 5px;
+        margin-top: 10px;
+        margin-bottom: -8px;
+        font-size: 14px;
+    }
+
+</style>
+</@override>
+
+<@override name="page-content">
+<!-- Breadcrumb -->
+<ol class="breadcrumb hidden-xs">
+    <li><a href="index.jhtml">首页</a></li>
+    <li class="active">质量安全</li>
+</ol>
+
+<h4 class="page-title">行政许可有关事项</h4>
+
+
+<div class="block-area">
+
+    <div class="row" style="margin-top:10px;margin-bottom:10px;">
+        <div class='col-md-2' style="width: 30%">
+            <div class='col-md-6' style="width: 80px">
+                <div style="margin-left:25px;margin-top:7px">年份:</div>
+            </div>
+            <div class='col-md-6'>
+                <select id="year" class="selectpicker" name="yearName"
+                        data-width="200" title="请选择年份" onchange="yearSelectOnChange(this)">
+                </select>
+            </div>
+        </div>
+
+        <div class='col-md-2' style="width: 30%">
+            <div class='col-md-6' style="width: 80px">
+                <div style="margin-left:25px;margin-top:7px">省份:</div>
+            </div>
+            <div class='col-md-6'>
+                <select id="province" class="selectpicker" name="provinceName"
+                        data-width="200" title="请选择省份" onchange="provinceSelectOnChange(this)">
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!--  Main Chart -->
+    <div class="row" style="margin-top:0px">
+        <div class="col-md-12">
+
+            <!--概览-->
+            <h4 class="page-title">&nbsp;</h4>
+            <div id="c1_stddiv_content" class="robin_circle row" style="margin: 6px 0px 18px 20px;">
+                <div class="col-md-1"></div>
+                <div id="div_national_cnt" class="col-md-3">
+                    <div id="div_per_app" style="padding-left:10%;height:260px">
+                    </div>
+                </div>
+                <div id="div_province_cnt" class="col-md-3">
+                    <div id="div_per_acc" style=" height:260px">
+                    </div>
+                </div>
+                <div id="div_hr_info" class="col-md-3">
+                    <div id="div_per_chk" style="padding-right:10%;height:260px">
+                    </div>
+                </div>
+                <div class="col-md-1">
+                </div>
+
+
+                <!-- col-md-6占50%，col-md-4占1/3-->
+                <div class="col-md-4">
+                    <div class="tile">
+                        <h2 class="tile-title">案件处理(件)</h2>
+                        <div class="tile-config dropdown">
+                            <a data-toggle="dropdown" href="" class="tile-menu"></a>
+                            <ul class="dropdown-menu animated pull-right text-right">
+                                <li><a href="">Refresh</a></li>
+                                <li><a href="">Settings</a></li>
+                            </ul>
+                        </div>
+                        <div id="div_per_ajcl" style="width: 100%;height:400px;"></div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tile">
+                        <h2 class="tile-title">办理许可证收费(万元)</h2>
+                        <div class="tile-config dropdown">
+                            <a data-toggle="dropdown" href="" class="tile-menu"></a>
+                            <ul class="dropdown-menu animated pull-right text-right">
+                                <li><a href="">Refresh</a></li>
+                                <li><a href="">Settings</a></li>
+                            </ul>
+                        </div>
+                        <div id="div_per_blsf" style="width: 100%;height:400px;padding-top: 25px;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</@override>
+
+<@override name="custom-script">
+<!--<script type="text/javascript" src="/assets/Scripts/echarts.min.js"></script>-->
+<script type="text/javascript" src="/assets/my-scripts/basic.utiles.20180711.js"></script>
+<script type="text/javascript" src="/assets/my-scripts/adminpermission.js"></script>
+
+<script type="text/javascript">
+
+    $('.accordion').find('a').each(function () {
+        if (this.href == document.location.href || document.location.href.search(this.href) >= 0) {
+            $(this).parent().addClass('active');
+            $(this).parent().parent().addClass('open');
+            $(this).parent().parent().parent().addClass('open');
+        }
+    });
+</script>
+</@override>
+<@extends name="/common/base.html"/>

@@ -31,7 +31,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!--表名和实体名-->
-        <table schema="" tableName="adminpermission" domainObjectName="Adminpermission"
+        <table schema="" tableName="adminresponsecase" domainObjectName="Adminresponsecase"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

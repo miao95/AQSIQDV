@@ -104,7 +104,7 @@ var basic_utiles = function () {
         }
         return arr;
     }
-    return {
+        return {
         sortUp: function (x, y) {
             return up(x, y);
         },

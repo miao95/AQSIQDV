@@ -1,0 +1,129 @@
+.r_out {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #d9d9d9;
+    background: #fff;
+    box-shadow: 3px 3px 5px #bfbfbf;
+    -webkit-box-shadow: 3px 3px 5px #bfbfbf;
+    -moz-box-shadow: 3px 3px 5px #bfbfbf;
+    -ms-box-shadow: 3px 3px 5px #bfbfbf;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms_border-radius: 50%;
+    display: inline-block;
+    margin: 20px 70px;
+    position: relative;
+}
+
+.r_out p {
+    position: absolute; /**bottom:-50px;*/
+    color: #fff;
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.r_in {
+    width: 120px;
+    height: 120px;
+    border: 10px solid #fff;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms_border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+.r_c {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 0;
+}
+
+.c1 {
+    background: #fbe339;
+}
+
+.c2 {
+    background: #FF1A4A;
+}
+
+.c3 {
+    background: #c9dd22;
+}
+
+.c4 {
+    background: #00e079;
+}
+
+.c5 {
+    background: #0eb83a;
+}
+
+.r_num {
+    color: #404040;
+    font-size: 23px;
+    line-height: 1.5;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    text-align: center;
+    width: 100%;
+}
+
+.alert-lost {
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: -8px;
+    font-size: 14px;
+}
+
+.center-label {
+    margin-left: 33%;
+    width: 34%;
+}
+
+.center-label_bottom {
+    margin-bottom: 5px;
+}
+
+.label-subtitle {
+    font-size: 10px;
+    font-weight: normal;
+    color: #eee
+}
+
+.column-background {
+    background: rgba(0, 0, 0, 0.35);
+    margin-bottom: 15px;
+
+}
+
+.column-bottom-margin {
+    margin-bottom: 15px;
+}
+
+.div-span-title {
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: cursive;
+    line-height: 30px;
+    color: #22ff4f;
+    margin-right: 5px;
+}
+
+.div-span-title-little {
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: bold;
+
+}

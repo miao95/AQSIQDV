@@ -125,7 +125,7 @@
     <select id="getDistinctProvince" resultType="String">
     SELECT
     DISTINCT province
-    FROM adminpermission
+    FROM adminresponsecase
     WHERE province != '全国总计' AND province != '地方单位合计'AND province !='  地方单位合计'
     ORDER BY province ASC
     </select>
@@ -133,7 +133,7 @@
     <select id="getDistinctYear" resultType="Integer">
         SELECT
         DISTINCT year
-        FROM adminpermission
+        FROM adminresponsecase
         ORDER BY year DESC
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">

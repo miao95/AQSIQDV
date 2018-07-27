@@ -49,7 +49,6 @@ public class FixedassetsandcapitalconstructionServiceImpl implements Fixedassets
         List<Fixedassetsandcapitalconstruction> pojoSxjList = this.findByParams(province + "省小计", year);
         List<Fixedassetsandcapitalconstruction> pojoDxjList = this.findByParams(province + "地小计", year);
         List<Fixedassetsandcapitalconstruction> pojoXxjList = this.findByParams(province + "县小计", year);
-        //  List<Fixedassetsandcapitalconstruction> provinceLevellPojoList = this.findByParams("全国总计", year);
 
 
         if (pojoList != null && pojoList.size() > 0) {
@@ -61,7 +60,7 @@ public class FixedassetsandcapitalconstructionServiceImpl implements Fixedassets
             map.put("xyjzw", new int[]{pojo.getbBgyfmj(), pojo.getbSysmjCnt(), pojo.getbOther()});
             map.put("xyjzw_sys", new int[]{pojo.getbSysmjCnt() - pojo.getbJysysmj() - pojo.getbTzsbsysmj(), pojo.getbJysysmj(), pojo.getbTzsbsysmj()});
             map.put("xyjzw_total", pojo.getbCnt());
-            map.put("jbjs", new int[]{pojo.getCcBnzjxm(), pojo.getCcBntzje(), pojo.getCcBnzjjzmj()});
+            map.put("jbjs", new int[]{pojo.getCcBnzjjzmj(), pojo.getCcBntzje(), pojo.getCcBnzjxm()});
         }
         if (pojoSxjList != null && pojoSxjList.size() > 0) {
             Fixedassetsandcapitalconstruction pojoSxj = pojoSxjList.get(0);
@@ -78,6 +77,7 @@ public class FixedassetsandcapitalconstructionServiceImpl implements Fixedassets
             map.put("xyjzw_xj", new int[]{pojoSxj.getbBgyfmj(), pojoDxj.getbBgyfmj(), pojoXxj.getbBgyfmj(), pojoSxj.getbSysmjCnt(), pojoDxj.getbSysmjCnt(), pojoXxj.getbSysmjCnt(), pojoSxj.getbOther(), pojoDxj.getbOther(), pojoXxj.getbOther()});
             map.put("xyjzw_sys_xj", new int[]{pojoSxj.getbSysmjCnt() - pojoSxj.getbJysysmj() - pojoSxj.getbTzsbsysmj(), pojoDxj.getbSysmjCnt() - pojoDxj.getbJysysmj() - pojoDxj.getbTzsbsysmj(), pojoXxj.getbSysmjCnt() - pojoXxj.getbJysysmj() - pojoXxj.getbTzsbsysmj(), pojoSxj.getbJysysmj(), pojoDxj.getbJysysmj(), pojoXxj.getbJysysmj(), pojoSxj.getbTzsbsysmj(), pojoDxj.getbTzsbsysmj(), pojoXxj.getbTzsbsysmj()});
             map.put("xyjzw_total_xj", new int[]{pojoSxj.getbCnt(), pojoDxj.getbCnt(), pojoXxj.getbCnt()});
+            map.put("jbjs_xj", new int[]{pojoSxj.getCcBnzjjzmj(), pojoDxj.getCcBnzjjzmj(),pojoXxj.getCcBnzjjzmj(),pojoSxj.getCcBntzje(),pojoDxj.getCcBntzje(),pojoXxj.getCcBntzje(), pojoSxj.getCcBnzjxm(),pojoDxj.getCcBnzjxm(),pojoXxj.getCcBnzjxm()});
         } else {
             map.put("total_xj", null);
             map.put("gdzcze_xj", null);
@@ -85,6 +85,7 @@ public class FixedassetsandcapitalconstructionServiceImpl implements Fixedassets
             map.put("xyjzw_xj", null);
             map.put("xyjzw_sys_xj", null);
             map.put("xyjzw_total_xj", null);
+            map.put("jbjs_xj", null);
         }
 
         return map;

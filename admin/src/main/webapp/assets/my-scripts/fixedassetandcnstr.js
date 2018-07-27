@@ -57,7 +57,7 @@ function loadDataByProvinceAndYear(year, province) {
             if (year == 0) {
                 year = json['year'];
             }
-            drawPieChart1(json['total'], json['total_xj'], null, null, json['jbjs'], json['province'], json['year']);
+            drawPieChart1(json['total'], json['total_xj'], json['jbjs'], json['jbjs_xj'], json['province'], json['year']);
             drawPieChart2(json['gdzcze'], json['gdzcze_xj'], json['gdzcze_bnxz'], json['gdzcze_bnxz_xj'], json['province'], json['year']);
             drawPieChart3(json['xyjzw'], json['xyjzw_xj'], json['xyjzw_sys'], json['xyjzw_sys_xj'], json['xyjzw_total'], json['xyjzw_total_xj'], json['province'], json['year']);
 
@@ -70,10 +70,11 @@ function loadDataByProvinceAndYear(year, province) {
  * 概况饼图
  * @param data
  */
-function drawPieChart1(data1, data2, data3, data4, data5, province, year) {
+function drawPieChart1(data1, data2, data3, data4, province, year) {
     var label = ['固定资产', '其他'];
     var label12 = ['固定资产(省)', '固定资产（地）', '固定资产（县）', '其他(省)', '其他（地）', '其他（县）'];
-    var label2 = ['在建基建项目数（个）', '投资金额(万元)', '在建建筑面积（平方米）'];
+    var label2 = ['在建建筑面积（平方米）', '投资金额(万元)', '在建基建项目数（个）'];
+    var label22 = ['建筑面积(省)', '建筑面积(地)', '建筑面积(县)', '投资金额(省)', '投资金额(地)', '投资金额(县)', '基建项目数(省)', '基建项目数(地)', '基建项目数(县)'];
     var text1 = province + " " + year + "年" + " " + "资产统计";
 
     var title = {
@@ -134,11 +135,11 @@ function drawPieChart1(data1, data2, data3, data4, data5, province, year) {
     var option_2 = {
         tooltip: {
             trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
+            formatter: "{a} <br/>{b} : {c}"
 
         },
         title: {
-            text: '应诉机关级别分布 ' + province + " " + year + "年",
+            text: province + " " + year + "年 基本建设情况",
             left: 'center',
             bottom: 10,
             textStyle: {
@@ -180,31 +181,28 @@ function drawPieChart1(data1, data2, data3, data4, data5, province, year) {
                 }
             }
         },
-        series: [
-            {
-                name: '应诉机关级别',
-                type: 'pie',
-                radius: '60%',
-                center: ['50%', '55%'],
-                data: basic_utiles.generateData(label2, data5),
-                itemStyle: {
-                    normal: {
-                        label: {
-                            show: true,
-                            //position:'inside',
-                            formatter: '{c} ({d}%)'
-                        }
-                    },
-                    labelLine: {show: true},
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+        series: [{
+            name: '基本建设',
+            type: 'pie',
+            radius: '60%',
+            center: ['40%', '50%'],
+            itemStyle: {
+                normal: {
+                    label: {
+                        show: true,
+                        formatter: '{c}'
                     }
+                },
+                labelLine: {show: true},
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
                 }
+            },
+            data: basic_utiles.generateData(label2, data3)
 
-            }
-        ]
+        }]
     };
     title['text'] = text1;
     option_1['title'] = title;
@@ -212,9 +210,16 @@ function drawPieChart1(data1, data2, data3, data4, data5, province, year) {
     var chart_dom = echarts.init(document.getElementById('div_gl_pie_1'));
     chart_dom.setOption(option_1);
 
+    if (data4 != null) {
+        option_2['series'] = generateDataSeries("基本建设", label2, data3, label22, data4, false);
+        var chart_dom2 = echarts.init(document.getElementById('div_jbjs_pie_1'));
+        chart_dom2.setOption(option_2);
+    } else {
+        var chart_dom2 = echarts.init(document.getElementById('div_jbjs_pie_1'));
+        chart_dom2.setOption(option_2);
 
-    var chart_dom2 = echarts.init(document.getElementById('div_jbjs_pie_1'));
-    chart_dom2.setOption(option_2);
+    }
+
 
 }
 
@@ -257,18 +262,6 @@ function drawPieChart2(data1, data12, data2, data22, province, year) {
             orient: 'vertical',
             x: 'right',
             data: label1,
-            formatter: function (name) {
-                var oa = option_1.series[0].data;
-                var num = 0;
-                for (var i = 0; i < option_1.series[0].data.length; i++) {
-                    num += oa[i].value;
-                }
-                for (var i = 0; i < option_1.series[0].data.length; i++) {
-                    if (name == oa[i].name) {
-                        return name + '     ' + oa[i].value + '     ' + (oa[i].value / num * 100).toFixed(2) + '%';
-                    }
-                }
-            },
             textStyle: {
                 color: '#fff',
             },
@@ -299,6 +292,7 @@ function drawPieChart2(data1, data12, data2, data22, province, year) {
 
     title['text'] = text2;
     option_1['title'] = title;
+    option_1['legend']['data'] = label2;
     option_1['series'] = generateDataSeries("固定资产类型", label2, data2, label22, data22, false);
     var chart_dom = echarts.init(document.getElementById('div_gdzc_pie_2'));
     chart_dom.setOption(option_1);
